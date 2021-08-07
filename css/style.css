@@ -4748,7 +4748,13 @@ img.lazyload:not(.placeholder).loaded {
   padding-left: 10px !important;
 }
 .nav-main .title {
-  vertical-align: top;
+  vertical-align: middle;
+}
+.l_header #wrapper .nav-main .title img {
+  float: left;
+}
+#l_cover .cover-wrapper {
+  background-color: #81c7ff;
 }
 #safearea {
   display: block;
