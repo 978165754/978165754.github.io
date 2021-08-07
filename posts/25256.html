@@ -22,7 +22,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>所有标签 - 猫叔饭-写代码的猫叔个人博客</title>
+  <title>fastadmin 常用知识点整理 - 猫叔饭-写代码的猫叔个人博客</title>
+  
+    <meta name="keywords" content="fastadmin">
   
 
   
@@ -102,13 +104,15 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <body>
     
 
-<header id="l_header" class="l_header auto shadow blur " style='opacity: 0' >
+<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
       <p class="title"></p>
       <ul class='switcher nav-list-h m-phone' id="pjax-header-nav-list">
         <li><a id="s-comment" class="fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a id="s-toc" class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
         
       </ul>
     </div>
@@ -353,7 +357,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="half" class='cover-wrapper tag dock' style="display: ;">
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://bing.ioliu.cn/v1/rand?w=1920&h=800"></div>
           
@@ -430,28 +434,297 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         <div class="body-wrapper" id="pjax-container">
           
 
-
-<div class='l_main no_sidebar'>
+<div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
   
+
+
+  
+  <div class="article-meta" id="top">
     
-      <div class='post-wrapper'>
-        <article id="tag" class="post article white-box reveal shadow">
-          <h2>所有标签</h2>
-          <div class="all-tags">
-            
-            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/fastadmin/" rel="tag">fastadmin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a><span class="tag-list-count">1</span></li></ul>
-          </div>
-          <br>
+    
+    
+      <h1 class="title">
+        fastadmin 常用知识点整理
+      </h1>
+      <div class='new-meta-box'>
+        
           
-        </article>
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/" rel="nofollow">
+    <img no-lazy src="https://i.loli.net/2021/08/07/mNRDQ8oiArnyUPG.png">
+    <p>写代码的猫叔</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Aug 7, 2021</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="fastadmin 常用知识点整理" data-path="/posts/25256.html">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
       </div>
     
+  </div>
+
+
   
+  
+  <h2 id="关于buttons"><a href="#关于buttons" class="headerlink" title="关于buttons"></a>关于buttons</h2><h3 id="自定义点击按钮事件"><a href="#自定义点击按钮事件" class="headerlink" title="自定义点击按钮事件"></a>自定义点击按钮事件</h3><p>此处例子为点击弹出窗口，输入文字，执行ajax请求</p>
+<pre><code class="js">&#123;
+    name: &#39;shield&#39;,
+    text: &#39;完成此查&#39;,
+    icon: &#39;fa fa-check-circle fa-fw&#39;,
+    classname: &#39;btn btn-xs btn-success  btn-magic btn-click&#39;,
+    // url: &#39;survey/over&#39;,
+    click:function(e,s) &#123;                                    
+      console.log(e,s);
+      layer.prompt(&#123;title:&quot;填写奖金数值&quot;&#125;,function(val, index)&#123;
+        if(!val || val ==0 )&#123;
+          layer.msg(&quot;请先填写正确的奖金数值！&quot;);
+          return;
+        &#125;
+        if (isNaN(val)) &#123;
+          layer.msg(&quot;请输入数字！&quot;);
+          return;
+        &#125;
+        $.ajax(&#123;
+          type: &quot;post&quot;,
+          url: &quot;survey/over&quot;,
+          data: &#123;
+            ids:s.id,
+            bonus:val
+          &#125;,
+          dataType: &quot;json&quot;,
+          success: function (response) &#123;
+            if(response.code == 2)&#123;
+              layer.msg(response.msg)
+            &#125;
+            else&#123;
+
+              layer.close(index);
+              table.bootstrapTable(&#39;refresh&#39;);
+            &#125;
+          &#125;
+        &#125;);
+
+      &#125;);
+      return false
+    &#125;,                                
+    refresh: true,
+    visible: function (row) &#123;
+      //返回true时按钮显示,返回false隐藏
+      // console.log(row)
+      return !row.over_time || !row.status;
+    &#125;  
+  &#125;,
+</code></pre>
+<h2 id="js里怎么取到config里的数据"><a href="#js里怎么取到config里的数据" class="headerlink" title="js里怎么取到config里的数据"></a>js里怎么取到config里的数据</h2><blockquote>
+<p>以token为例，这里先在后端把数据写入config，然后在前端js里就会有我们设置的token了</p>
+</blockquote>
+<h6 id="1-后端php部分"><a href="#1-后端php部分" class="headerlink" title="1.后端php部分"></a>1.后端php部分</h6><pre><code class="php">$this-&gt;assignconfig(&quot;token&quot;, $this-&gt;auth-&gt;token);
+</code></pre>
+<h6 id="2-前端js部分"><a href="#2-前端js部分" class="headerlink" title="2.前端js部分"></a>2.前端js部分</h6><pre><code class="js">console.log(Config.token)
+</code></pre>
+<p>通过变量Config可以取到你想要的东西</p>
+
+  
+  
+    
+    <div class='footer'>
+      
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>文章可以转载，但必须注明作者和网址链接；内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接：<a href=https://maoshu.fun/posts/25256.html>https://maoshu.fun/posts/25256.html</a></p>
+              
+            
+          </blockquote>
+        </div>
+      
+      
+    </div>
+  
+  
+    
+
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-07T18:36:38+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Aug 7, 2021</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/fastadmin/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>fastadmin</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://maoshu.fun/posts/25256.html&title=fastadmin 常用知识点整理 - 猫叔饭-写代码的猫叔个人博客&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://maoshu.fun/posts/25256.html&title=fastadmin 常用知识点整理 - 猫叔饭-写代码的猫叔个人博客&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://maoshu.fun/posts/25256.html&title=fastadmin 常用知识点整理 - 猫叔饭-写代码的猫叔个人博客&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+        <a class='prev' href='/posts/22663.html'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>hexo-volantis主题修改代码高亮风格</p>
+          <p class='content'>前言
+猫叔的博客是基于hexo制作的，选用主题为volantis，纵然这套主题我是特别喜欢，但它的代码高亮做的不是特别适合我，不如next主题里面的代码高亮风格那么好看（主要是暗色风格），但ne...</p>
+        </a>
+      
+      
+    </div>
+  
+</article>
+
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+</div>
+
+  </article>
+
+
+
+
+
+
 </div>
 <aside class='l_side'>
   
+  
+    
+    
+
+
+
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8Ebuttons"><span class="toc-text">关于buttons</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E7%82%B9%E5%87%BB%E6%8C%89%E9%92%AE%E4%BA%8B%E4%BB%B6"><span class="toc-text">自定义点击按钮事件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#js%E9%87%8C%E6%80%8E%E4%B9%88%E5%8F%96%E5%88%B0config%E9%87%8C%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="toc-text">js里怎么取到config里的数据</span></a></li></ol>
+    </div>
+  </section>
+
+
+  
+
 
 </aside>
+
 
 
 		  
@@ -460,21 +733,21 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
-  pdata.postTitle="";
+  pdata.ispage=true;
+  pdata.postTitle="fastadmin 常用知识点整理";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   // header 这里无论是否开启pjax都需要
   var l_header=document.getElementById("l_header");
   
-  l_header.classList.remove("show");
+  l_header.classList.add("show");
   
   
     // cover
     var cover_wrapper=document.querySelector('.cover-wrapper');
     
-    cover_wrapper.id="half";
-    cover_wrapper.style.display="";
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
     
   
 </script>
