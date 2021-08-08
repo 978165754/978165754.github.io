@@ -22,7 +22,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>fastadmin按钮全部事件整理 - 猫叔饭-写代码的猫叔个人博客</title>
+  <title>fastadmin按钮buttons全部事件整理 - 猫叔饭-写代码的猫叔个人博客</title>
   
 
   
@@ -451,7 +451,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
       <h1 class="title">
-        fastadmin按钮全部事件整理
+        fastadmin按钮buttons全部事件整理
       </h1>
       <div class='new-meta-box'>
         
@@ -486,7 +486,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="fastadmin按钮全部事件整理" data-path="/posts/31bfa1d6.html">
+      <div id="lc-pv" data-title="fastadmin按钮buttons全部事件整理" data-path="/posts/31bfa1d6.html">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -519,14 +519,15 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     table: table,
     events: Table.api.events.operate,
     buttons: [
-       ,
-        ,
-        
+       
     ],
     formatter: Table.api.formatter.buttons
 &#125;
 </code></pre>
-<h3 id="弹出窗口-btn-dialog"><a href="#弹出窗口-btn-dialog" class="headerlink" title="弹出窗口 btn-dialog"></a>弹出窗口 btn-dialog</h3><pre><code class="js">  &#123;
+<h3 id="弹出窗口-btn-dialog"><a href="#弹出窗口-btn-dialog" class="headerlink" title="弹出窗口 btn-dialog"></a>弹出窗口 btn-dialog</h3><blockquote>
+<p>修改弹出窗大小 <code>extend:  &#39; data-area = \&#39;[&quot;800px&quot;,&quot;600px&quot;]\&#39; &#39;,</code></p>
+</blockquote>
+<pre><code class="js">  &#123;
       name: &#39;detail&#39;,
       text: __(&#39;弹出窗口打开&#39;),
       title: __(&#39;弹出窗口打开&#39;),
@@ -542,7 +543,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       &#125;
   &#125;
 </code></pre>
-<h3 id="ajax请求-btn-ajax"><a href="#ajax请求-btn-ajax" class="headerlink" title="ajax请求 btn-ajax"></a>ajax请求 btn-ajax</h3><pre><code class="js">  &#123;
+<h3 id="ajax请求-btn-ajax"><a href="#ajax请求-btn-ajax" class="headerlink" title="ajax请求 btn-ajax"></a>ajax请求 btn-ajax</h3><p>完成后刷新表格</p>
+<pre><code class="js">refresh: true,
+//或者
+success: function (data, ret) &#123;
+    table.bootstrapTable(&#39;refresh&#39;);
+&#125;,
+</code></pre>
+<pre><code class="js">  &#123;
       name: &#39;ajax&#39;,
       text: __(&#39;发送Ajax&#39;),
       title: __(&#39;发送Ajax&#39;),
@@ -618,8 +626,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     &#125;  
   &#125;,
 </code></pre>
-<p>其他参数</p>
-<p> <code>dropdown</code>: ‘更多’,//如果包含dropdown，将会以下拉列表的形式展示</p>
+<h3 id="普通列（非操作列）里怎么加按钮"><a href="#普通列（非操作列）里怎么加按钮" class="headerlink" title="普通列（非操作列）里怎么加按钮"></a>普通列（非操作列）里怎么加按钮</h3><p>利用<code>formatter</code> 来处理再输出</p>
+<pre><code class="js">&#123;field: &#39;ceshis&#39;, title: __(&#39;Ceshis&#39;),formatter:function(a,b,c) &#123;
+    console.log(&#39;a,b,c: &#39;, a,b,c);
+    return a+&#39;--&#39;+&#39;&lt;button class=&quot;btn btn-xs btn-info&quot; onclick=&quot;console.log(&#39;+c+&#39;);return false;&quot;&gt;点击&lt;/button&gt;&#39;    
+&#125;&#125;,
+</code></pre>
+<h3 id="怎么去掉edit-del-dragsort-这样的按钮"><a href="#怎么去掉edit-del-dragsort-这样的按钮" class="headerlink" title="怎么去掉edit del dragsort 这样的按钮"></a>怎么去掉edit del dragsort 这样的按钮</h3><p>修改 operate</p>
+<h3 id="其他参数"><a href="#其他参数" class="headerlink" title="其他参数"></a>其他参数</h3><p> <code>dropdown</code>: ‘更多’,//如果包含dropdown，将会以下拉列表的形式展示</p>
 <pre><code class="js">&#123;
     name: &#39;addtabs&#39;,
     text: __(&#39;新选项卡中打开&#39;),
@@ -631,6 +645,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 &#125;
 </code></pre>
 <p><img src="https://i.loli.net/2021/08/08/OjIp4LtGqcDVH9W.png" class="lazyload" data-srcset="https://i.loli.net/2021/08/08/OjIp4LtGqcDVH9W.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="20210808085638"></p>
+<h2 id="扩展知识："><a href="#扩展知识：" class="headerlink" title="扩展知识："></a>扩展知识：</h2><p>点击就自动选中了checkbob，怎么关闭？</p>
+<p>table 加上 属性 即可 ： <code>data-click-to-select=&quot;false&quot;</code></p>
 
   
   
@@ -665,7 +681,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-08T09:29:13+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-08T10:03:43+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：Aug 8, 2021</p>
@@ -687,7 +703,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://maoshu.fun/posts/31bfa1d6.html&title=fastadmin按钮全部事件整理 - 猫叔饭-写代码的猫叔个人博客&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://maoshu.fun/posts/31bfa1d6.html&title=fastadmin按钮buttons全部事件整理 - 猫叔饭-写代码的猫叔个人博客&summary="
           
           >
           
@@ -699,7 +715,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://maoshu.fun/posts/31bfa1d6.html&title=fastadmin按钮全部事件整理 - 猫叔饭-写代码的猫叔个人博客&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://maoshu.fun/posts/31bfa1d6.html&title=fastadmin按钮buttons全部事件整理 - 猫叔饭-写代码的猫叔个人博客&summary="
           
           >
           
@@ -711,7 +727,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://maoshu.fun/posts/31bfa1d6.html&title=fastadmin按钮全部事件整理 - 猫叔饭-写代码的猫叔个人博客&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://maoshu.fun/posts/31bfa1d6.html&title=fastadmin按钮buttons全部事件整理 - 猫叔饭-写代码的猫叔个人博客&summary="
           
           >
           
@@ -796,7 +812,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#classname%E6%9D%A5%E6%8E%A7%E5%88%B6%E6%8C%89%E9%92%AE%E6%89%A7%E8%A1%8C%E6%96%B9%E5%BC%8F"><span class="toc-text">classname来控制按钮执行方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%89%E9%92%AE%E7%BB%84-%E6%A0%B7%E4%BE%8B"><span class="toc-text">按钮组 样例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%B9%E5%87%BA%E7%AA%97%E5%8F%A3-btn-dialog"><span class="toc-text">弹出窗口 btn-dialog</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ajax%E8%AF%B7%E6%B1%82-btn-ajax"><span class="toc-text">ajax请求 btn-ajax</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E9%80%89%E9%A1%B9%E5%8D%A1-btn-addtabs"><span class="toc-text">新选项卡 btn-addtabs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E7%82%B9%E5%87%BB%E6%8C%89%E9%92%AE%E4%BA%8B%E4%BB%B6-btn-click"><span class="toc-text">自定义点击按钮事件 btn-click</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#classname%E6%9D%A5%E6%8E%A7%E5%88%B6%E6%8C%89%E9%92%AE%E6%89%A7%E8%A1%8C%E6%96%B9%E5%BC%8F"><span class="toc-text">classname来控制按钮执行方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%89%E9%92%AE%E7%BB%84-%E6%A0%B7%E4%BE%8B"><span class="toc-text">按钮组 样例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%B9%E5%87%BA%E7%AA%97%E5%8F%A3-btn-dialog"><span class="toc-text">弹出窗口 btn-dialog</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ajax%E8%AF%B7%E6%B1%82-btn-ajax"><span class="toc-text">ajax请求 btn-ajax</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E9%80%89%E9%A1%B9%E5%8D%A1-btn-addtabs"><span class="toc-text">新选项卡 btn-addtabs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E7%82%B9%E5%87%BB%E6%8C%89%E9%92%AE%E4%BA%8B%E4%BB%B6-btn-click"><span class="toc-text">自定义点击按钮事件 btn-click</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%99%AE%E9%80%9A%E5%88%97%EF%BC%88%E9%9D%9E%E6%93%8D%E4%BD%9C%E5%88%97%EF%BC%89%E9%87%8C%E6%80%8E%E4%B9%88%E5%8A%A0%E6%8C%89%E9%92%AE"><span class="toc-text">普通列（非操作列）里怎么加按钮</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%8E%E4%B9%88%E5%8E%BB%E6%8E%89edit-del-dragsort-%E8%BF%99%E6%A0%B7%E7%9A%84%E6%8C%89%E9%92%AE"><span class="toc-text">怎么去掉edit del dragsort 这样的按钮</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%8F%82%E6%95%B0"><span class="toc-text">其他参数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E7%9F%A5%E8%AF%86%EF%BC%9A"><span class="toc-text">扩展知识：</span></a></li></ol>
     </div>
   </section>
 
@@ -815,7 +831,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="fastadmin按钮全部事件整理";
+  pdata.postTitle="fastadmin按钮buttons全部事件整理";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   // header 这里无论是否开启pjax都需要
