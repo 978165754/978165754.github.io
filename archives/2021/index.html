@@ -24,7 +24,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>Archive: 2021 - 猫叔饭-写代码的猫叔个人博客</title>
+  <title>归档：2021 - 猫叔饭-写代码的猫叔个人博客</title>
   
 
   
@@ -453,9 +453,61 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           
         
+          
+        
       
     
     
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/posts/31bfa1d6.html">
+        fastadmin按钮全部事件整理
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        相关链接
+
+
+一张图解析FastAdmin中的表格列表的功能(第15条) https://ask.fastadmin.net/article/323.html 
+一张图解析FastAdmin中的弹出窗口的功能 https://ask.fastadmin.net/article/2527.html
+
+
+classname来控制按钮执行方式弹出窗口 btn-dialog，ajax请求 btn-a...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-08-08</time>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/posts/31bfa1d6.html'>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
       
         
           <div class='post-wrapper'>
@@ -491,7 +543,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <div>
           <a class='readmore' href='/posts/22663.html'>
-            Read More
+            阅读全文
           </a>
         </div>
       
@@ -520,12 +572,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class='md'>
     
       
-        关于buttons自定义点击按钮事件此处例子为点击弹出窗口，输入文字，执行ajax请求
-&#123;
-    name: &#39;shield&#39;,
-    text: &#39;完成此查&#39;,
-    icon: &#39;fa fa-check-circle fa-fw&#39;,
-    classname: &#39;btn btn-xs btn-success  bt...
+        js里怎么取到config里的数据
+以token为例，这里先在后端把数据写入config，然后在前端js里就会有我们设置的token了
+
+1.后端php部分$this-&gt;assignconfig(&quot;token&quot;, $this-&gt;auth-&gt;token);
+
+2.前端js部分console.log(Config.token)
+
+通过变量Config可以取到...
       
     
   </div>
@@ -539,7 +593,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <div>
           <a class='readmore' href='/posts/25256.html'>
-            Read More
+            阅读全文
           </a>
         </div>
       
@@ -914,12 +968,12 @@ var loadCSS = function( href, before, media, attributes ){
   <div id="rightmenu-wrapper">
     <ul class="list-v rightmenu" id="rightmenu-content">
       <li class='option'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>Copy Text</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>复制文本</a>
         <hr id='hr-text'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>Copy Link</a>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>Open Link in New Tab</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>复制链接</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>在新标签页打开</a>
         <hr id='hr-href'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>Copy Image Link</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>复制图片地址</a>
         <hr id='hr-src'>
       </li>
       

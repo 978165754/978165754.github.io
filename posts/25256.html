@@ -506,56 +506,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   
   
-  <h2 id="关于buttons"><a href="#关于buttons" class="headerlink" title="关于buttons"></a>关于buttons</h2><h3 id="自定义点击按钮事件"><a href="#自定义点击按钮事件" class="headerlink" title="自定义点击按钮事件"></a>自定义点击按钮事件</h3><p>此处例子为点击弹出窗口，输入文字，执行ajax请求</p>
-<pre><code class="js">&#123;
-    name: &#39;shield&#39;,
-    text: &#39;完成此查&#39;,
-    icon: &#39;fa fa-check-circle fa-fw&#39;,
-    classname: &#39;btn btn-xs btn-success  btn-magic btn-click&#39;,
-    // url: &#39;survey/over&#39;,
-    click:function(e,s) &#123;                                    
-      console.log(e,s);
-      layer.prompt(&#123;title:&quot;填写奖金数值&quot;&#125;,function(val, index)&#123;
-        if(!val || val ==0 )&#123;
-          layer.msg(&quot;请先填写正确的奖金数值！&quot;);
-          return;
-        &#125;
-        if (isNaN(val)) &#123;
-          layer.msg(&quot;请输入数字！&quot;);
-          return;
-        &#125;
-        $.ajax(&#123;
-          type: &quot;post&quot;,
-          url: &quot;survey/over&quot;,
-          data: &#123;
-            ids:s.id,
-            bonus:val
-          &#125;,
-          dataType: &quot;json&quot;,
-          success: function (response) &#123;
-            if(response.code == 2)&#123;
-              layer.msg(response.msg)
-            &#125;
-            else&#123;
-
-              layer.close(index);
-              table.bootstrapTable(&#39;refresh&#39;);
-            &#125;
-          &#125;
-        &#125;);
-
-      &#125;);
-      return false
-    &#125;,                                
-    refresh: true,
-    visible: function (row) &#123;
-      //返回true时按钮显示,返回false隐藏
-      // console.log(row)
-      return !row.over_time || !row.status;
-    &#125;  
-  &#125;,
-</code></pre>
-<h2 id="js里怎么取到config里的数据"><a href="#js里怎么取到config里的数据" class="headerlink" title="js里怎么取到config里的数据"></a>js里怎么取到config里的数据</h2><blockquote>
+  <h2 id="js里怎么取到config里的数据"><a href="#js里怎么取到config里的数据" class="headerlink" title="js里怎么取到config里的数据"></a>js里怎么取到config里的数据</h2><blockquote>
 <p>以token为例，这里先在后端把数据写入config，然后在前端js里就会有我们设置的token了</p>
 </blockquote>
 <h6 id="1-后端php部分"><a href="#1-后端php部分" class="headerlink" title="1.后端php部分"></a>1.后端php部分</h6><pre><code class="php">$this-&gt;assignconfig(&quot;token&quot;, $this-&gt;auth-&gt;token);
@@ -597,10 +548,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-07T18:36:38+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-08T07:54:52+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Aug 7, 2021</p>
+    <p>更新于：Aug 8, 2021</p>
   </a>
 </div>
 
@@ -731,7 +682,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8Ebuttons"><span class="toc-text">关于buttons</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E7%82%B9%E5%87%BB%E6%8C%89%E9%92%AE%E4%BA%8B%E4%BB%B6"><span class="toc-text">自定义点击按钮事件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#js%E9%87%8C%E6%80%8E%E4%B9%88%E5%8F%96%E5%88%B0config%E9%87%8C%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="toc-text">js里怎么取到config里的数据</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#js%E9%87%8C%E6%80%8E%E4%B9%88%E5%8F%96%E5%88%B0config%E9%87%8C%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="toc-text">js里怎么取到config里的数据</span></a></li></ol>
     </div>
   </section>
 
@@ -992,12 +943,12 @@ var loadCSS = function( href, before, media, attributes ){
   <div id="rightmenu-wrapper">
     <ul class="list-v rightmenu" id="rightmenu-content">
       <li class='option'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>Copy Text</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>复制文本</a>
         <hr id='hr-text'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>Copy Link</a>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>Open Link in New Tab</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>复制链接</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>在新标签页打开</a>
         <hr id='hr-href'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>Copy Image Link</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>复制图片地址</a>
         <hr id='hr-src'>
       </li>
       

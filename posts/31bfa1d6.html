@@ -22,9 +22,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>hexo-volantis主题修改代码高亮风格 - 猫叔饭-写代码的猫叔个人博客</title>
-  
-    <meta name="keywords" content="hexo">
+  <title>fastadmin按钮全部事件整理 - 猫叔饭-写代码的猫叔个人博客</title>
   
 
   
@@ -453,7 +451,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
       <h1 class="title">
-        hexo-volantis主题修改代码高亮风格
+        fastadmin按钮全部事件整理
       </h1>
       <div class='new-meta-box'>
         
@@ -477,7 +475,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Aug 7, 2021</p>
+    <p>发布于：Aug 8, 2021</p>
   </a>
 </div>
 
@@ -488,7 +486,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="hexo-volantis主题修改代码高亮风格" data-path="/posts/22663.html">
+      <div id="lc-pv" data-title="fastadmin按钮全部事件整理" data-path="/posts/31bfa1d6.html">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -506,77 +504,133 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   
   
-  <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
-<p>猫叔的博客是基于hexo制作的，选用主题为volantis，纵然这套主题我是特别喜欢，但它的代码高亮做的不是特别适合我，不如next主题里面的代码高亮风格那么好看（主要是暗色风格），但next主题我又不是特别喜欢，于是研究了下他的修改方法，终于找到 <a target="_blank" rel="noopener" href="https://goopher.tk/posts/3.html">一篇改造博客</a>，但里面多少有点错误并且步骤不完整，于是做一些补充。</p>
+  <p>相关链接</p>
+<blockquote>
+<ul>
+<li>一张图解析FastAdmin中的表格列表的功能(第15条) <a target="_blank" rel="noopener" href="https://ask.fastadmin.net/article/323.html">https://ask.fastadmin.net/article/323.html</a> </li>
+<li>一张图解析FastAdmin中的弹出窗口的功能 <a target="_blank" rel="noopener" href="https://ask.fastadmin.net/article/2527.html">https://ask.fastadmin.net/article/2527.html</a></li>
+</ul>
 </blockquote>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="1-highlightjs不支持显示行号，改造使其支持"><a href="#1-highlightjs不支持显示行号，改造使其支持" class="headerlink" title="1.highlightjs不支持显示行号，改造使其支持"></a>1.highlightjs不支持显示行号，改造使其支持</h3><h4 id="1-修改ejs文件"><a href="#1-修改ejs文件" class="headerlink" title="1).修改ejs文件"></a>1).修改ejs文件</h4><p>修改路径：<code>themes/volantis/layout/_third-party/highlistjs/script.ejs</code></p>
-<p>改造核心如下图，就是引入了highlightjs-line-numbers.min.js：<br><img src="https://i.loli.net/2021/08/07/6qKHrosQzwpjPuy.png" class="lazyload" data-srcset="https://i.loli.net/2021/08/07/6qKHrosQzwpjPuy.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="20210807144916"></p>
-<p>改造后代码：</p>
-<pre><code class="js">&lt;% if (theme.plugins.highlightjs.js) &#123; %&gt;
-&lt;%- js(theme.plugins.highlightjs.js) %&gt;
-&lt;script src=&quot;https://cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.8.0/dist/highlightjs-line-numbers.min.js&quot;&gt;&lt;/script&gt;
-&lt;script&gt;hljs.initHighlightingOnLoad();&lt;/script&gt;
-&lt;script&gt;hljs.initLineNumbersOnLoad(&#123; singleLine: true &#125;);&lt;/script&gt;
-&lt;% &#125; %&gt;
-&lt;script&gt;
-volantis.pjax.push(()=&gt;&#123;
-    document.querySelectorAll(&#39;pre code&#39;).forEach((block) =&gt; &#123;
-      hljs.highlightBlock(block);
-      hljs.lineNumbersBlock(block, &#123; singleLine: true &#125;);
-    &#125;);
-&#125;,&quot;highlightjs&quot;)
-&lt;/script&gt;
-</code></pre>
-<p>注意，这时候可能控制台会报如下提示，只需把<code>hljs.initHighlightingOnLoad()</code>改为<code>hljs.highlightAll()</code>即可</p>
-<pre><code class="js">Deprecated as of 10.6.0. initHighlightingOnLoad() is deprecated.  Use highlightAll() instead.
-</code></pre>
-<h4 id="2-创建行号的样式文件-styl"><a href="#2-创建行号的样式文件-styl" class="headerlink" title="2).创建行号的样式文件.styl"></a>2).创建行号的样式文件.styl</h4><p>路径：<code>themes/volantis/source/css/</code> 目录下新建 <code>_other</code> <strong>文件夹</strong>，然后在里面新建 <code>codeblock.styl</code> 文件，路径如下图：</p>
-<p><img src="https://i.loli.net/2021/08/07/mxtJao1YkTuAGlr.png" class="lazyload" data-srcset="https://i.loli.net/2021/08/07/mxtJao1YkTuAGlr.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="20210807150353"></p>
-<p>css样式代码如下：</p>
-<pre><code class="css">/* for block of numbers */
-.hljs-ln-numbers &#123;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
- 
-  text-align: center;
-  color: #666;
-  border-right: 1px solid #666;
-  vertical-align: top;
-  padding-right: 5px !important;
- 
-  /* your custom style here */
-&#125;
- 
-/* for block of code */
-.hljs-ln-code &#123;
-  padding-left: 10px !important;
+<h2 id="classname来控制按钮执行方式"><a href="#classname来控制按钮执行方式" class="headerlink" title="classname来控制按钮执行方式"></a>classname来控制按钮执行方式</h2><p>弹出窗口 <code>btn-dialog</code>，ajax请求 <code>btn-ajax</code>，新选项卡<code>btn-addtabs</code>，自定义点击事件 <code>btn-click</code></p>
+<h2 id="按钮组-样例"><a href="#按钮组-样例" class="headerlink" title="按钮组 样例"></a>按钮组 样例</h2><pre><code class="js">&#123;
+    field: &#39;buttons&#39;,
+    width: &quot;120px&quot;,
+    title: &#39;按钮组&#39;,
+    table: table,
+    events: Table.api.events.operate,
+    buttons: [
+       ,
+        ,
+        
+    ],
+    formatter: Table.api.formatter.buttons
 &#125;
 </code></pre>
-<h4 id="3-引入styl文件"><a href="#3-引入styl文件" class="headerlink" title="3.)引入styl文件"></a>3.)引入styl文件</h4><p>修改路径：<code>source/css/style.styl</code>，添加以下内容：</p>
-<pre><code class="css">@import &#39;_other/*&#39;
+<h3 id="弹出窗口-btn-dialog"><a href="#弹出窗口-btn-dialog" class="headerlink" title="弹出窗口 btn-dialog"></a>弹出窗口 btn-dialog</h3><pre><code class="js">  &#123;
+      name: &#39;detail&#39;,
+      text: __(&#39;弹出窗口打开&#39;),
+      title: __(&#39;弹出窗口打开&#39;),
+      classname: &#39;btn btn-xs btn-primary btn-dialog&#39;,
+      icon: &#39;fa fa-list&#39;,
+      url: &#39;example/bootstraptable/detail&#39;,
+      callback: function (data) &#123;
+          Layer.alert(&quot;接收到回传数据：&quot; + JSON.stringify(data), &#123;title: &quot;回传数据&quot;&#125;);
+      &#125;,
+      visible: function (row) &#123;
+          //返回true时按钮显示,返回false隐藏
+          return true;
+      &#125;
+  &#125;
 </code></pre>
-<p><img src="https://i.loli.net/2021/08/07/YzvVZGLnH3MXRIU.png" class="lazyload" data-srcset="https://i.loli.net/2021/08/07/YzvVZGLnH3MXRIU.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="20210807151736"></p>
-<h3 id="2-禁用hexo默认的高亮设置"><a href="#2-禁用hexo默认的高亮设置" class="headerlink" title="2.禁用hexo默认的高亮设置"></a>2.禁用hexo默认的高亮设置</h3><p>打开hexo的根目录下的主配置文件<code>_config.yml</code>，highlight设为false</p>
-<pre><code class="yml">highlight:
-  enable: false
+<h3 id="ajax请求-btn-ajax"><a href="#ajax请求-btn-ajax" class="headerlink" title="ajax请求 btn-ajax"></a>ajax请求 btn-ajax</h3><pre><code class="js">  &#123;
+      name: &#39;ajax&#39;,
+      text: __(&#39;发送Ajax&#39;),
+      title: __(&#39;发送Ajax&#39;),
+      classname: &#39;btn btn-xs btn-success btn-magic btn-ajax&#39;,
+      icon: &#39;fa fa-magic&#39;,
+      url: &#39;example/bootstraptable/detail&#39;,
+      confirm: &#39;确认发送&#39;,
+      success: function (data, ret) &#123;
+          Layer.alert(ret.msg + &quot;,返回数据：&quot; + JSON.stringify(data));
+          //如果需要阻止成功提示，则必须使用return false;
+          //return false;
+      &#125;,
+      error: function (data, ret) &#123;
+          console.log(data, ret);
+          Layer.alert(ret.msg);
+          return false;
+      &#125;
+  &#125;
 </code></pre>
-<h3 id="3-修改volantis的高亮设置"><a href="#3-修改volantis的高亮设置" class="headerlink" title="3.修改volantis的高亮设置"></a>3.修改volantis的高亮设置</h3><p>修改路径：<code>_config.volantis.yml</code>或者volantis主题下的<code>_config.yml</code>文件，搜索 highlightjs 关键字，找到高亮配置（如果没有的话，则添加即可），把他开启，并设置新的css样式</p>
-<h4 id="1-找合适的css样式表"><a href="#1-找合适的css样式表" class="headerlink" title="1.找合适的css样式表"></a>1.找合适的css样式表</h4><p>去官网找 <a target="_blank" rel="noopener" href="https://highlightjs.org/static/demo/">https://highlightjs.org/static/demo/</a><br>点击左侧theme查看效果，最终挑选好喜欢的样式<br>这里我找的是Night Owl这款，于是拼接样式地址<code>https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/night-owl.min.css</code>，重点就是结尾的文件名<code>night-owl</code>，规则就是驼峰写法的转换。</p>
-<h4 id="2-修改配置"><a href="#2-修改配置" class="headerlink" title="2.修改配置"></a>2.修改配置</h4><p><code>enable</code>改为<code>true</code>，修改css引用</p>
-<pre><code class="yml">plugins:
-  highlightjs:
-    enable: true
-    js: https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/highlight.min.js
-    css: https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/night-owl.min.css
+<h3 id="新选项卡-btn-addtabs"><a href="#新选项卡-btn-addtabs" class="headerlink" title="新选项卡 btn-addtabs"></a>新选项卡 btn-addtabs</h3><pre><code class="js">  &#123;
+      name: &#39;addtabs&#39;,
+      text: __(&#39;新选项卡中打开&#39;),
+      title: __(&#39;新选项卡中打开&#39;),
+      classname: &#39;btn btn-xs btn-warning btn-addtabs&#39;,
+      icon: &#39;fa fa-folder-o&#39;,
+      url: &#39;example/bootstraptable/detail&#39;
+  &#125;
 </code></pre>
-<p><img src="https://i.loli.net/2021/08/07/BQHYpjf5k1KIZbu.png" class="lazyload" data-srcset="https://i.loli.net/2021/08/07/BQHYpjf5k1KIZbu.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="20210807151824"></p>
-<h2 id="完成"><a href="#完成" class="headerlink" title="完成"></a>完成</h2><p>改完记得 <code>hexo g &amp;&amp; hexo s</code> 查看效果，如果有些文章不生效，那就需要先执行 <code>hexo clean</code></p>
-<p>效果图：</p>
-<p><img src="https://i.loli.net/2021/08/07/rlBNeunFYoG12zD.png" class="lazyload" data-srcset="https://i.loli.net/2021/08/07/rlBNeunFYoG12zD.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="20210807152352"></p>
+<h3 id="自定义点击按钮事件-btn-click"><a href="#自定义点击按钮事件-btn-click" class="headerlink" title="自定义点击按钮事件 btn-click"></a>自定义点击按钮事件 btn-click</h3><p>此处例子为点击弹出窗口，输入文字，执行ajax请求</p>
+<pre><code class="js">&#123;
+    name: &#39;shield&#39;,
+    text: &#39;完成&#39;,
+    icon: &#39;fa fa-check-circle fa-fw&#39;,
+    classname: &#39;btn btn-xs btn-success btn-click&#39;,
+    click:function(e,s) &#123;       
+      layer.prompt(&#123;title:&quot;填写奖金数值&quot;&#125;,function(val, index)&#123;
+        if(!val || val ==0 )&#123;
+          layer.msg(&quot;请先填写正确的奖金数值！&quot;);
+          return;
+        &#125;
+        if (isNaN(val)) &#123;
+          layer.msg(&quot;请输入数字！&quot;);
+          return;
+        &#125;
+        $.ajax(&#123;
+          type: &quot;post&quot;,
+          url: &quot;survey/over&quot;,
+          data: &#123;
+            ids:s.id,
+            bonus:val
+          &#125;,
+          dataType: &quot;json&quot;,
+          success: function (response) &#123;
+            if(response.code == 2)&#123;
+              layer.msg(response.msg)
+            &#125;
+            else&#123;
+
+              layer.close(index);
+              table.bootstrapTable(&#39;refresh&#39;);
+            &#125;
+          &#125;
+        &#125;);
+
+      &#125;);
+      return false
+    &#125;,                                
+    refresh: true,
+    visible: function (row) &#123;
+      //返回true时按钮显示,返回false隐藏
+      // console.log(row)
+      return !row.status;
+    &#125;  
+  &#125;,
+</code></pre>
+<p>其他参数</p>
+<p> <code>dropdown</code>: ‘更多’,//如果包含dropdown，将会以下拉列表的形式展示</p>
+<pre><code class="js">&#123;
+    name: &#39;addtabs&#39;,
+    text: __(&#39;新选项卡中打开&#39;),
+    title: __(&#39;新选项卡中打开&#39;),
+    dropdown: &#39;更多&#39;,//如果包含dropdown，将会以下拉列表的形式展示
+    classname: &#39;btn btn-xs btn-warning btn-addtabs&#39;,
+    icon: &#39;fa fa-folder-o&#39;,
+    url: &#39;./ceshi1/demo1&#39;
+&#125;
+</code></pre>
+<p><img src="https://i.loli.net/2021/08/08/OjIp4LtGqcDVH9W.png" class="lazyload" data-srcset="https://i.loli.net/2021/08/08/OjIp4LtGqcDVH9W.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="20210808085638"></p>
 
   
   
@@ -594,7 +648,7 @@ volantis.pjax.push(()=&gt;&#123;
               
             
               
-                <p>本文永久链接：<a href=https://maoshu.fun/posts/22663.html>https://maoshu.fun/posts/22663.html</a></p>
+                <p>本文永久链接：<a href=https://maoshu.fun/posts/31bfa1d6.html>https://maoshu.fun/posts/31bfa1d6.html</a></p>
               
             
           </blockquote>
@@ -611,10 +665,10 @@ volantis.pjax.push(()=&gt;&#123;
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-07T20:04:17+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-08T08:56:54+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Aug 7, 2021</p>
+    <p>更新于：Aug 8, 2021</p>
   </a>
 </div>
 
@@ -622,9 +676,6 @@ volantis.pjax.push(()=&gt;&#123;
       
         
           
-  
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/hexo/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>hexo</p></a></div>
-
 
         
       
@@ -636,7 +687,7 @@ volantis.pjax.push(()=&gt;&#123;
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://maoshu.fun/posts/22663.html&title=hexo-volantis主题修改代码高亮风格 - 猫叔饭-写代码的猫叔个人博客&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://maoshu.fun/posts/31bfa1d6.html&title=fastadmin按钮全部事件整理 - 猫叔饭-写代码的猫叔个人博客&summary="
           
           >
           
@@ -648,7 +699,7 @@ volantis.pjax.push(()=&gt;&#123;
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://maoshu.fun/posts/22663.html&title=hexo-volantis主题修改代码高亮风格 - 猫叔饭-写代码的猫叔个人博客&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://maoshu.fun/posts/31bfa1d6.html&title=fastadmin按钮全部事件整理 - 猫叔饭-写代码的猫叔个人博客&summary="
           
           >
           
@@ -660,7 +711,7 @@ volantis.pjax.push(()=&gt;&#123;
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://maoshu.fun/posts/22663.html&title=hexo-volantis主题修改代码高亮风格 - 猫叔饭-写代码的猫叔个人博客&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://maoshu.fun/posts/31bfa1d6.html&title=fastadmin按钮全部事件整理 - 猫叔饭-写代码的猫叔个人博客&summary="
           
           >
           
@@ -674,7 +725,7 @@ volantis.pjax.push(()=&gt;&#123;
         <div class='hoverbox'>
           <a class='share'><img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/wechat.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/wechat.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a>
           <div class='target'>
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPgAAAD4CAAAAADkunTXAAACMklEQVR42u3aSXKEMBAEQP3/0+MXENMbMbhJ3QiwUeJLuUvn89J1wMHBwcHBF8FPcV3+4i/3r94bvd/dLzg4ODg4+EZ4OAAkN9oOHBfw8s+Dg4ODg4Mvhn8NAMnns5BosCnvFxwcHBwcHLx8XQ1G4ODg4ODg4PcHmGiBkH0eHBwcHBwcfL5QCBfyyfuPb1LAwcHBwcEfBC8fmPvR9c9PNoKDg4ODgz8APn0ArxtYbj8wCA4ODg4OvgheDQjZAUX3Q3X3Bw4ODg4OvhEeHdRng0Y0eJyhlS4UwMHBwcHBF8PvHhxUAd0BBTg4ODg4+EZ4FxAOEEXAVIACBwcHBwffDJ8KNt1AEwVn3wcODg4ODr4JXh0sTA0qqs+3CwVwcHBwcPDF8OpGqgOIxwQYcHBwcHDwfwSfKgymodkAFS4gwMHBwcHBF8GrB+w+xXWSq/sHAAcHBwcHfxO8+o9/eTDQfF90AAIODg4ODr4ZXh1MVANN90OVgw44ODg4OPhieLf47wKnBhThQgEcHBwcHHwhPAvpFhCnucIBBxwcHBwcfBG8u9obKRYO5cADDg4ODg6+CN4NDHcX+tnn0oUCODg4ODj4Avj0wYCpwmEq4ICDg4ODg78BXg0aUx8qG4DShQg4ODg4ODh4+boalLoHC8DBwcHBwcHnBwzd4iBbfICDg4ODg2+Gd4PFVEHwFZD8cODg4ODg4Jvh1WBQve4WBdHgBA4ODg4Ovhn+tgUODg4ODr5g/QF+wIK9vzm9+wAAAABJRU5ErkJggg==">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPgAAAD4CAAAAADkunTXAAACSklEQVR42u3aS3LjMAwFQN3/0skBXC7ip7INNXeTDEm0Vgger7+HrgscHBwcHHwR/CqulwOb+07nTdULDg4ODg6+ER5uAIrwEyh6X7decHBwcHDwzfBo4dH90Q+U3V+uFxwcHBwcHDy9f2pQAQ4ODg4ODn4fPHpON1AABwcHBwcHHxjQFz9U9udfl6SAg4ODg4N/Ebw6MPjUv8v1goODg4ODL4J3V3dQcTo327Ac6wUHBwcHB18ErzYI2QFF9ANG78nWBw4ODg4OvhHebRimHwB0Bw3hQAEcHBwcHHwBfPqiaqORHUxUBxTg4ODg4OAb4dmBfzZg6N4TbYCO/x8cHBwcHHwRvDsY+BigGGCAg4ODg4Nvhkf/8J8aWETvrw4kjkkKODg4ODj4Anh2oJ9tTKoNyO0NDDg4ODg4+CL49AO9aMFT9aQDBXBwcHBw8AXw6oXTD/amzmsnKeDg4ODg4D8A715cDRyigUK3zreBAjg4ODg4+CL4dGCffWjQbXzC+8HBwcHBwRfDpwKFuz5Uu15wcHBwcPDF8OwgoFpodIBQDR7e/h4cHBwcHHwRvLuyF0f33/bAABwcHBwcfBH8Kq7soKJacLXRCQcK4ODg4ODgC+DTDUsUXH1AkP2w4ODg4ODgT4Df3UBk93UbnPSLCHBwcHBw8AfCq4FBtsGpBgvg4ODg4ODg8SA/ek63UUoPQsDBwcHBwRfDs4FC9UFgN1CoDiTAwcHBwcE3wquNwdSgYSq4SAcK4ODg4ODgPwx/2gIHBwcHB1+w/gF8dAcBgF6jFgAAAABJRU5ErkJggg==">
           </div>
         </div>
       
@@ -698,22 +749,11 @@ volantis.pjax.push(()=&gt;&#123;
   
     <div class="prev-next">
       
-        <a class='prev' href='/posts/31bfa1d6.html'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>fastadmin按钮全部事件整理</p>
-          <p class='content'>相关链接
-
-
-一张图解析FastAdmin中的表格列表的功能(第15条) https://ask.fastadmin.net/article/323.html 
-一张图解析FastAdmin中的...</p>
-        </a>
       
-      
-        <a class='next' href='/posts/25256.html'>
-          <p class='title'>fastadmin 常用知识点整理<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>js里怎么取到config里的数据
-以token为例，这里先在后端把数据写入config，然后在前端js里就会有我们设置的token了
-
-1.后端php部分$this-&gt;assigncon...</p>
+        <a class='next' href='/posts/22663.html'>
+          <p class='title'>hexo-volantis主题修改代码高亮风格<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>前言
+猫叔的博客是基于hexo制作的，选用主题为volantis，纵然这套主题我是特别喜欢，但它的代码高亮做的不是特别适合我，不如next主题里面的代码高亮风格那么好看（主要是暗色风格），但ne...</p>
         </a>
       
     </div>
@@ -756,7 +796,7 @@ volantis.pjax.push(()=&gt;&#123;
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4"><span class="toc-text">步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-highlightjs%E4%B8%8D%E6%94%AF%E6%8C%81%E6%98%BE%E7%A4%BA%E8%A1%8C%E5%8F%B7%EF%BC%8C%E6%94%B9%E9%80%A0%E4%BD%BF%E5%85%B6%E6%94%AF%E6%8C%81"><span class="toc-text">1.highlightjs不支持显示行号，改造使其支持</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%BF%AE%E6%94%B9ejs%E6%96%87%E4%BB%B6"><span class="toc-text">1).修改ejs文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%88%9B%E5%BB%BA%E8%A1%8C%E5%8F%B7%E7%9A%84%E6%A0%B7%E5%BC%8F%E6%96%87%E4%BB%B6-styl"><span class="toc-text">2).创建行号的样式文件.styl</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%BC%95%E5%85%A5styl%E6%96%87%E4%BB%B6"><span class="toc-text">3.)引入styl文件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%A6%81%E7%94%A8hexo%E9%BB%98%E8%AE%A4%E7%9A%84%E9%AB%98%E4%BA%AE%E8%AE%BE%E7%BD%AE"><span class="toc-text">2.禁用hexo默认的高亮设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%BF%AE%E6%94%B9volantis%E7%9A%84%E9%AB%98%E4%BA%AE%E8%AE%BE%E7%BD%AE"><span class="toc-text">3.修改volantis的高亮设置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%89%BE%E5%90%88%E9%80%82%E7%9A%84css%E6%A0%B7%E5%BC%8F%E8%A1%A8"><span class="toc-text">1.找合适的css样式表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE"><span class="toc-text">2.修改配置</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8C%E6%88%90"><span class="toc-text">完成</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#classname%E6%9D%A5%E6%8E%A7%E5%88%B6%E6%8C%89%E9%92%AE%E6%89%A7%E8%A1%8C%E6%96%B9%E5%BC%8F"><span class="toc-text">classname来控制按钮执行方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%89%E9%92%AE%E7%BB%84-%E6%A0%B7%E4%BE%8B"><span class="toc-text">按钮组 样例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%B9%E5%87%BA%E7%AA%97%E5%8F%A3-btn-dialog"><span class="toc-text">弹出窗口 btn-dialog</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ajax%E8%AF%B7%E6%B1%82-btn-ajax"><span class="toc-text">ajax请求 btn-ajax</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E9%80%89%E9%A1%B9%E5%8D%A1-btn-addtabs"><span class="toc-text">新选项卡 btn-addtabs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E7%82%B9%E5%87%BB%E6%8C%89%E9%92%AE%E4%BA%8B%E4%BB%B6-btn-click"><span class="toc-text">自定义点击按钮事件 btn-click</span></a></li></ol></li></ol>
     </div>
   </section>
 
@@ -775,7 +815,7 @@ volantis.pjax.push(()=&gt;&#123;
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="hexo-volantis主题修改代码高亮风格";
+  pdata.postTitle="fastadmin按钮全部事件整理";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   // header 这里无论是否开启pjax都需要
