@@ -5,10 +5,6 @@
   <!-- SEO相关 -->
   
     
-      
-        <meta name="robots" content="index,follow">
-      
-    
   
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -26,7 +22,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>猫叔饭-写代码的猫叔个人博客</title>
+  <title>vue-elementui-admin安装步骤和安装依赖报错解决方案整理 - 猫叔饭-写代码的猫叔个人博客</title>
   
 
   
@@ -106,7 +102,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <body>
     
 
-<header id="l_header" class="l_header auto shadow blur " style='opacity: 0' >
+<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -359,7 +355,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="half" class='cover-wrapper  search' style="display: ;">
+        <div id="full" class='cover-wrapper post search' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://bing.ioliu.cn/v1/rand?w=1920&h=800"></div>
           
@@ -445,280 +441,224 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
 
 <div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
   
-  <section class="post-list">
-    
-      
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-      
+
+
+  
+  <div class="article-meta" id="top">
     
     
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
     
-    <h2 class="article-title" >
-      <a href="/posts/c453aadd.html">
+      <h1 class="title">
         vue-elementui-admin安装步骤和安装依赖报错解决方案整理
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        文档&amp;链接文档说明：https://panjiachen.github.io/vue-element-admin-site/zh/guide/admin集成方案：https://github.com/PanJiaChen/vue-element-admin基础模板方案：https://github.com/PanJiaChen/vue-admin-template/tree/perm...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
+      </h1>
+      <div class='new-meta-box'>
         
-        <time>2021-08-10</time>
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/" rel="nofollow">
+    <img no-lazy src="https://i.loli.net/2021/08/07/mNRDQ8oiArnyUPG.png">
+    <p>写代码的猫叔</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Aug 10, 2021</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="vue-elementui-admin安装步骤和安装依赖报错解决方案整理" data-path="/posts/c453aadd.html">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
         
       </div>
+    
+  </div>
+
+
+  
+  
+  <h2 id="文档-amp-链接"><a href="#文档-amp-链接" class="headerlink" title="文档&amp;链接"></a>文档&amp;链接</h2><p>文档说明：<a target="_blank" rel="noopener" href="https://panjiachen.github.io/vue-element-admin-site/zh/guide/">https://panjiachen.github.io/vue-element-admin-site/zh/guide/</a><br>admin集成方案：<a target="_blank" rel="noopener" href="https://github.com/PanJiaChen/vue-element-admin">https://github.com/PanJiaChen/vue-element-admin</a><br>基础模板方案：<a target="_blank" rel="noopener" href="https://github.com/PanJiaChen/vue-admin-template/tree/permission-control">https://github.com/PanJiaChen/vue-admin-template/tree/permission-control</a></p>
+<p>我此次用的是基础方案，带路由权限控制的版本</p>
+<h2 id="开始安装"><a href="#开始安装" class="headerlink" title="开始安装"></a>开始安装</h2><h3 id="1-克隆git仓库"><a href="#1-克隆git仓库" class="headerlink" title="1.克隆git仓库"></a>1.克隆git仓库</h3><p>遇到第一个问题：http代理问题<br><img src="https://img-blog.csdnimg.cn/20210715094516798.png" class="lazyload" data-srcset="https://img-blog.csdnimg.cn/20210715094516798.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="在这里插入图片描述"><br><strong>解决方法</strong>：取消http代理</p>
+<pre><code>git config --global --unset http.proxy
+</code></pre>
+<h3 id="2-安装依赖-npm-install"><a href="#2-安装依赖-npm-install" class="headerlink" title="2.安装依赖 npm install"></a>2.安装依赖 npm install</h3><p>依赖非常多，安装非常慢，一定要耐心等<br>这次很幸运，顺利安装完成：<br><img src="https://img-blog.csdnimg.cn/202107150954530.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxOTc4MTY1NzU0,size_16,color_FFFFFF,t_70" class="lazyload" data-srcset="https://img-blog.csdnimg.cn/202107150954530.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxOTc4MTY1NzU0,size_16,color_FFFFFF,t_70" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="在这里插入图片描述"></p>
+<h4 id="不幸的各种情况整理"><a href="#不幸的各种情况整理" class="headerlink" title="不幸的各种情况整理"></a>不幸的各种情况整理</h4><h5 id="1-python报错"><a href="#1-python报错" class="headerlink" title="1.python报错"></a>1.python报错</h5><p>Error: Can’t find Python executable “python”, you can set the PYTHON env variable<br>解决方法：<br>npm install –global –production windows-build-tools<br>npm install -g node-gyp</p>
+<p>检查下系统环境变量里是否有python，没有的话，配置下环境变量</p>
+<h3 id="3-启动-npm-run-dev"><a href="#3-启动-npm-run-dev" class="headerlink" title="3.启动 npm run dev"></a>3.启动 npm run dev</h3><p><img src="https://img-blog.csdnimg.cn/20210715095656995.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxOTc4MTY1NzU0,size_16,color_FFFFFF,t_70" class="lazyload" data-srcset="https://img-blog.csdnimg.cn/20210715095656995.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxOTc4MTY1NzU0,size_16,color_FFFFFF,t_70" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="在这里插入图片描述"></p>
+
+  
+  
+    
+    <div class='footer'>
       
-        <div>
-          <a class='readmore' href='/posts/c453aadd.html'>
-            Read More
-          </a>
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>文章可以转载，但必须注明作者和网址链接；内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接：<a href=https://maoshu.fun/posts/c453aadd.html>https://maoshu.fun/posts/c453aadd.html</a></p>
+              
+            
+          </blockquote>
         </div>
+      
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-10T21:43:01+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Aug 10, 2021</p>
+  </a>
 </div>
 
+        
+      
+        
+          
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://maoshu.fun/posts/c453aadd.html&title=vue-elementui-admin安装步骤和安装依赖报错解决方案整理 - 猫叔饭-写代码的猫叔个人博客&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://maoshu.fun/posts/c453aadd.html&title=vue-elementui-admin安装步骤和安装依赖报错解决方案整理 - 猫叔饭-写代码的猫叔个人博客&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://maoshu.fun/posts/c453aadd.html&title=vue-elementui-admin安装步骤和安装依赖报错解决方案整理 - 猫叔饭-写代码的猫叔个人博客&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        
+        <div class='hoverbox'>
+          <a class='share'><img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/wechat.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/wechat.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a>
+          <div class='target'>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPgAAAD4CAAAAADkunTXAAACRUlEQVR42u3dQY7CQAwEwPz/07v3ldCO244Ap+ZGAsQ1XFr2SFw/D10XODg4ODj4IvgVrpdf/OJ+ev3v/W694ODg4ODgG+HHAeAQflp49XndesHBwcHBwTfDTws/DRrTG9OuFxwcHBwcHLz8+bTBkT4PHBwcHBwcvB5gurBqMAIHBwcHBwdvNOiLBwWqDYiPnaSAg4ODg4N/EDwNIu96HdcLDg4ODg6+CN5d1Y1JDwqO1QsODg4ODr4IngaEagOgu4FT9YGDg4ODg2+Cd7/w9HoXEkP/a0SAg4ODg4N/MTwFTQeUamMibVCAg4ODg4M/Cd4ttDtYSH+Il+8HBwcHBwdfBD9tCJwGmOqBvanrtw0UwMHBwcHBPxg+FSC6jYpqcLptoAAODg4ODv7F8PSAXQqMGwrTAQYcHBwcHPyL4XcHkerGpQcLy5MUcHBwcHDwRfDuwb6pANI9AFgOMODg4ODg4Ivg1QH/6evpjSnXAQ4ODg4OvhDefeBUA2Lq4EA8SQEHBwcHB18A7waSqc+n0OOBAjg4ODg4+CJ4NTBMDSau5joOOODg4ODg4Ivg3VUtbOqgXhx4wMHBwcHBF8G7gSFuCDSDTjqoAAcHBwcH3wivBpbqoOD0fvq+440DBwcHBwdfDK8O4qsD+3cdFAAHBwcHBwfP/6i9WmgarOITEeDg4ODg4A+G3z7Qnxp8gIODg4ODL4ZXBwrdwUM6UIiDETg4ODg4+EL4VCMhHeinDY9ycAIHBwcHB18Ef9oCBwcHBwdfsH4BEMGFkM+vyb4AAAAASUVORK5CYII=">
           </div>
-        
+        </div>
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/posts/effba3b3.html">
-        一些好用的npm包和github项目整理
-      </a>
-    </h2>
-  
-  <div class='md'>
     
       
+    
+  </div>
+</div>
+
+
+
         
+      
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+      
+        <a class='next' href='/posts/effba3b3.html'>
+          <p class='title'>一些好用的npm包和github项目整理<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>
 一键复制 https://www.npmjs.com/package/clipboard
 vue复制 https://www.npmjs.com/package/vue-clipboard
-时间日期 https://www.npmjs.com/package/dayjs
-快速删除node_modules npm install rimraf -g rimraf node_modules
-浏...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-08-10</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/posts/effba3b3.html'>
-            Read More
-          </a>
-        </div>
+时...</p>
+        </a>
       
     </div>
   
+</article>
 
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
 </div>
 
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/posts/31bfa1d6.html">
-        fastadmin按钮buttons全部事件整理
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        相关链接
+  </article>
 
 
-一张图解析FastAdmin中的表格列表的功能(第15条) https://ask.fastadmin.net/article/323.html 
-一张图解析FastAdmin中的弹出窗口的功能 https://ask.fastadmin.net/article/2527.html
 
 
-classname来控制按钮执行方式弹出窗口 btn-dialog，ajax请求 btn-a...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-08-08</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/posts/31bfa1d6.html'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/posts/22663.html">
-        hexo-volantis主题修改代码高亮风格
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        前言
-猫叔的博客是基于hexo制作的，选用主题为volantis，纵然这套主题我是特别喜欢，但它的代码高亮做的不是特别适合我，不如next主题里面的代码高亮风格那么好看（主要是暗色风格），但next主题我又不是特别喜欢，于是研究了下他的修改方法，终于找到 一篇改造博客，但里面多少有点错误并且步骤不完整，于是做一些补充。
-
-步骤1.highlightjs不支持显示行号，改造使其支持1).修改e...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-08-07</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/posts/22663.html'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/posts/25256.html">
-        fastadmin 常用知识点整理
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        js里怎么取到config里的数据
-以token为例，这里先在后端把数据写入config，然后在前端js里就会有我们设置的token了
-
-1.后端php部分$this-&gt;assignconfig(&quot;token&quot;, $this-&gt;auth-&gt;token);
-
-2.前端js部分console.log(Config.token)
-
-通过变量Config可以取到...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-08-07</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/posts/25256.html'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-    
-  </section>
-  
-    
-  
 
 
 </div>
@@ -728,98 +668,22 @@ classname来控制按钮执行方式弹出窗口 btn-dialog，ajax请求 btn-a..
     
     
 
-<section class="widget blogger shadow desktop mobile">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box rectangle' href='/about/'>
-          <img no-lazy src='https://i.loli.net/2021/08/07/qBsLaJ1pANkYfMu.png'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-        
-        
-          <p><span id="jinrishici-sentence">猫叔饭-写代码的猫叔个人博客</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="/atom.xml"
-              class="social fas fa-rss flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="mailto:me@xxx.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/volantis-x/"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="/"
-              class="social fas fa-headphones-alt flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
 
-  
 
-  
-    
-    
-
-  
-
-  
-    
-    
-  
-
-  <section class="widget tagcloud shadow desktop mobile">
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
     
   <header>
     
-      <a href='/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
     
   </header>
 
 
     <div class='content'>
-      <a href="/tags/fastadmin/" style="font-size: 14px; color: #999">fastadmin</a> <a href="/tags/hexo/" style="font-size: 14px; color: #999">hexo</a>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E6%A1%A3-amp-%E9%93%BE%E6%8E%A5"><span class="toc-text">文档&amp;链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E5%AE%89%E8%A3%85"><span class="toc-text">开始安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%85%8B%E9%9A%86git%E4%BB%93%E5%BA%93"><span class="toc-text">1.克隆git仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96-npm-install"><span class="toc-text">2.安装依赖 npm install</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8D%E5%B9%B8%E7%9A%84%E5%90%84%E7%A7%8D%E6%83%85%E5%86%B5%E6%95%B4%E7%90%86"><span class="toc-text">不幸的各种情况整理</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-python%E6%8A%A5%E9%94%99"><span class="toc-text">1.python报错</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%90%AF%E5%8A%A8-npm-run-dev"><span class="toc-text">3.启动 npm run dev</span></a></li></ol></li></ol>
     </div>
   </section>
 
-
-  
 
   
 
@@ -834,21 +698,21 @@ classname来控制按钮执行方式弹出窗口 btn-dialog，ajax请求 btn-a..
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
-  pdata.postTitle="";
+  pdata.ispage=true;
+  pdata.postTitle="vue-elementui-admin安装步骤和安装依赖报错解决方案整理";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   // header 这里无论是否开启pjax都需要
   var l_header=document.getElementById("l_header");
   
-  l_header.classList.remove("show");
+  l_header.classList.add("show");
   
   
     // cover
     var cover_wrapper=document.querySelector('.cover-wrapper');
     
-    cover_wrapper.id="half";
-    cover_wrapper.style.display="";
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
     
   
 </script>
