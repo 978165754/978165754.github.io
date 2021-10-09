@@ -24,6 +24,8 @@
   
   <title>electron-forge的安装方法和遇到的坑 - 猫叔饭-写代码的猫叔个人博客</title>
   
+    <meta name="keywords" content="electron">
+  
 
   
 
@@ -521,6 +523,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><pre><code class="npm">npm start
 </code></pre>
 <p><img src="https://cdn.jsdelivr.net/gh/978165754/picgo@master/blog/20210820163131.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/978165754/picgo@master/blog/20210820163131.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="20210820163131"></p>
+<h2 id="打包和发布"><a href="#打包和发布" class="headerlink" title="打包和发布"></a>打包和发布</h2><h3 id="打包为绿色免安装文件"><a href="#打包为绿色免安装文件" class="headerlink" title="打包为绿色免安装文件"></a>打包为绿色免安装文件</h3><pre><code>npm run package
+</code></pre>
+<h3 id="打包为exe文件"><a href="#打包为exe文件" class="headerlink" title="打包为exe文件"></a>打包为exe文件</h3><p>但我这边一直报错，无法解决</p>
+<pre><code>npm run make
+</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/978165754/picgo@master/blog/20210824113944.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/978165754/picgo@master/blog/20210824113944.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="20210824113944"></p>
+<p>找了各种方法都无法解决，没办法，只能用第三方工具去打包了</p>
+<h3 id="使用-Inno-Setup-打包为exe安装程序"><a href="#使用-Inno-Setup-打包为exe安装程序" class="headerlink" title="使用 Inno Setup 打包为exe安装程序"></a>使用 Inno Setup 打包为exe安装程序</h3><p>下载地址：<a target="_blank" rel="noopener" href="https://pc.qq.com/detail/13/detail_1313.html">https://pc.qq.com/detail/13/detail_1313.html</a></p>
 
   
   
@@ -555,10 +565,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-20T16:31:51+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-24T11:41:03+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Aug 20, 2021</p>
+    <p>更新于：Aug 24, 2021</p>
   </a>
 </div>
 
@@ -566,6 +576,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         
           
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/electron/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>electron</p></a></div>
+
 
         
       
@@ -639,6 +652,16 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     <div class="prev-next">
       
+        <a class='prev' href='/posts/82c6172.html'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>php文件操作的常用函数</p>
+          <p class='content'>
+class File
+&#123;
+  public static function mk_dir($dir)
+  &#123;
+    $dir = rtrim($dir, &#39;/&#...</p>
+        </a>
+      
       
         <a class='next' href='/posts/c453aadd.html'>
           <p class='title'>vue-elementui-admin安装步骤和安装依赖报错解决方案整理<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
@@ -685,7 +708,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91"><span class="toc-text">遇到的坑</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85forge-cli"><span class="toc-text">全局安装forge cli</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-text">解决方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8"><span class="toc-text">启动</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91"><span class="toc-text">遇到的坑</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85forge-cli"><span class="toc-text">全局安装forge cli</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-text">解决方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8"><span class="toc-text">启动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%93%E5%8C%85%E5%92%8C%E5%8F%91%E5%B8%83"><span class="toc-text">打包和发布</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%93%E5%8C%85%E4%B8%BA%E7%BB%BF%E8%89%B2%E5%85%8D%E5%AE%89%E8%A3%85%E6%96%87%E4%BB%B6"><span class="toc-text">打包为绿色免安装文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%93%E5%8C%85%E4%B8%BAexe%E6%96%87%E4%BB%B6"><span class="toc-text">打包为exe文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-Inno-Setup-%E6%89%93%E5%8C%85%E4%B8%BAexe%E5%AE%89%E8%A3%85%E7%A8%8B%E5%BA%8F"><span class="toc-text">使用 Inno Setup 打包为exe安装程序</span></a></li></ol></li></ol>
     </div>
   </section>
 
@@ -946,12 +969,12 @@ var loadCSS = function( href, before, media, attributes ){
   <div id="rightmenu-wrapper">
     <ul class="list-v rightmenu" id="rightmenu-content">
       <li class='option'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>复制文本</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>Copy Text</a>
         <hr id='hr-text'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>复制链接</a>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>在新标签页打开</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>Copy Link</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>Open Link in New Tab</a>
         <hr id='hr-href'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>复制图片地址</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>Copy Image Link</a>
         <hr id='hr-src'>
       </li>
       

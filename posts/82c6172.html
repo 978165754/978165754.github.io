@@ -22,7 +22,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>fastadmin按钮buttons全部事件整理 - 猫叔饭-写代码的猫叔个人博客</title>
+  <title>php文件操作的常用函数 - 猫叔饭-写代码的猫叔个人博客</title>
   
 
   
@@ -451,7 +451,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
       <h1 class="title">
-        fastadmin按钮buttons全部事件整理
+        php文件操作的常用函数
       </h1>
       <div class='new-meta-box'>
         
@@ -475,7 +475,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Aug 8, 2021</p>
+    <p>发布于：Oct 9, 2021</p>
   </a>
 </div>
 
@@ -486,7 +486,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="fastadmin按钮buttons全部事件整理" data-path="/posts/31bfa1d6.html">
+      <div id="lc-pv" data-title="php文件操作的常用函数" data-path="/posts/82c6172.html">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -504,165 +504,156 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   
   
-  <p>相关链接</p>
-<blockquote>
-<ul>
-<li>一张图解析FastAdmin中的表格列表的功能(第15条) <a target="_blank" rel="noopener" href="https://ask.fastadmin.net/article/323.html">https://ask.fastadmin.net/article/323.html</a> </li>
-<li>一张图解析FastAdmin中的弹出窗口的功能 <a target="_blank" rel="noopener" href="https://ask.fastadmin.net/article/2527.html">https://ask.fastadmin.net/article/2527.html</a></li>
-</ul>
-</blockquote>
-<h2 id="classname来控制按钮执行方式"><a href="#classname来控制按钮执行方式" class="headerlink" title="classname来控制按钮执行方式"></a>classname来控制按钮执行方式</h2><p>弹出窗口 <code>btn-dialog</code>，ajax请求 <code>btn-ajax</code>，新选项卡<code>btn-addtabs</code>，自定义点击事件 <code>btn-click</code></p>
-<h2 id="按钮组-样例"><a href="#按钮组-样例" class="headerlink" title="按钮组 样例"></a>按钮组 样例</h2><pre><code class="js">&#123;
-    field: &#39;buttons&#39;,
-    width: &quot;120px&quot;,
-    title: &#39;按钮组&#39;,
-    table: table,
-    events: Table.api.events.operate,
-    buttons: [
-       
-    ],
-    formatter: Table.api.formatter.buttons
-&#125;
-</code></pre>
-<h3 id="弹出窗口-btn-dialog"><a href="#弹出窗口-btn-dialog" class="headerlink" title="弹出窗口 btn-dialog"></a>弹出窗口 btn-dialog</h3><blockquote>
-<p>修改弹出窗大小 <code>extend:  &#39; data-area = \&#39;[&quot;800px&quot;,&quot;600px&quot;]\&#39; &#39;,</code></p>
-</blockquote>
-<pre><code class="js">  &#123;
-      name: &#39;detail&#39;,
-      text: __(&#39;弹出窗口打开&#39;),
-      title: __(&#39;弹出窗口打开&#39;),
-      classname: &#39;btn btn-xs btn-primary btn-dialog&#39;,
-      icon: &#39;fa fa-list&#39;,
-      url: &#39;example/bootstraptable/detail&#39;,
-      callback: function (data) &#123;
-          Layer.alert(&quot;接收到回传数据：&quot; + JSON.stringify(data), &#123;title: &quot;回传数据&quot;&#125;);
-      &#125;,
-      visible: function (row) &#123;
-          //返回true时按钮显示,返回false隐藏
-          return true;
+  <pre><code class="php">
+class File
+&#123;
+  public static function mk_dir($dir)
+  &#123;
+    $dir = rtrim($dir, &#39;/&#39;) . &#39;/&#39;;
+    if (!is_dir($dir)) &#123;
+      if (mkdir($dir, 0700, true) == false) &#123;
+        return false;
       &#125;
+      return true;
+    &#125;
+    return true;
   &#125;
-</code></pre>
-<h3 id="ajax请求-btn-ajax"><a href="#ajax请求-btn-ajax" class="headerlink" title="ajax请求 btn-ajax"></a>ajax请求 btn-ajax</h3><p>完成后刷新表格</p>
-<pre><code class="js">refresh: true,
-//或者
-success: function (data, ret) &#123;
-    table.bootstrapTable(&#39;refresh&#39;);
-&#125;,
-</code></pre>
-<pre><code class="js">  &#123;
-      name: &#39;ajax&#39;,
-      text: __(&#39;发送Ajax&#39;),
-      title: __(&#39;发送Ajax&#39;),
-      classname: &#39;btn btn-xs btn-success btn-magic btn-ajax&#39;,
-      icon: &#39;fa fa-magic&#39;,
-      url: &#39;example/bootstraptable/detail&#39;,
-      confirm: &#39;确认发送&#39;,
-      success: function (data, ret) &#123;
-          Layer.alert(ret.msg + &quot;,返回数据：&quot; + JSON.stringify(data));
-          //如果需要阻止成功提示，则必须使用return false;
-          //return false;
-      &#125;,
-      error: function (data, ret) &#123;
-          console.log(data, ret);
-          Layer.alert(ret.msg);
-          return false;
+  public static function read_file($filename)
+  &#123;
+    $content = &#39;&#39;;
+    if (function_exists(&#39;file_get_contents&#39;)) &#123;
+      @$content = file_get_contents($filename);
+    &#125; else &#123;
+      if (@$fp = fopen($filename, &#39;r&#39;)) &#123;
+        @$content = fread($fp, filesize($filename));
+        @fclose($fp);
       &#125;
+    &#125;
+    return $content;
   &#125;
-</code></pre>
-<h3 id="新选项卡-btn-addtabs"><a href="#新选项卡-btn-addtabs" class="headerlink" title="新选项卡 btn-addtabs"></a>新选项卡 btn-addtabs</h3><pre><code class="js">  &#123;
-      name: &#39;addtabs&#39;,
-      text: __(&#39;新选项卡中打开&#39;),
-      title: __(&#39;新选项卡中打开&#39;),
-      classname: &#39;btn btn-xs btn-warning btn-addtabs&#39;,
-      icon: &#39;fa fa-folder-o&#39;,
-      url: &#39;example/bootstraptable/detail&#39;
+  public static function write_file($filename, $writetext, $openmod = &#39;w&#39;)
+  &#123;
+    if (@$fp = fopen($filename, $openmod)) &#123;
+      flock($fp, 2);
+      fwrite($fp, $writetext);
+      fclose($fp);
+      return true;
+    &#125; else &#123;
+      return false;
+    &#125;
   &#125;
-</code></pre>
-<h3 id="自定义点击按钮事件-btn-click"><a href="#自定义点击按钮事件-btn-click" class="headerlink" title="自定义点击按钮事件 btn-click"></a>自定义点击按钮事件 btn-click</h3><p>此处例子为点击弹出窗口，输入文字，执行ajax请求</p>
-<pre><code class="js">&#123;
-    name: &#39;shield&#39;,
-    text: &#39;完成&#39;,
-    icon: &#39;fa fa-check-circle fa-fw&#39;,
-    classname: &#39;btn btn-xs btn-success btn-click&#39;,
-    click:function(e,s) &#123;       
-      layer.prompt(&#123;title:&quot;填写奖金数值&quot;&#125;,function(val, index)&#123;
-        if(!val || val ==0 )&#123;
-          layer.msg(&quot;请先填写正确的奖金数值！&quot;);
-          return;
+  public static function del_dir($dirName)
+  &#123;
+    if (!file_exists($dirName)) &#123;
+      return false;
+    &#125;
+    $dir = opendir($dirName);
+    while ($fileName = readdir($dir)) &#123;
+      $file = $dirName . DIRECTORY_SEPARATOR . $fileName;
+      if ($fileName != &#39;.&#39; &amp;&amp; $fileName != &#39;..&#39;) &#123;
+        if (is_dir($file)) &#123;
+          self::del_dir($file);
+        &#125; else &#123;
+          unlink($file);
         &#125;
-        if (isNaN(val)) &#123;
-          layer.msg(&quot;请输入数字！&quot;);
-          return;
+      &#125;
+    &#125;
+    closedir($dir);
+    return rmdir($dirName);
+  &#125;
+  public static function copy_dir($surDir, $toDir)
+  &#123;
+    $surDir = rtrim($surDir, &#39;/&#39;) . &#39;/&#39;;
+    $toDir = rtrim($toDir, &#39;/&#39;) . &#39;/&#39;;
+    if (!file_exists($surDir)) &#123;
+      return false;
+    &#125;
+    if (!file_exists($toDir)) &#123;
+      self::mk_dir($toDir);
+    &#125;
+    $file = opendir($surDir);
+    while ($fileName = readdir($file)) &#123;
+      $file1 = $surDir . &#39;/&#39; . $fileName;
+      $file2 = $toDir . &#39;/&#39; . $fileName;
+      if ($fileName != &#39;.&#39; &amp;&amp; $fileName != &#39;..&#39;) &#123;
+        if (is_dir($file1)) &#123;
+          self::copy_dir($file1, $file2);
+        &#125; else &#123;
+          copy($file1, $file2);
         &#125;
-        $.ajax(&#123;
-          type: &quot;post&quot;,
-          url: &quot;survey/over&quot;,
-          data: &#123;
-            ids:s.id,
-            bonus:val
-          &#125;,
-          dataType: &quot;json&quot;,
-          success: function (response) &#123;
-            if(response.code == 2)&#123;
-              layer.msg(response.msg)
-            &#125;
-            else&#123;
-
-              layer.close(index);
-              table.bootstrapTable(&#39;refresh&#39;);
-            &#125;
-          &#125;
-        &#125;);
-
-      &#125;);
-      return false
-    &#125;,                                
-    refresh: true,
-    visible: function (row) &#123;
-      //返回true时按钮显示,返回false隐藏
-      // console.log(row)
-      return !row.status;
-    &#125;  
-  &#125;,
-</code></pre>
-<h3 id="普通列（非操作列）里怎么加按钮"><a href="#普通列（非操作列）里怎么加按钮" class="headerlink" title="普通列（非操作列）里怎么加按钮"></a>普通列（非操作列）里怎么加按钮</h3><p>利用<code>formatter</code> 来处理再输出</p>
-<pre><code class="js">&#123;field: &#39;ceshis&#39;, title: __(&#39;Ceshis&#39;),formatter:function(a,b,c) &#123;
-    console.log(&#39;a,b,c: &#39;, a,b,c);
-    return a+&#39;--&#39;+&#39;&lt;button class=&quot;btn btn-xs btn-info&quot; onclick=&quot;console.log(&#39;+c+&#39;);return false;&quot;&gt;点击&lt;/button&gt;&#39;    
-&#125;&#125;,
-</code></pre>
-<h3 id="怎么去掉edit-del-dragsort-这样的按钮"><a href="#怎么去掉edit-del-dragsort-这样的按钮" class="headerlink" title="怎么去掉edit del dragsort 这样的按钮"></a>怎么去掉edit del dragsort 这样的按钮</h3><p>修改 operate</p>
-<h3 id="其他参数"><a href="#其他参数" class="headerlink" title="其他参数"></a>其他参数</h3><p> <code>dropdown</code>: ‘更多’,//如果包含dropdown，将会以下拉列表的形式展示</p>
-<pre><code class="js">&#123;
-    name: &#39;addtabs&#39;,
-    text: __(&#39;新选项卡中打开&#39;),
-    title: __(&#39;新选项卡中打开&#39;),
-    dropdown: &#39;更多&#39;,//如果包含dropdown，将会以下拉列表的形式展示
-    classname: &#39;btn btn-xs btn-warning btn-addtabs&#39;,
-    icon: &#39;fa fa-folder-o&#39;,
-    url: &#39;./ceshi1/demo1&#39;
+      &#125;
+    &#125;
+    closedir($file);
+    return true;
+  &#125;
+  public static function get_dirs($dir)
+  &#123;
+    $dir = rtrim($dir, &#39;/&#39;) . &#39;/&#39;;
+    $dirArray[][] = null;
+    if (false != ($handle = opendir($dir))) &#123;
+      $i = 0;
+      $j = 0;
+      while (false !== ($file = readdir($handle))) &#123;
+        if (is_dir($dir . $file)) &#123;
+          $dirArray[&#39;dir&#39;][$i] = $file;
+          $i++;
+        &#125; else &#123;
+          $dirArray[&#39;file&#39;][$j] = $file;
+          $j++;
+        &#125;
+      &#125;
+      closedir($handle);
+    &#125;
+    return $dirArray;
+  &#125;
+  public static function get_size($dir)
+  &#123;
+    $dirlist = opendir($dir);
+    $dirsize = 0;
+    while (false !== ($folderorfile = readdir($dirlist))) &#123;
+      if ($folderorfile != &quot;.&quot; &amp;&amp; $folderorfile != &quot;..&quot;) &#123;
+        if (is_dir(&quot;$dir/$folderorfile&quot;)) &#123;
+          $dirsize += self::get_size(&quot;$dir/$folderorfile&quot;);
+        &#125; else &#123;
+          $dirsize += filesize(&quot;$dir/$folderorfile&quot;);
+        &#125;
+      &#125;
+    &#125;
+    closedir($dirlist);
+    return $dirsize;
+  &#125;
+  public static function empty_dir($dir)
+  &#123;
+    return (($files = @scandir($dir)) &amp;&amp; count($files) &lt;= 2);
+  &#125;
+  public function cache($name, $value = &#39;&#39;, $path = DATA_PATH, $cached = true)
+  &#123;
+    static $_cache = array();
+    $filename = $path . $name . &#39;.php&#39;;
+    if (&#39;&#39; !== $value) &#123;
+      if (is_null($value)) &#123;
+        return false !== strpos($name, &#39;*&#39;) ? array_map(&quot;unlink&quot;, glob($filename)) : unlink($filename);
+      &#125; else &#123;
+        $dir = dirname($filename);
+        if (!is_dir($dir)) &#123;
+          mkdir($dir, 0755, true);
+        &#125;
+        $_cache[$name] = $value;
+        return file_put_contents($filename, strip_whitespace(&quot;&lt;?php\treturn &quot; . var_export($value, true) . &quot;;?&gt;&quot;));
+      &#125;
+    &#125;
+    if (isset($_cache[$name]) &amp;&amp; $cached == true) &#123;
+      return $_cache[$name];
+    &#125;
+    if (is_file($filename)) &#123;
+      $value = include $filename;
+      $_cache[$name] = $value;
+    &#125; else &#123;
+      $value = false;
+    &#125;
+    return $value;
+  &#125;
 &#125;
-</code></pre>
-<p><img src="https://i.loli.net/2021/08/08/OjIp4LtGqcDVH9W.png" class="lazyload" data-srcset="https://i.loli.net/2021/08/08/OjIp4LtGqcDVH9W.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="20210808085638"></p>
-<h2 id="扩展知识："><a href="#扩展知识：" class="headerlink" title="扩展知识："></a>扩展知识：</h2><h3 id="点击就自动选中了checkbox，双击就弹出编辑，怎么关闭？"><a href="#点击就自动选中了checkbox，双击就弹出编辑，怎么关闭？" class="headerlink" title="点击就自动选中了checkbox，双击就弹出编辑，怎么关闭？"></a>点击就自动选中了checkbox，双击就弹出编辑，怎么关闭？</h3><h4 id="方法1：改html"><a href="#方法1：改html" class="headerlink" title="方法1：改html:"></a>方法1：改html:</h4><p>table 加上属性即可 ：</p>
-<p>关闭点击选中： <code>data-click-to-select=&quot;false&quot;</code></p>
-<p>关闭双击编辑：<code>data-dbl-click-to-edit=&quot;false&quot;</code></p>
-<h4 id="方法2：改js"><a href="#方法2：改js" class="headerlink" title="方法2：改js"></a>方法2：改js</h4><pre><code class="js">clickToSelect: false, //是否启用点击选中
-
-dblClickToEdit: false, //是否启用双击编辑
-</code></pre>
-<h4 id="方法3：改js"><a href="#方法3：改js" class="headerlink" title="方法3：改js"></a>方法3：改js</h4><p>可控制某一列禁用点击选中</p>
-<pre><code class="js">table.on(&#39;post-body.bs.table&#39;, function (e, settings, json, xhr) &#123;      
-  $(&#39;tr td:eq(2)&#39;,this).off(&#39;click&#39;)
-&#125;);
-</code></pre>
-<p>可定义自己的双击事件</p>
-<pre><code class="js">table.on(&#39;dbl-click-row.bs.table&#39;, function (e, row, element, field) &#123;
-  console.log(&#39;双击一行&#39;);  
-  return false
-  // $(Table.config.editonebtn, element).trigger(&quot;click&quot;);
-&#125;);
 </code></pre>
 
   
@@ -681,7 +672,7 @@ dblClickToEdit: false, //是否启用双击编辑
               
             
               
-                <p>本文永久链接：<a href=https://maoshu.fun/posts/31bfa1d6.html>https://maoshu.fun/posts/31bfa1d6.html</a></p>
+                <p>本文永久链接：<a href=https://maoshu.fun/posts/82c6172.html>https://maoshu.fun/posts/82c6172.html</a></p>
               
             
           </blockquote>
@@ -698,10 +689,10 @@ dblClickToEdit: false, //是否启用双击编辑
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-10T21:41:34+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-10-09T13:39:33+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Aug 10, 2021</p>
+    <p>更新于：Oct 9, 2021</p>
   </a>
 </div>
 
@@ -720,7 +711,7 @@ dblClickToEdit: false, //是否启用双击编辑
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://maoshu.fun/posts/31bfa1d6.html&title=fastadmin按钮buttons全部事件整理 - 猫叔饭-写代码的猫叔个人博客&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://maoshu.fun/posts/82c6172.html&title=php文件操作的常用函数 - 猫叔饭-写代码的猫叔个人博客&summary="
           
           >
           
@@ -732,7 +723,7 @@ dblClickToEdit: false, //是否启用双击编辑
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://maoshu.fun/posts/31bfa1d6.html&title=fastadmin按钮buttons全部事件整理 - 猫叔饭-写代码的猫叔个人博客&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://maoshu.fun/posts/82c6172.html&title=php文件操作的常用函数 - 猫叔饭-写代码的猫叔个人博客&summary="
           
           >
           
@@ -744,7 +735,7 @@ dblClickToEdit: false, //是否启用双击编辑
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://maoshu.fun/posts/31bfa1d6.html&title=fastadmin按钮buttons全部事件整理 - 猫叔饭-写代码的猫叔个人博客&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://maoshu.fun/posts/82c6172.html&title=php文件操作的常用函数 - 猫叔饭-写代码的猫叔个人博客&summary="
           
           >
           
@@ -758,7 +749,7 @@ dblClickToEdit: false, //是否启用双击编辑
         <div class='hoverbox'>
           <a class='share'><img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/wechat.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/wechat.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a>
           <div class='target'>
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPgAAAD4CAAAAADkunTXAAACSklEQVR42u3aS3LjMAwFQN3/0skBXC7ip7INNXeTDEm0Vgger7+HrgscHBwcHHwR/CqulwOb+07nTdULDg4ODg6+ER5uAIrwEyh6X7decHBwcHDwzfBo4dH90Q+U3V+uFxwcHBwcHDy9f2pQAQ4ODg4ODn4fPHpON1AABwcHBwcHHxjQFz9U9udfl6SAg4ODg4N/Ebw6MPjUv8v1goODg4ODL4J3V3dQcTo327Ac6wUHBwcHB18ErzYI2QFF9ANG78nWBw4ODg4OvhHebRimHwB0Bw3hQAEcHBwcHHwBfPqiaqORHUxUBxTg4ODg4OAb4dmBfzZg6N4TbYCO/x8cHBwcHHwRvDsY+BigGGCAg4ODg4Nvhkf/8J8aWETvrw4kjkkKODg4ODj4Anh2oJ9tTKoNyO0NDDg4ODg4+CL49AO9aMFT9aQDBXBwcHBw8AXw6oXTD/amzmsnKeDg4ODg4D8A715cDRyigUK3zreBAjg4ODg4+CL4dGCffWjQbXzC+8HBwcHBwRfDpwKFuz5Uu15wcHBwcPDF8OwgoFpodIBQDR7e/h4cHBwcHHwRvLuyF0f33/bAABwcHBwcfBH8Kq7soKJacLXRCQcK4ODg4ODgC+DTDUsUXH1AkP2w4ODg4ODgT4Df3UBk93UbnPSLCHBwcHBw8AfCq4FBtsGpBgvg4ODg4ODg8SA/ek63UUoPQsDBwcHBwRfDs4FC9UFgN1CoDiTAwcHBwcE3wquNwdSgYSq4SAcK4ODg4ODgPwx/2gIHBwcHB1+w/gF8dAcBgF6jFgAAAABJRU5ErkJggg==">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPgAAAD4CAAAAADkunTXAAACVUlEQVR42u3dUY4qMQwEQO5/6fcOsEJJ2xlgPJU/0MKkvD+W2xKvfw89L3BwcHBw8EHwV/G8+/zqe/9cZPH+7vdu3xccHBwcHHwgfLsBeHORXdAKuPpc+77g4ODg4OCD4bsNS3qx9MJp4XfvCw4ODg4ODp4PIlLQbsMEDg4ODg4Ofq6B6Q7+0wACHBwcHBwcvD6g7wYN1YWDrycp4ODg4ODgPwTvLvh9+vXPbDaCg4ODg4N/EX4qqF81LLuNShpExPcFBwcHBwcfBK8OBrqNxu6AozsIKScp4ODg4ODgN4J3FwJ2H/ypBYJ2oAAODg4ODn4jeHqxbmOTFrAaOGwPIsDBwcHBwW8IPzXY7wYKaUCRBh7g4ODg4OCT4WkwkA4SqgsG3QBheyMCHBwcHBz8hvBqcL/bsHQXEE4FFODg4ODg4E+Ep4BuIFBdGAAHBwcHBwc/90MvaeDQbai2nwcODg4ODj4Y/ukAoVvIOIgABwcHBwcfBG8H7dWBQHjhY40PODg4ODj4IHg1mE8bjKsKnRYOHBwcHBx8EvxUUBAPBA4tDMQDDnBwcHBw8IHw6uCg2mh0BxrVQAMcHBwcHHwivHqqhUiDgrTAbwsJDg4ODg4+CN5tEKqDh+rAobtgAA4ODg4OPhFebViuLsSpAQY4ODg4OPgT4KeD/mpA0P37ZaAADg4ODg4OXh4YXFWQ5T8EHBwcHBwc/NiAP10c6A4ywMHBwcHBJ8OveuAuMG1MvrYYAA4ODg4O/kPw9FQbj7SQxxcPwMHBwcHBB8GfdsDBwcHBwQec/5pvRdB6m9H+AAAAAElFTkSuQmCC">
           </div>
         </div>
       
@@ -782,19 +773,10 @@ dblClickToEdit: false, //是否启用双击编辑
   
     <div class="prev-next">
       
-        <a class='prev' href='/posts/effba3b3.html'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>一些好用的npm包和github项目整理</p>
-          <p class='content'>
-一键复制 https://www.npmjs.com/package/clipboard
-vue复制 https://www.npmjs.com/package/vue-clipboard
-时...</p>
-        </a>
       
-      
-        <a class='next' href='/posts/22663.html'>
-          <p class='title'>hexo-volantis主题修改代码高亮风格<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>前言
-猫叔的博客是基于hexo制作的，选用主题为volantis，纵然这套主题我是特别喜欢，但它的代码高亮做的不是特别适合我，不如next主题里面的代码高亮风格那么好看（主要是暗色风格），但ne...</p>
+        <a class='next' href='/posts/3e5d6f64.html'>
+          <p class='title'>electron-forge的安装方法和遇到的坑<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>遇到的坑首先根据官网文档：https://www.electronforge.io/，`yarn create electron-app my-app`，执行到一半卡住了。然后找了其他方法，如下...</p>
         </a>
       
     </div>
@@ -827,20 +809,6 @@ vue复制 https://www.npmjs.com/package/vue-clipboard
 
 
 
-  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
-    
-  <header>
-    
-      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
-    
-  </header>
-
-
-    <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#classname%E6%9D%A5%E6%8E%A7%E5%88%B6%E6%8C%89%E9%92%AE%E6%89%A7%E8%A1%8C%E6%96%B9%E5%BC%8F"><span class="toc-text">classname来控制按钮执行方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%89%E9%92%AE%E7%BB%84-%E6%A0%B7%E4%BE%8B"><span class="toc-text">按钮组 样例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%B9%E5%87%BA%E7%AA%97%E5%8F%A3-btn-dialog"><span class="toc-text">弹出窗口 btn-dialog</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ajax%E8%AF%B7%E6%B1%82-btn-ajax"><span class="toc-text">ajax请求 btn-ajax</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E9%80%89%E9%A1%B9%E5%8D%A1-btn-addtabs"><span class="toc-text">新选项卡 btn-addtabs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E7%82%B9%E5%87%BB%E6%8C%89%E9%92%AE%E4%BA%8B%E4%BB%B6-btn-click"><span class="toc-text">自定义点击按钮事件 btn-click</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%99%AE%E9%80%9A%E5%88%97%EF%BC%88%E9%9D%9E%E6%93%8D%E4%BD%9C%E5%88%97%EF%BC%89%E9%87%8C%E6%80%8E%E4%B9%88%E5%8A%A0%E6%8C%89%E9%92%AE"><span class="toc-text">普通列（非操作列）里怎么加按钮</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%8E%E4%B9%88%E5%8E%BB%E6%8E%89edit-del-dragsort-%E8%BF%99%E6%A0%B7%E7%9A%84%E6%8C%89%E9%92%AE"><span class="toc-text">怎么去掉edit del dragsort 这样的按钮</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%8F%82%E6%95%B0"><span class="toc-text">其他参数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E7%9F%A5%E8%AF%86%EF%BC%9A"><span class="toc-text">扩展知识：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%82%B9%E5%87%BB%E5%B0%B1%E8%87%AA%E5%8A%A8%E9%80%89%E4%B8%AD%E4%BA%86checkbox%EF%BC%8C%E5%8F%8C%E5%87%BB%E5%B0%B1%E5%BC%B9%E5%87%BA%E7%BC%96%E8%BE%91%EF%BC%8C%E6%80%8E%E4%B9%88%E5%85%B3%E9%97%AD%EF%BC%9F"><span class="toc-text">点击就自动选中了checkbox，双击就弹出编辑，怎么关闭？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%951%EF%BC%9A%E6%94%B9html"><span class="toc-text">方法1：改html:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%952%EF%BC%9A%E6%94%B9js"><span class="toc-text">方法2：改js</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%953%EF%BC%9A%E6%94%B9js"><span class="toc-text">方法3：改js</span></a></li></ol></li></ol></li></ol>
-    </div>
-  </section>
-
 
   
 
@@ -856,7 +824,7 @@ vue复制 https://www.npmjs.com/package/vue-clipboard
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="fastadmin按钮buttons全部事件整理";
+  pdata.postTitle="php文件操作的常用函数";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   // header 这里无论是否开启pjax都需要
