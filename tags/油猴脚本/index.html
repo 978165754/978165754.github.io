@@ -24,7 +24,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>歸檔：2021/10 - 猫叔饭-写代码的猫叔个人博客</title>
+  <title>標籤：油猴脚本 - 猫叔饭-写代码的猫叔个人博客</title>
   
 
   
@@ -104,7 +104,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <body>
     
 
-<header id="l_header" class="l_header auto shadow blur " style='opacity: 0' >
+<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -357,7 +357,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="half" class='cover-wrapper  search' style="display: ;">
+        <div id="full" class='cover-wrapper  search' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://bing.ioliu.cn/v1/rand?w=1920&h=800"></div>
           
@@ -442,14 +442,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         <div class="body-wrapper" id="pjax-container">
           
 
+
 <div class='l_main'>
-	
-		
+  
+    
+      
   <section class="post-list">
     
       
-        
-          
         
           
         
@@ -508,54 +508,6 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/posts/82c6172.html">
-        php文件操作的常用函数
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        删除几分钟前的文件使用案例（删除几天前的日志文件）：
-      $path =SYSTEM_PATH . DIRECTORY_SEPARATOR .&#39;log&#39;;            
-      $this-&gt;delete_file($path,$days*24*60);
-
-函数：
-protected function delete_file($dir,$time_...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-10-09</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/posts/82c6172.html'>
-            閱讀全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -563,7 +515,8 @@ protected function delete_file($dir,$time_...
   
 
 
-	
+    
+  
 </div>
 <aside class='l_side'>
   
@@ -683,14 +636,14 @@ protected function delete_file($dir,$time_...
   // header 这里无论是否开启pjax都需要
   var l_header=document.getElementById("l_header");
   
-  l_header.classList.remove("show");
+  l_header.classList.add("show");
   
   
     // cover
     var cover_wrapper=document.querySelector('.cover-wrapper');
     
-    cover_wrapper.id="half";
-    cover_wrapper.style.display="";
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
     
   
 </script>

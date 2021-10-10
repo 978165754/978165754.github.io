@@ -5,8 +5,6 @@
   <!-- SEO相关 -->
   
     
-      <meta name="robots" content="noindex,follow">
-    
   
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -24,7 +22,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>歸檔：2021/10 - 猫叔饭-写代码的猫叔个人博客</title>
+  <title>油猴脚本案例：拦截点击事件， GM_setClipboard复制文本 - 猫叔饭-写代码的猫叔个人博客</title>
+  
+    <meta name="keywords" content="油猴脚本">
   
 
   
@@ -104,7 +104,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <body>
     
 
-<header id="l_header" class="l_header auto shadow blur " style='opacity: 0' >
+<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -357,7 +357,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="half" class='cover-wrapper  search' style="display: ;">
+        <div id="full" class='cover-wrapper post search' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://bing.ioliu.cn/v1/rand?w=1920&h=800"></div>
           
@@ -443,127 +443,263 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
 
 <div class='l_main'>
-	
-		
-  <section class="post-list">
-    
-      
-        
-          
-        
-          
-        
-      
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
+  
+
+
+  
+  <div class="article-meta" id="top">
     
     
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
     
-    <h2 class="article-title" >
-      <a href="/posts/cc7c94cd.html">
+      <h1 class="title">
         油猴脚本案例：拦截点击事件， GM_setClipboard复制文本
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/" rel="nofollow">
+    <img no-lazy src="https://i.loli.net/2021/08/07/mNRDQ8oiArnyUPG.png">
+    <p>写代码的猫叔</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Oct 10, 2021</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
       
-        拦截a标签点击，并复制文本：
-// ==UserScript==
+      <div id="lc-pv" data-title="油猴脚本案例：拦截点击事件， GM_setClipboard复制文本" data-path="/posts/cc7c94cd.html">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
+      </div>
+    
+  </div>
+
+
+  
+  
+  <p>拦截a标签点击，并复制文本：</p>
+<pre><code class="js">// ==UserScript==
 // @name         案例：拦截点击，并复制文本
 // @match        *://www.baidu.com/*
 // @grant        GM_setClipboard
 // ==/UserScript==
 
 (function() &#123;
-    &#39;use strict&#39;...
-      
+    &#39;use strict&#39;;
+    document.querySelectorAll(&#39;.hotsearch-item .title-content-title&#39;).forEach(element =&gt; &#123;
+      element.addEventListener(&#39;click&#39;,(e)=&gt;&#123;
+        // console.log(&#39;clicked&#39;,e);
+        GM_setClipboard(e.target.innerText)
+        e.preventDefault()
+      &#125;)
+    &#125;);
     
-  </div>
+    // Your code here...
+&#125;)();
+</code></pre>
+<p>进阶：添加一个按钮，点击复制</p>
+<pre><code class="js">// ==UserScript==
+// @name         案例：添加按钮，拦截点击，并复制文本
+// @description 测试样例
+// @match        *://www.baidu.com/*
+// @grant        GM_setClipboard
+// ==/UserScript==
+
+(function() &#123;
+    &#39;use strict&#39;;
+    document.querySelectorAll(&#39;.hotsearch-item .title-content-title&#39;).forEach(element =&gt; &#123;      
+
+      let btn = document.createElement(&#39;button&#39;)
+      btn.innerText = &#39;ceshi&#39;
+      element.before(btn)
+
+      btn.addEventListener(&#39;click&#39;,(e)=&gt;&#123;
+        GM_setClipboard(element.innerText)
+        e.preventDefault()
+      &#125;)
+
+    &#125;);
+    
+&#125;)();
+</code></pre>
+
   
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-10-10</time>
-        
-      </div>
+  
+    
+    <div class='footer'>
       
-        <div>
-          <a class='readmore' href='/posts/cc7c94cd.html'>
-            閱讀全文
-          </a>
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>文章可以转载，但必须注明作者和网址链接；内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接：<a href=https://maoshu.fun/posts/cc7c94cd.html>https://maoshu.fun/posts/cc7c94cd.html</a></p>
+              
+            
+          </blockquote>
         </div>
+      
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-10-10T13:33:26+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Oct 10, 2021</p>
+  </a>
 </div>
 
-          </div>
         
       
         
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
+          
   
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/posts/82c6172.html">
-        php文件操作的常用函数
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        删除几分钟前的文件使用案例（删除几天前的日志文件）：
-      $path =SYSTEM_PATH . DIRECTORY_SEPARATOR .&#39;log&#39;;            
-      $this-&gt;delete_file($path,$days*24*60);
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E6%B2%B9%E7%8C%B4%E8%84%9A%E6%9C%AC/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>油猴脚本</p></a></div>
 
-函数：
-protected function delete_file($dir,$time_...
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://maoshu.fun/posts/cc7c94cd.html&title=油猴脚本案例：拦截点击事件， GM_setClipboard复制文本 - 猫叔饭-写代码的猫叔个人博客&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://maoshu.fun/posts/cc7c94cd.html&title=油猴脚本案例：拦截点击事件， GM_setClipboard复制文本 - 猫叔饭-写代码的猫叔个人博客&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://maoshu.fun/posts/cc7c94cd.html&title=油猴脚本案例：拦截点击事件， GM_setClipboard复制文本 - 猫叔饭-写代码的猫叔个人博客&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        
+        <div class='hoverbox'>
+          <a class='share'><img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/wechat.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/wechat.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a>
+          <div class='target'>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPgAAAD4CAAAAADkunTXAAACTElEQVR42u3cS27CQAwA0Nz/0u0BKjT+NYDzZgeCjJ9Xlm24fh56LnBwcHBw8EXwq3hO3/9zYfH96H3heMHBwcHBwRfCwwXAi0CigZ+ee/p8O15wcHBwcPDF8GjBkk1INhHZxEfjBQcHBwcHB683IqINg2pCwcHBwcHBwesFzNQAIJsIcHBwcHBw8HwjYCqw7Ptvn6SAg4ODg4N/ELxaWLzrdTlecHBwcHDwRfDu6TYSsoOJdrzg4ODg4OCL4NXGQDSw/3petgECDg4ODg6+ER59QBTUfc7UAsFxoAAODg4ODr4AHgV0C5dqgdIdOBwbEeDg4ODg4Avh0cIgG9h0YZROJDg4ODg4+CJ4dxBQHUxUBwXVwgUcHBwcHHwj/O4GRLXwyQ4Q0hsR4ODg4ODgXwivNvSjwGrjoboYAA4ODg4ODj4/wM8WRt3BwnExABwcHBwcfAE8e0F2MF8NuLt4CA4ODg4O/gT49CC+OlDoJjCcMHBwcHBw8EXwbGDZgK/i6S4evPw+ODg4ODj4Ini2kT+dgNsHDeDg4ODg4Avh2cZ9d/EuCxkrgMDBwcHBwRfCu439bADZRYFuowMcHBwcHHwjfKowGWv4N+87FmTg4ODg4OAL4dmCJdtgqA4qsok6xg8ODg4ODr4YXi1ApguVcqMhOlAABwcHBwcHL/+QfqqhEU0cODg4ODg4+Nwf1GYXAKKfP8YLDg4ODg6+GN69cDoR2ftuWwwABwcHBwf/IHh3wa+7MBCFVwcc4ODg4ODgG+FPO+Dg4ODg4AvOLy/vw248BOD1AAAAAElFTkSuQmCC">
+          </div>
+        </div>
+      
+    
       
     
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
+</div>
+
+
+
         
-        <time>2021-10-09</time>
-        
-      </div>
       
-        <div>
-          <a class='readmore' href='/posts/82c6172.html'>
-            閱讀全文
-          </a>
-        </div>
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+      
+        <a class='next' href='/posts/82c6172.html'>
+          <p class='title'>php文件操作的常用函数<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>删除几分钟前的文件使用案例（删除几天前的日志文件）：
+      $path =SYSTEM_PATH . DIRECTORY_SEPARATOR .&#39;log&#39;;        ...</p>
+        </a>
       
     </div>
   
+</article>
 
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
 </div>
 
-          </div>
-        
-      
-    
-  </section>
-  
-    
-  
+  </article>
 
 
-	
+
+
+
+
 </div>
 <aside class='l_side'>
   
@@ -571,103 +707,14 @@ protected function delete_file($dir,$time_...
     
     
 
-<section class="widget blogger shadow desktop mobile">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box rectangle' href='/about/'>
-          <img no-lazy src='https://i.loli.net/2021/08/07/qBsLaJ1pANkYfMu.png'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-        
-        
-          <p><span id="jinrishici-sentence">猫叔饭-写代码的猫叔个人博客</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="/atom.xml"
-              class="social fas fa-rss flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="mailto:me@xxx.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/volantis-x/"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="/"
-              class="social fas fa-headphones-alt flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
-
-  
-
-  
-    
-    
-
-  
-
-  
-    
-    
-  
-
-  <section class="widget tagcloud shadow desktop mobile">
-    
-  <header>
-    
-      <a href='/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
-    
-  </header>
 
 
-    <div class='content'>
-      <a href="/tags/electron/" style="font-size: 14px; color: #999">electron</a> <a href="/tags/fastadmin/" style="font-size: 14px; color: #999">fastadmin</a> <a href="/tags/hexo/" style="font-size: 14px; color: #999">hexo</a> <a href="/tags/%E6%B2%B9%E7%8C%B4%E8%84%9A%E6%9C%AC/" style="font-size: 14px; color: #999">油猴脚本</a>
-    </div>
-  </section>
-
-
-  
 
   
 
 
 </aside>
+
 
 
 		  
@@ -676,21 +723,21 @@ protected function delete_file($dir,$time_...
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
-  pdata.postTitle="";
+  pdata.ispage=true;
+  pdata.postTitle="油猴脚本案例：拦截点击事件， GM_setClipboard复制文本";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   // header 这里无论是否开启pjax都需要
   var l_header=document.getElementById("l_header");
   
-  l_header.classList.remove("show");
+  l_header.classList.add("show");
   
   
     // cover
     var cover_wrapper=document.querySelector('.cover-wrapper');
     
-    cover_wrapper.id="half";
-    cover_wrapper.style.display="";
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
     
   
 </script>
