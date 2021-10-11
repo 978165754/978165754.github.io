@@ -3894,7 +3894,7 @@ img.lazyload:not(.placeholder).loaded {
   position: relative;
   pointer-events: none;
   margin-top: 0;
-  font-weight: 500;
+  font-weight: 700;
 }
 .md h1 >a,
 .md h2 >a,
@@ -4104,7 +4104,7 @@ img.lazyload:not(.placeholder).loaded {
   text-align: right;
 }
 .article-title {
-  font-weight: 500;
+  font-weight: 700;
   margin-bottom: 12px;
   line-height: 1.4;
 }

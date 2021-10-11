@@ -509,6 +509,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <h2 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h2><p>本项目是一个fastadmin+微信小程序的实战案例，一个简单的todolist任务管理功能，包括后台数据增删改查、数据统计、api接口开发（小程序对接登录、小程序端管理数据）等。</p>
 <p>功能比较简单，覆盖到的知识点不会太多，适合初学者，尤其适合没有做过小程序和fa结合使用的同学。</p>
 <p>为便于大家利用碎片时间学习，每节课的时间会尽量控制在10分钟左右。</p>
+<h3 id="效果截图"><a href="#效果截图" class="headerlink" title="效果截图"></a>效果截图</h3><p>本项目是模仿滴答清单的部分功能，大概界面是这样：<br><img src="https://cdn.jsdelivr.net/gh/978165754/picgo@master/blog/20211011104255.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/978165754/picgo@master/blog/20211011104255.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="20211011104255"></p>
 <h2 id="项目计划"><a href="#项目计划" class="headerlink" title="项目计划"></a>项目计划</h2><p>本项目制作思路：</p>
 <ul>
 <li>1.先制作基础的后端api部分。</li>
@@ -551,7 +552,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-10-11T10:12:53+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-10-11T10:43:31+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：Oct 11, 2021</p>
@@ -686,7 +687,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%AE%80%E4%BB%8B"><span class="toc-text">项目简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E8%AE%A1%E5%88%92"><span class="toc-text">项目计划</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">准备工作</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%AE%80%E4%BB%8B"><span class="toc-text">项目简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%88%E6%9E%9C%E6%88%AA%E5%9B%BE"><span class="toc-text">效果截图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E8%AE%A1%E5%88%92"><span class="toc-text">项目计划</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">准备工作</span></a></li></ol>
     </div>
   </section>
 
@@ -947,12 +948,12 @@ var loadCSS = function( href, before, media, attributes ){
   <div id="rightmenu-wrapper">
     <ul class="list-v rightmenu" id="rightmenu-content">
       <li class='option'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>复制文本</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>Copy Text</a>
         <hr id='hr-text'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>复制链接</a>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>在新标签页打开</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>Copy Link</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>Open Link in New Tab</a>
         <hr id='hr-href'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>复制图片地址</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>Copy Image Link</a>
         <hr id='hr-src'>
       </li>
       
