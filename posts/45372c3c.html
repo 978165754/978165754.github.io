@@ -22,9 +22,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>油猴脚本案例：拦截点击事件， GM_setClipboard复制文本 - 猫叔饭-写代码的猫叔个人博客</title>
+  <title>fast-小程序0：todolist项目计划和准备工作 - 猫叔饭-写代码的猫叔个人博客</title>
   
-    <meta name="keywords" content="油猴脚本">
+    <meta name="keywords" content="todolist小程序">
   
 
   
@@ -453,7 +453,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
       <h1 class="title">
-        油猴脚本案例：拦截点击事件， GM_setClipboard复制文本
+        fast-小程序0：todolist项目计划和准备工作
       </h1>
       <div class='new-meta-box'>
         
@@ -477,7 +477,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Oct 10, 2021</p>
+    <p>发布于：Oct 11, 2021</p>
   </a>
 </div>
 
@@ -488,7 +488,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="油猴脚本案例：拦截点击事件， GM_setClipboard复制文本" data-path="/posts/cc7c94cd.html">
+      <div id="lc-pv" data-title="fast-小程序0：todolist项目计划和准备工作" data-path="/posts/45372c3c.html">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -506,49 +506,17 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   
   
-  <h3 id="拦截a标签点击，并复制文本："><a href="#拦截a标签点击，并复制文本：" class="headerlink" title="拦截a标签点击，并复制文本："></a>拦截a标签点击，并复制文本：</h3><pre><code class="js">// ==UserScript==
-// @name         案例：拦截点击，并复制文本
-// @match        *://www.baidu.com/*
-// @grant        GM_setClipboard
-// ==/UserScript==
-
-(function() &#123;
-    &#39;use strict&#39;;
-    document.querySelectorAll(&#39;.hotsearch-item .title-content-title&#39;).forEach(element =&gt; &#123;
-      element.addEventListener(&#39;click&#39;,(e)=&gt;&#123;
-        // console.log(&#39;clicked&#39;,e);
-        e.preventDefault()
-        GM_setClipboard(e.target.innerText)
-      &#125;)
-    &#125;);
-    
-    // Your code here...
-&#125;)();
-</code></pre>
-<h3 id="进阶：添加一个按钮，点击复制"><a href="#进阶：添加一个按钮，点击复制" class="headerlink" title="进阶：添加一个按钮，点击复制"></a>进阶：添加一个按钮，点击复制</h3><pre><code class="js">// ==UserScript==
-// @name         案例：添加按钮，拦截点击，并复制文本
-// @description 测试样例
-// @match        *://www.baidu.com/*
-// @grant        GM_setClipboard
-// ==/UserScript==
-
-(function() &#123;
-    &#39;use strict&#39;;
-    document.querySelectorAll(&#39;.hotsearch-item .title-content-title&#39;).forEach(element =&gt; &#123;      
-
-      let btn = document.createElement(&#39;button&#39;)
-      btn.innerText = &#39;复制&#39;
-      element.before(btn)
-
-      btn.addEventListener(&#39;click&#39;,(e)=&gt;&#123;
-        e.preventDefault()
-        GM_setClipboard(element.innerText)
-      &#125;)
-
-    &#125;);
-    
-&#125;)();
-</code></pre>
+  <h2 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h2><p>本项目是一个fastadmin+微信小程序的实战案例，一个简单的todolist任务管理功能，包括后台数据增删改查、数据统计、api接口开发（小程序对接登录、小程序端管理数据）等。</p>
+<p>功能比较简单，覆盖到的知识点不会太多，适合初学者，尤其适合没有做过小程序和fa结合使用的同学。</p>
+<p>为便于大家利用碎片时间学习，每节课的时间会尽量控制在10分钟左右。</p>
+<h2 id="项目计划"><a href="#项目计划" class="headerlink" title="项目计划"></a>项目计划</h2><p>本项目制作思路：</p>
+<ul>
+<li>1.先制作基础的后端api部分。</li>
+<li>2.再制作小程序界面。</li>
+<li>3.小程序对接api，打通基本功能。</li>
+<li>4.缺少的api一边补充一边对接。</li>
+</ul>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>1.准备工具：VsCode(或phpStorm)、phpStudy、chrome浏览器<br>2.下载fastadmin框架代码<br>3.导入mysql数据库，配置环境，启动项目</p>
 
   
   
@@ -566,7 +534,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
               
             
               
-                <p>本文永久链接：<a href=https://maoshu.fun/posts/cc7c94cd.html>https://maoshu.fun/posts/cc7c94cd.html</a></p>
+                <p>本文永久链接：<a href=https://maoshu.fun/posts/45372c3c.html>https://maoshu.fun/posts/45372c3c.html</a></p>
               
             
           </blockquote>
@@ -583,10 +551,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-10-10T14:08:56+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-10-11T10:12:53+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Oct 10, 2021</p>
+    <p>更新于：Oct 11, 2021</p>
   </a>
 </div>
 
@@ -595,7 +563,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E6%B2%B9%E7%8C%B4%E8%84%9A%E6%9C%AC/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>油猴脚本</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/todolist%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>todolist小程序</p></a></div>
 
 
         
@@ -608,7 +576,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://maoshu.fun/posts/cc7c94cd.html&title=油猴脚本案例：拦截点击事件， GM_setClipboard复制文本 - 猫叔饭-写代码的猫叔个人博客&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://maoshu.fun/posts/45372c3c.html&title=fast-小程序0：todolist项目计划和准备工作 - 猫叔饭-写代码的猫叔个人博客&summary="
           
           >
           
@@ -620,7 +588,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://maoshu.fun/posts/cc7c94cd.html&title=油猴脚本案例：拦截点击事件， GM_setClipboard复制文本 - 猫叔饭-写代码的猫叔个人博客&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://maoshu.fun/posts/45372c3c.html&title=fast-小程序0：todolist项目计划和准备工作 - 猫叔饭-写代码的猫叔个人博客&summary="
           
           >
           
@@ -632,7 +600,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://maoshu.fun/posts/cc7c94cd.html&title=油猴脚本案例：拦截点击事件， GM_setClipboard复制文本 - 猫叔饭-写代码的猫叔个人博客&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://maoshu.fun/posts/45372c3c.html&title=fast-小程序0：todolist项目计划和准备工作 - 猫叔饭-写代码的猫叔个人博客&summary="
           
           >
           
@@ -646,7 +614,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         <div class='hoverbox'>
           <a class='share'><img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/wechat.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/wechat.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a>
           <div class='target'>
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPgAAAD4CAAAAADkunTXAAACTElEQVR42u3cS27CQAwA0Nz/0u0BKjT+NYDzZgeCjJ9Xlm24fh56LnBwcHBw8EXwq3hO3/9zYfH96H3heMHBwcHBwRfCwwXAi0CigZ+ee/p8O15wcHBwcPDF8GjBkk1INhHZxEfjBQcHBwcHB683IqINg2pCwcHBwcHBwesFzNQAIJsIcHBwcHBw8HwjYCqw7Ptvn6SAg4ODg4N/ELxaWLzrdTlecHBwcHDwRfDu6TYSsoOJdrzg4ODg4OCL4NXGQDSw/3petgECDg4ODg6+ER59QBTUfc7UAsFxoAAODg4ODr4AHgV0C5dqgdIdOBwbEeDg4ODg4Avh0cIgG9h0YZROJDg4ODg4+CJ4dxBQHUxUBwXVwgUcHBwcHHwj/O4GRLXwyQ4Q0hsR4ODg4ODgXwivNvSjwGrjoboYAA4ODg4ODj4/wM8WRt3BwnExABwcHBwcfAE8e0F2MF8NuLt4CA4ODg4O/gT49CC+OlDoJjCcMHBwcHBw8EXwbGDZgK/i6S4evPw+ODg4ODj4Ini2kT+dgNsHDeDg4ODg4Avh2cZ9d/EuCxkrgMDBwcHBwRfCu439bADZRYFuowMcHBwcHHwjfKowGWv4N+87FmTg4ODg4OAL4dmCJdtgqA4qsok6xg8ODg4ODr4YXi1ApguVcqMhOlAABwcHBwcHL/+QfqqhEU0cODg4ODg4+Nwf1GYXAKKfP8YLDg4ODg6+GN69cDoR2ftuWwwABwcHBwf/IHh3wa+7MBCFVwcc4ODg4ODgG+FPO+Dg4ODg4AvOLy/vw248BOD1AAAAAElFTkSuQmCC">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPgAAAD4CAAAAADkunTXAAACSklEQVR42u3aQZLDIAwEQP//09n7bqWMRkrWxs0tiQ00uag0HK+HjgMcHBwcHHwj+BGO3++/m+/PwifznW68u19wcHBwcPAN4dWFq89NrdOdBxwcHBwcfGd4tWA5K1xWC5zqOul+wcHBwcHBwevPrzYgqgcCDg4ODg4OPg+vHkTcWAAHBwcHBwdvL9wNItIC59+SFHBwcHBw8AvBpy/4ffrzZW82goODg4ODfxHeHdWCIgWM7RccHBwcHHwj+GqD4FOBw7vnpg4o7sCAg4ODg4PfAN4FVguObsEy3ogABwcHBwe/Mbwa7MeFQxhQpN+P3YgABwcHBwe/MDyd4Oxgzr5ffX+qAQIODg4ODr4jvBsIxBsYCiqqfxQ4ODg4OPgT4NMXAKrBwVSQUC5gwMHBwcHBbwhPg4VXOLqFTlz4gIODg4ODbwj/VMDQBacNiXLlBg4ODg4OfmP4aiGQXgBIf08LpeVAARwcHBwcfAN4utFqYVJtaHQDj7hyAwcHBwcHvwG8G8B3g/1vBRXg4ODg4OBPgMcTNgOG8kW9xfXAwcHBwcF3hpcvyBUbFCl8qqACBwcHBwffGd4dy438YiMjDRzAwcHBwcGfBD/CkYLajYTi+uDg4ODg4E+ApwVLt+DoXkAoNz7AwcHBwcE3hqcBQ/dgjqEBDg4ODg4OHkwYzjMVLMSBAjg4ODg4OPirW5BUg4TqeuDg4ODg4E+AdwOFqWB/uoACBwcHBwffGT7duE8vFFQPqhxsgIODg4ODbwR/2gAHBwcHB99g/ABCeQcBbzCOcgAAAABJRU5ErkJggg==">
           </div>
         </div>
       
@@ -670,17 +638,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     <div class="prev-next">
       
-        <a class='prev' href='/posts/45372c3c.html'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>fast-小程序0：todolist项目计划和准备工作</p>
-          <p class='content'>项目简介本项目是一个fastadmin+微信小程序的实战案例，一个简单的todolist任务管理功能，包括后台数据增删改查、数据统计、api接口开发（小程序对接登录、小程序端管理数据）等。
-功能...</p>
-        </a>
       
-      
-        <a class='next' href='/posts/82c6172.html'>
-          <p class='title'>php文件操作的常用函数<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>删除几分钟前的文件使用案例（删除几天前的日志文件）：
-      $path =SYSTEM_PATH . DIRECTORY_SEPARATOR .&#39;log&#39;;        ...</p>
+        <a class='next' href='/posts/cc7c94cd.html'>
+          <p class='title'>油猴脚本案例：拦截点击事件， GM_setClipboard复制文本<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>拦截a标签点击，并复制文本：// ==UserScript==
+// @name         案例：拦截点击，并复制文本
+// @match        *://www.baidu.com...</p>
         </a>
       
     </div>
@@ -723,7 +686,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%A6%E6%88%AAa%E6%A0%87%E7%AD%BE%E7%82%B9%E5%87%BB%EF%BC%8C%E5%B9%B6%E5%A4%8D%E5%88%B6%E6%96%87%E6%9C%AC%EF%BC%9A"><span class="toc-text">拦截a标签点击，并复制文本：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E9%98%B6%EF%BC%9A%E6%B7%BB%E5%8A%A0%E4%B8%80%E4%B8%AA%E6%8C%89%E9%92%AE%EF%BC%8C%E7%82%B9%E5%87%BB%E5%A4%8D%E5%88%B6"><span class="toc-text">进阶：添加一个按钮，点击复制</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%AE%80%E4%BB%8B"><span class="toc-text">项目简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E8%AE%A1%E5%88%92"><span class="toc-text">项目计划</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">准备工作</span></a></li></ol>
     </div>
   </section>
 
@@ -742,7 +705,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="油猴脚本案例：拦截点击事件， GM_setClipboard复制文本";
+  pdata.postTitle="fast-小程序0：todolist项目计划和准备工作";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   // header 这里无论是否开启pjax都需要
