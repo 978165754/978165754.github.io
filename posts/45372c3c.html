@@ -565,15 +565,16 @@ else&#123;
 <h2 id="编写增删改查api"><a href="#编写增删改查api" class="headerlink" title="编写增删改查api"></a>编写增删改查api</h2><p>新建一个控制器Xcxtodo，专门写关于任务控制的api</p>
 <h3 id="增加-和-修改"><a href="#增加-和-修改" class="headerlink" title="增加 和 修改"></a>增加 和 修改</h3><p>增加和修改写在一起，方便维护</p>
 <p>增加</p>
-<pre><code class="php">model(&#39;admin/Todo&#39;)
+<pre><code class="php">$this-&gt;model
 -&gt;allowField(true)
 -&gt;save([
     &quot;userid&quot;=&gt;$this-&gt;uid,
+    &quot;tags&quot;=&gt;&quot;测试&quot;,
     &quot;task&quot;=&gt;&quot;测试3331232233&quot;,
 ]);
 </code></pre>
 <p>修改</p>
-<pre><code class="php">model(&#39;admin/Todo&#39;)
+<pre><code class="php">$this-&gt;model
 -&gt;allowField([
   &quot;task&quot;
 ])
@@ -583,14 +584,87 @@ else&#123;
 </code></pre>
 <h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><p>根据任务id删除(软删除)</p>
 <p>关于软删除的文档说明：<a target="_blank" rel="noopener" href="https://www.kancloud.cn/manual/thinkphp5/189658">https://www.kancloud.cn/manual/thinkphp5/189658</a></p>
-<pre><code class="php">model(&#39;admin/Todo&#39;)-&gt;get(10)-&gt;delete();
+<pre><code class="php">$this-&gt;model-&gt;get($id)-&gt;delete();
+
+$this-&gt;model-&gt;destroy($id);
 </code></pre>
 <h3 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h3><ul>
-<li><p>根据关键词查询任务内容</p>
+<li><p>根据关键词查询任务内容（模糊查询）</p>
+<pre><code class="php">$task = input(&quot;task&quot;);
+$where=[
+    &quot;userid&quot;=&gt;$this-&gt;uid,
+];
+if($task)&#123;
+    $where[&quot;task&quot;]=[&quot;like&quot;,&quot;%$task%&quot;];
+&#125;
+$list = $this-&gt;model-&gt;where($where)-&gt;select();
+</code></pre>
+<p>处理标签id为标签文字</p>
+<pre><code class="php">$tags = model(&#39;admin/Todotags&#39;)-&gt;where([
+      &quot;userid&quot;=&gt;$this-&gt;uid,
+    ])-&gt;column(&#39;tags&#39;,&#39;id&#39;);
+
+foreach ($list as $key =&gt; &amp;$value) &#123;
+  $tagsArr = explode(&#39;,&#39;,$value[&quot;tags&quot;]);
+
+  $tagsNameArr = [];
+  foreach ($tagsArr as $id) &#123;
+    $tagsNameArr[] = $tags[$id] ?? $id;
+  &#125;
+
+  $value[&quot;tagsName&quot;] = implode(&#39;,&#39;,$tagsNameArr);
+&#125;
+</code></pre>
 </li>
-<li><p>根据关键词查询标签<br>根据标签查询任务</p>
+<li><p>根据关键词查询标签</p>
+<pre><code class="php">$tags = input(&quot;tags&quot;);
+$where=[
+    &quot;userid&quot;=&gt;$this-&gt;uid,
+];
+if($tags)&#123;
+    $where[&quot;tags&quot;]=[&quot;like&quot;,&quot;%$tags%&quot;];
+&#125;
+$list = $this-&gt;model-&gt;where($where)-&gt;group(&quot;tags&quot;)-&gt;column(&quot;tags&quot;);
+</code></pre>
+<p>改为专表之后：</p>
+<pre><code class="php">$tags = input(&quot;tags&quot;);
+$where=[
+    &quot;userid&quot;=&gt;$this-&gt;uid,
+];
+if($tags)&#123;
+    $where[&quot;tags&quot;]=[&quot;like&quot;,&quot;%$tags%&quot;];
+&#125;
+$list = model(&#39;admin/Todotags&#39;)-&gt;where($where)-&gt;select();
+</code></pre>
 </li>
-<li><p>按标签分组</p>
+<li><p>根据标签查询任务</p>
+<pre><code class="php">$tags = input(&quot;tags&quot;);
+$where=[
+    &quot;userid&quot;=&gt;$this-&gt;uid,
+];
+if($tags)&#123;
+    $where[&quot;tags&quot;]=$tags;
+&#125;
+$list = $this-&gt;model-&gt;where($where)-&gt;select();
+</code></pre>
+<p>改为专表之后：<br>注意exp的写法(<a target="_blank" rel="noopener" href="https://www.kancloud.cn/manual/thinkphp5/135182">https://www.kancloud.cn/manual/thinkphp5/135182</a>)</p>
+<pre><code class="php">  $tags = input(&quot;tags&quot;);
+  $where=[
+      &quot;userid&quot;=&gt;$this-&gt;uid,
+  ];
+  
+  $list = $this-&gt;model
+  -&gt;where($where);
+  if($tags)&#123;
+      $list=$list-&gt;where(&#39;&#39;,&#39;exp&#39;, &quot;instr(CONCAT( &#39;,&#39;, tags, &#39;,&#39; ),  &#39;,&quot;.$tags.&quot;,&#39; )&quot;);
+  &#125;
+  
+  $list = $list-&gt;select();
+</code></pre>
+<p>拓展知识instr：</p>
+<blockquote>
+<p>INSTR（str,substr）<br>str：从哪个字符串中搜索<br>substr:要搜索的子字符串<br>instr()函数不区分大小写</p>
+</blockquote>
 </li>
 <li><p>按日期分组：<br>已过期的<br>今天 明天 后天到7日内 更久以后<br>无计划日期的<br>已完成的</p>
 </li>
@@ -629,10 +703,10 @@ else&#123;
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-10-12T16:02:36+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-10-13T11:59:46+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Oct 12, 2021</p>
+    <p>更新于：Oct 13, 2021</p>
   </a>
 </div>
 
@@ -1025,12 +1099,12 @@ var loadCSS = function( href, before, media, attributes ){
   <div id="rightmenu-wrapper">
     <ul class="list-v rightmenu" id="rightmenu-content">
       <li class='option'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>复制文本</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>Copy Text</a>
         <hr id='hr-text'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>复制链接</a>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>在新标签页打开</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>Copy Link</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>Open Link in New Tab</a>
         <hr id='hr-href'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>复制图片地址</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>Copy Image Link</a>
         <hr id='hr-src'>
       </li>
       
