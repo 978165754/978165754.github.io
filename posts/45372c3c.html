@@ -559,10 +559,10 @@ else&#123;
     $this-&gt;success(&#39;注册成功&#39;, $this-&gt;auth-&gt;getUserinfo());
 &#125;
 </code></pre>
-<h2 id="创建数据表-生成crud"><a href="#创建数据表-生成crud" class="headerlink" title="创建数据表 生成crud"></a>创建数据表 生成crud</h2><h3 id="创建数据表：todo"><a href="#创建数据表：todo" class="headerlink" title="创建数据表：todo"></a>创建数据表：todo</h3><p>字段：<br>userid task status tags prio desc<br>todotime<br>donetime<br>giveuptime<br>createtime updatetime deletetime </p>
+<h2 id="第三节-创建数据表-生成crud"><a href="#第三节-创建数据表-生成crud" class="headerlink" title="第三节 创建数据表 生成crud"></a>第三节 创建数据表 生成crud</h2><h3 id="创建数据表：todo"><a href="#创建数据表：todo" class="headerlink" title="创建数据表：todo"></a>创建数据表：todo</h3><p>字段：<br>userid task status tags prio desc<br>todotime<br>donetime<br>giveuptime<br>createtime updatetime deletetime </p>
 <p><img src="https://cdn.jsdelivr.net/gh/978165754/picgo@master/blog/20211012141903.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/978165754/picgo@master/blog/20211012141903.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="20211012141903"></p>
 <h3 id="一键生成CRUD"><a href="#一键生成CRUD" class="headerlink" title="一键生成CRUD"></a>一键生成CRUD</h3><p><img src="https://cdn.jsdelivr.net/gh/978165754/picgo@master/blog/20211012141807.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/978165754/picgo@master/blog/20211012141807.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="20211012141807"></p>
-<h2 id="编写增删改查api"><a href="#编写增删改查api" class="headerlink" title="编写增删改查api"></a>编写增删改查api</h2><p>新建一个控制器Xcxtodo，专门写关于任务控制的api</p>
+<h2 id="第四节-编写增删改查api"><a href="#第四节-编写增删改查api" class="headerlink" title="第四节 编写增删改查api"></a>第四节 编写增删改查api</h2><p>新建一个控制器Xcxtodo，专门写关于任务控制的api</p>
 <h3 id="增加-和-修改"><a href="#增加-和-修改" class="headerlink" title="增加 和 修改"></a>增加 和 修改</h3><p>增加和修改写在一起，方便维护</p>
 <p>增加</p>
 <pre><code class="php">$this-&gt;model
@@ -747,12 +747,166 @@ else&#123;
     $this-&gt;error($type.&quot;失败&quot;);
 &#125;
 </code></pre>
-<h3 id="小程序准备工作"><a href="#小程序准备工作" class="headerlink" title="小程序准备工作"></a>小程序准备工作</h3><ul>
+<h2 id="第五节-小程序"><a href="#第五节-小程序" class="headerlink" title="第五节 小程序"></a>第五节 小程序</h2><h3 id="小程序准备工作"><a href="#小程序准备工作" class="headerlink" title="小程序准备工作"></a>小程序准备工作</h3><ul>
 <li>1.新建项目</li>
 <li>2.引入UI库（vant）<br><a target="_blank" rel="noopener" href="https://youzan.github.io/vant-weapp/#/quickstart">https://youzan.github.io/vant-weapp/#/quickstart</a></li>
 <li>3.调试ui库看是否正常引入</li>
 </ul>
-<h3 id="小程序界面"><a href="#小程序界面" class="headerlink" title="小程序界面"></a>小程序界面</h3>
+<h3 id="小程序界面"><a href="#小程序界面" class="headerlink" title="小程序界面"></a>小程序界面</h3><p>先简单搭建下界面，不需要太完善</p>
+<p><img src="https://cdn.jsdelivr.net/gh/978165754/picgo@master/blog/20211017152953.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/978165754/picgo@master/blog/20211017152953.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="20211017152953"></p>
+<pre><code class="xml">
+&lt;van-cell icon=&quot;todo-list-o&quot;  border=&quot;&#123;&#123; false &#125;&#125;&quot;&gt;
+  &lt;view slot=&quot;title&quot;&gt;
+    &lt;view class=&quot;van-cell-text&quot;&gt;收集箱&lt;/view&gt;
+    &lt;!-- &lt;van-tag type=&quot;danger&quot;&gt;标签&lt;/van-tag&gt; --&gt;
+    
+  &lt;/view&gt;
+  &lt;van-icon  slot=&quot;right-icon&quot; class=&quot;mr-10&quot; name=&quot;clock-o&quot;/&gt;
+  &lt;van-icon slot=&quot;right-icon&quot;  name=&quot;ellipsis&quot; /&gt;
+&lt;/van-cell&gt;
+
+&lt;van-cell-group  border=&quot;&#123;&#123; false &#125;&#125;&quot;&gt;
+  &lt;van-field
+    value=&quot;&#123;&#123; sms &#125;&#125;&quot;
+    center
+    clearable
+    label=&quot;&quot;
+    placeholder=&quot;+ 添加任务到收集箱，回车即可保存&quot;
+    border=&quot;&#123;&#123; false &#125;&#125;&quot;
+    use-button-slot
+    class=&quot;ccc&quot;
+  &gt;
+   &lt;view slot=&quot;right-icon&quot;&gt;
+    &lt;van-icon name=&quot;clock-o&quot; class=&quot;mr-10&quot;/&gt;
+    &lt;van-icon name=&quot;ellipsis&quot; /&gt;
+  &lt;/view&gt;
+  &lt;/van-field&gt;
+&lt;/van-cell-group&gt;
+
+&lt;van-collapse value=&quot;&#123;&#123; activeNames &#125;&#125;&quot; bind:change=&quot;onChange&quot;  border=&quot;&#123;&#123; false &#125;&#125;&quot;&gt;
+  &lt;van-collapse-item name=&quot;1&quot;  border=&quot;&#123;&#123; false &#125;&#125;&quot;&gt;
+    &lt;view slot=&quot;title&quot;&gt;已过期&lt;text class=&quot;smalltext&quot;&gt;4&lt;/text&gt;&lt;/view&gt;
+    
+
+    &lt;!-- 1 --&gt;
+    &lt;van-cell border=&quot;&#123;&#123; true &#125;&#125;&quot;&gt;
+      &lt;view slot=&quot;title&quot;&gt;
+        &lt;van-checkbox value=&quot;&#123;&#123; checked &#125;&#125;&quot; bind:change=&quot;onChange&quot;&gt;
+          复选框
+        &lt;/van-checkbox&gt;
+        
+      &lt;/view&gt;
+     &lt;view slot=&quot;right-icon&quot;&gt;
+        &lt;van-tag round type=&quot;success&quot;&gt;标签&lt;/van-tag&gt;
+        &lt;text class=&quot;mr-10 ml-10&quot;&gt;10-18&lt;/text&gt;
+        &lt;van-icon name=&quot;ellipsis&quot; /&gt;
+      &lt;/view&gt;
+    &lt;/van-cell&gt;
+    &lt;!-- 2 --&gt;
+    &lt;van-cell border=&quot;&#123;&#123; true &#125;&#125;&quot;&gt;
+      &lt;view slot=&quot;title&quot;&gt;
+        &lt;van-checkbox value=&quot;&#123;&#123; true &#125;&#125;&quot; bind:change=&quot;onChange&quot;&gt;
+          复选框
+        &lt;/van-checkbox&gt;
+        
+      &lt;/view&gt;
+      &lt;view slot=&quot;right-icon&quot; style=&quot;font-size: 28rpx;&quot;&gt;
+        10-18       
+      &lt;/view&gt;
+      &lt;van-icon slot=&quot;right-icon&quot;  name=&quot;ellipsis&quot; /&gt;
+    &lt;/van-cell&gt;
+
+  &lt;/van-collapse-item&gt;
+&lt;/van-collapse&gt;
+</code></pre>
+<p>app.json引入组件</p>
+<pre><code class="json">    &quot;van-button&quot;: &quot;@vant/weapp/button/index&quot;,
+    &quot;van-field&quot;: &quot;@vant/weapp/field/index&quot;,
+    &quot;van-cell&quot;: &quot;@vant/weapp/cell/index&quot;,
+    &quot;van-cell-group&quot;: &quot;@vant/weapp/cell-group/index&quot;,
+    &quot;van-tag&quot;: &quot;@vant/weapp/tag/index&quot;,
+    &quot;van-icon&quot;: &quot;@vant/weapp/icon/index&quot;,
+    &quot;van-collapse&quot;: &quot;@vant/weapp/collapse/index&quot;,
+    &quot;van-collapse-item&quot;: &quot;@vant/weapp/collapse-item/index&quot;,
+    &quot;van-checkbox&quot;: &quot;@vant/weapp/checkbox/index&quot;,
+    &quot;van-checkbox-group&quot;: &quot;@vant/weapp/checkbox-group/index&quot;
+</code></pre>
+<h2 id="第六节-小程序对接api"><a href="#第六节-小程序对接api" class="headerlink" title="第六节 小程序对接api"></a>第六节 小程序对接api</h2><p>小程序开发文档：<a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/">https://developers.weixin.qq.com/miniprogram/dev/framework/</a><br>申请测试号：<a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/devtools/sandbox.html">https://developers.weixin.qq.com/miniprogram/dev/devtools/sandbox.html</a></p>
+<h3 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h3><p>1.登录授权，获取openid<br>wx.login ( <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/api/open-api/login/wx.login.html">https://developers.weixin.qq.com/miniprogram/dev/api/open-api/login/wx.login.html</a> )<br>获取用户信息</p>
+<pre><code class="js">let u = wx.getStorageSync(&#39;userInfo&#39;)
+    if(u)&#123;
+      console.log(1,u);
+      this.setData(&#123;
+        userInfo: u,
+        hasUserInfo:true
+      &#125;)
+
+      this.login(u)
+    &#125;
+    if (wx.getUserProfile) &#123;
+      this.setData(&#123;
+        canIUseGetUserProfile: true
+      &#125;)
+    &#125;
+</code></pre>
+<pre><code class="js">  getUserProfile(e) &#123;
+    // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
+    // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
+    wx.getUserProfile(&#123;
+      desc: &#39;用于完善会员资料&#39;, // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+      success: (res) =&gt; &#123;
+        console.log(&quot;用户信息&quot;,res);
+        wx.setStorageSync(&#39;userInfo&#39;, res.userInfo)
+        this.login(res.userInfo)
+        this.setData(&#123;
+          userInfo: res.userInfo,
+          hasUserInfo: true
+        &#125;)
+      &#125;
+    &#125;)
+  &#125;,
+</code></pre>
+<p>2.根据code获取openid，并且对接登录接口</p>
+<pre><code class="js">login(u)&#123;
+    wx.login(&#123;
+      success (res) &#123;
+        console.log(res);
+        if (res.code) &#123;
+          //发起网络请求
+          wx.request(&#123;
+            url: &#39;http://todo.tt/api/xcxuser/getopenid&#39;,
+            data: &#123;
+              code: res.code,
+              nickName:u.nickName
+            &#125;,
+            success :(res)=&gt;&#123;
+              console.log(res);
+            &#125;,
+            fail:(err)=&gt;&#123;
+              console.log(err);
+            &#125;
+          &#125;)
+          
+        &#125; else &#123;
+          console.log(&#39;登录失败！&#39; + res.errMsg)
+        &#125;
+      &#125;
+    &#125;)
+  &#125;
+&#125;)
+</code></pre>
+<p>接口：</p>
+<pre><code class="php">
+  public function getopenid($code)
+  &#123;
+    $url = &quot;https://api.weixin.qq.com/sns/jscode2session?appid=$this-&gt;AppID&amp;secret=$this-&gt;AppSecret&amp;js_code=$code&amp;grant_type=authorization_code&quot;;
+
+    $res = Http::get($url);
+
+    $this-&gt;success(&#39;成功&#39;,[&#39;r&#39;=&gt;$this-&gt;request-&gt;param(),&quot;res&quot;=&gt;$res]);
+  &#125;
+</code></pre>
+<h3 id="查询和显示"><a href="#查询和显示" class="headerlink" title="查询和显示"></a>查询和显示</h3><h3 id="新增和修改"><a href="#新增和修改" class="headerlink" title="新增和修改"></a>新增和修改</h3><h3 id="删除-1"><a href="#删除-1" class="headerlink" title="删除"></a>删除</h3>
   
   
     
@@ -786,10 +940,10 @@ else&#123;
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-10-14T17:35:56+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-10-17T16:35:26+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Oct 14, 2021</p>
+    <p>更新于：Oct 17, 2021</p>
   </a>
 </div>
 
@@ -921,7 +1075,7 @@ else&#123;
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E5%9D%80%E6%95%B4%E7%90%86"><span class="toc-text">网址整理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B%E5%9C%B0%E5%9D%80%EF%BC%9A"><span class="toc-text">视频教程地址：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8E%E7%AB%AF%E6%8E%A5%E5%8F%A3%E4%BB%93%E5%BA%93%E5%9C%B0%E5%9D%80%EF%BC%9A"><span class="toc-text">后端接口仓库地址：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E8%8A%82-%E9%A1%B9%E7%9B%AE%E8%AE%A1%E5%88%92%E5%92%8C%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">第一节 项目计划和准备工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%AE%80%E4%BB%8B"><span class="toc-text">项目简介</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%88%E6%9E%9C%E6%88%AA%E5%9B%BE"><span class="toc-text">效果截图</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E8%AE%A1%E5%88%92"><span class="toc-text">项目计划</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">准备工作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E8%8A%82-%E7%99%BB%E5%BD%95%E5%92%8C%E8%87%AA%E5%8A%A8%E6%B3%A8%E5%86%8Capi"><span class="toc-text">第二节 登录和自动注册api</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81%E5%AD%97%E6%AE%B5%E5%BF%85%E5%A1%AB"><span class="toc-text">验证字段必填</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%99%BB%E5%BD%95%E5%92%8C%E6%B3%A8%E5%86%8C"><span class="toc-text">登录和注册</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E8%A1%A8-%E7%94%9F%E6%88%90crud"><span class="toc-text">创建数据表 生成crud</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E8%A1%A8%EF%BC%9Atodo"><span class="toc-text">创建数据表：todo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E9%94%AE%E7%94%9F%E6%88%90CRUD"><span class="toc-text">一键生成CRUD</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5api"><span class="toc-text">编写增删改查api</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A2%9E%E5%8A%A0-%E5%92%8C-%E4%BF%AE%E6%94%B9"><span class="toc-text">增加 和 修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4"><span class="toc-text">删除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2"><span class="toc-text">查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E4%BC%98%E5%8C%96"><span class="toc-text">安全优化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E6%95%B0%E6%8D%AE"><span class="toc-text">修改数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE"><span class="toc-text">删除数据</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">小程序准备工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%95%8C%E9%9D%A2"><span class="toc-text">小程序界面</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E5%9D%80%E6%95%B4%E7%90%86"><span class="toc-text">网址整理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B%E5%9C%B0%E5%9D%80%EF%BC%9A"><span class="toc-text">视频教程地址：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8E%E7%AB%AF%E6%8E%A5%E5%8F%A3%E4%BB%93%E5%BA%93%E5%9C%B0%E5%9D%80%EF%BC%9A"><span class="toc-text">后端接口仓库地址：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E8%8A%82-%E9%A1%B9%E7%9B%AE%E8%AE%A1%E5%88%92%E5%92%8C%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">第一节 项目计划和准备工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%AE%80%E4%BB%8B"><span class="toc-text">项目简介</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%88%E6%9E%9C%E6%88%AA%E5%9B%BE"><span class="toc-text">效果截图</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E8%AE%A1%E5%88%92"><span class="toc-text">项目计划</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">准备工作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E8%8A%82-%E7%99%BB%E5%BD%95%E5%92%8C%E8%87%AA%E5%8A%A8%E6%B3%A8%E5%86%8Capi"><span class="toc-text">第二节 登录和自动注册api</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81%E5%AD%97%E6%AE%B5%E5%BF%85%E5%A1%AB"><span class="toc-text">验证字段必填</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%99%BB%E5%BD%95%E5%92%8C%E6%B3%A8%E5%86%8C"><span class="toc-text">登录和注册</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E8%8A%82-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E8%A1%A8-%E7%94%9F%E6%88%90crud"><span class="toc-text">第三节 创建数据表 生成crud</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E8%A1%A8%EF%BC%9Atodo"><span class="toc-text">创建数据表：todo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E9%94%AE%E7%94%9F%E6%88%90CRUD"><span class="toc-text">一键生成CRUD</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E8%8A%82-%E7%BC%96%E5%86%99%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5api"><span class="toc-text">第四节 编写增删改查api</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A2%9E%E5%8A%A0-%E5%92%8C-%E4%BF%AE%E6%94%B9"><span class="toc-text">增加 和 修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4"><span class="toc-text">删除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2"><span class="toc-text">查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E4%BC%98%E5%8C%96"><span class="toc-text">安全优化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E6%95%B0%E6%8D%AE"><span class="toc-text">修改数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE"><span class="toc-text">删除数据</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E8%8A%82-%E5%B0%8F%E7%A8%8B%E5%BA%8F"><span class="toc-text">第五节 小程序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">小程序准备工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%95%8C%E9%9D%A2"><span class="toc-text">小程序界面</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E8%8A%82-%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%AF%B9%E6%8E%A5api"><span class="toc-text">第六节 小程序对接api</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%99%BB%E5%BD%95"><span class="toc-text">登录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E5%92%8C%E6%98%BE%E7%A4%BA"><span class="toc-text">查询和显示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E5%A2%9E%E5%92%8C%E4%BF%AE%E6%94%B9"><span class="toc-text">新增和修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4-1"><span class="toc-text">删除</span></a></li></ol></li></ol>
     </div>
   </section>
 
@@ -1182,12 +1336,12 @@ var loadCSS = function( href, before, media, attributes ){
   <div id="rightmenu-wrapper">
     <ul class="list-v rightmenu" id="rightmenu-content">
       <li class='option'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>复制文本</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>複製文本</a>
         <hr id='hr-text'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>复制链接</a>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>在新标签页打开</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>複製鏈接</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>在新標籤頁打開</a>
         <hr id='hr-href'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>复制图片地址</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>複製圖片地址</a>
         <hr id='hr-src'>
       </li>
       
