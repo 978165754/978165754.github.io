@@ -490,10 +490,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class='md'>
     
       
-        修改文件：public/index.php，这是tp的入口文件
-if(isset($_SERVER[&quot;HTTP_ORIGIN&quot;]) &amp;&amp; strpos($_SERVER[&quot;HTTP_ORIGIN&quot;],&#39;127.0.0.1:8000&#39;) !== false)&#123;
-    // 跨域
-    header(&#39;...
+        fastadmin的专用方法修改文件：application/config.php，这是fa的配置文件。修改属性 cors_request_domain，搜一下就找到了，在里面加上你的域名就行了
+&#39;cors_request_domain&#39;   =&gt; &#39;localhost,127.0.0.1&#39;,
+
+tp5的通用方法：修改文件：public/index.ph...
       
     
   </div>
