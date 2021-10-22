@@ -5,8 +5,6 @@
   <!-- SEO相关 -->
   
     
-      <meta name="robots" content="noindex,follow">
-    
   
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -24,7 +22,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>標籤：fastadmin - 猫叔饭-写代码的猫叔个人博客</title>
+  <title>thinkphp/fastadmin解决前端vue跨域问题 - 猫叔饭-写代码的猫叔个人博客</title>
+  
+    <meta name="keywords" content="fastadmin">
   
 
   
@@ -357,7 +357,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper  search' style="display: none;">
+        <div id="full" class='cover-wrapper post search' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://bing.ioliu.cn/v1/rand?w=1920&h=800"></div>
           
@@ -442,175 +442,239 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         <div class="body-wrapper" id="pjax-container">
           
 
-
 <div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
   
-    
-      
-  <section class="post-list">
-    
-      
-        
-          
-        
-          
-        
-          
-        
-      
+
+
+  
+  <div class="article-meta" id="top">
     
     
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
     
-    <h2 class="article-title" >
-      <a href="/posts/78dce704.html">
+      <h1 class="title">
         thinkphp/fastadmin解决前端vue跨域问题
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/" rel="nofollow">
+    <img no-lazy src="https://i.loli.net/2021/08/07/mNRDQ8oiArnyUPG.png">
+    <p>写代码的猫叔</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Oct 22, 2021</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
       
-        修改文件：public/index.php，这是tp的入口文件
-if(isset($_SERVER[&quot;HTTP_ORIGIN&quot;]) &amp;&amp; strpos($_SERVER[&quot;HTTP_ORIGIN&quot;],&#39;127.0.0.1:8000&#39;) !== false)&#123;
+      <div id="lc-pv" data-title="thinkphp/fastadmin解决前端vue跨域问题" data-path="/posts/78dce704.html">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
+      </div>
+    
+  </div>
+
+
+  
+  
+  <p>修改文件：public/index.php，这是tp的入口文件</p>
+<pre><code class="php">if(isset($_SERVER[&quot;HTTP_ORIGIN&quot;]) &amp;&amp; strpos($_SERVER[&quot;HTTP_ORIGIN&quot;],&#39;127.0.0.1:8000&#39;) !== false)&#123;
     // 跨域
-    header(&#39;...
-      
+    header(&#39;Access-Control-Allow-Origin: *&#39;); //星号表示允许所有来源跨域请求，生产环境建议配置成你的来源站点的域名
+    header(&quot;Access-Control-Allow-Headers: *&quot;);
+    header(&#39;Access-Control-Allow-Methods:*&#39;);
+    header(&#39;Access-Control-Expose-Headers:*&#39;);
+    header(&#39;Access-Control-Allow-Credentials:&quot;true&quot;&#39;);
     
-  </div>
+    if (strtoupper($_SERVER[&#39;REQUEST_METHOD&#39;]) == &#39;OPTIONS&#39;) &#123; //浏览器的option试探请求，要exit掉，不然你的业务会被执行两次
+        
+        echo &#39;&#123;code: 0, msg: &quot;OPTIONS&quot;, time: &quot;&quot;, data: null&#125;&#39;;
+        exit();
+    &#125;
+&#125;
+</code></pre>
+<p>下面这句的判断，是为了本地调试的，只有在本地调试的时候，才允许跨域，这样线上如果不需要跨域的话就更安全些</p>
+<pre><code class="php">strpos($_SERVER[&quot;HTTP_ORIGIN&quot;],&#39;127.0.0.1:8000&#39;) !== false
+</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/978165754/picgo@master/blog/20211022113748.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/978165754/picgo@master/blog/20211022113748.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="20211022113748"></p>
+
   
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-10-22</time>
-        
-      </div>
+  
+    
+    <div class='footer'>
       
-        <div>
-          <a class='readmore' href='/posts/78dce704.html'>
-            閱讀全文
-          </a>
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>文章可以转载，但必须注明作者和网址链接；内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接：<a href=https://maoshu.fun/posts/78dce704.html>https://maoshu.fun/posts/78dce704.html</a></p>
+              
+            
+          </blockquote>
         </div>
+      
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-10-22T11:37:53+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Oct 22, 2021</p>
+  </a>
 </div>
 
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/fastadmin/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>fastadmin</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://maoshu.fun/posts/78dce704.html&title=thinkphp/fastadmin解决前端vue跨域问题 - 猫叔饭-写代码的猫叔个人博客&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://maoshu.fun/posts/78dce704.html&title=thinkphp/fastadmin解决前端vue跨域问题 - 猫叔饭-写代码的猫叔个人博客&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://maoshu.fun/posts/78dce704.html&title=thinkphp/fastadmin解决前端vue跨域问题 - 猫叔饭-写代码的猫叔个人博客&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        
+        <div class='hoverbox'>
+          <a class='share'><img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/wechat.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/wechat.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a>
+          <div class='target'>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPgAAAD4CAAAAADkunTXAAACSElEQVR42u3aUU7FQAgF0O5/07oAYx5cptHSM39G03LGn1vg+nrpucDBwcHBwRfBr/C0X9h8zm+/n9YLDg4ODg6+Ed4FVAupwrvPiesFBwcHBwdfDJ++OA046fvbfw8ODg4ODg5+VQtPYeDg4ODg4OD3w6uB5fRAARwcHBwcHHzeoE+DTRqE/s0kBRwcHBwc/B/B44W5P/o5rhccHBwcHHwR/NSpDhCqoFOLBj/qAQcHBwcHXwSfBopqsDgVQKaNEXBwcHBw8I3w6mJed4CQBp9pffFAARwcHBwc/EHw7ouqwWLaqIgDSjpQAAcHBwcHfyA8beCfGgicWkA43oEBBwcHBwd/AHwaDKoDg/R53WD18R8BDg4ODg6+GJ4uBHQLqDYk0jraAwVwcHBwcPAHwrsf9GngOH0x4wADDg4ODg7+Ivh0EeBqnml97UkKODg4ODj4Ani3sLQxcWpB4FiAAQcHBwcHfyB8+qFfDRpp46MapMp1g4ODg4ODL4KnjfzTi37tIJJeBDg4ODg4+CJ49wM/DSZd8LRB8XGgAA4ODg4OvgA+HSikjYW7Fgk+vgccHBwcHHwRfHrShkA62E8vDBwcHBwcfCP8Cs/0ItILnQ4cwMHBwcHBN8LTQcB4UD+8KHBwcHBwcPDGh3zYMEgXENJABQ4ODg4ODj5fBOgWOh1ktAcK4ODg4ODgL4bfBekGlGod4ODg4ODgm+FpI2G6aJAGpnbDAxwcHBwcfCH87sLaA/y7FgbAwcHBwcEXwd92wMHBwcHBF5xvXC7BjJNaqMoAAAAASUVORK5CYII=">
           </div>
-        
+        </div>
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
     
-    <h2 class="article-title" >
-      <a href="/posts/45372c3c.html">
-        fast-小程序：todolist项目文档汇总
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        网址整理视频教程地址：https://www.ixigua.com/7017702820048536071
-后端接口仓库地址：https://gitee.com/maoshushare/fast-todolist
-第一节 项目计划和准备工作项目简介本项目是一个fastadmin+微信小程序的实战案例，一个简单的todolist任务管理功能，包括后台数据增删改查、数据统计、api接口开发（小程...
       
     
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-10-11</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/posts/45372c3c.html'>
-            閱讀全文
-          </a>
-        </div>
-      
-    </div>
-  
-
 </div>
 
-          </div>
+
+
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/posts/25256.html">
-        fastadmin 常用知识点整理
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        js里怎么取到config里的数据
-以token为例，这里先在后端把数据写入config，然后在前端js里就会有我们设置的token了
-
-1.后端php部分$this-&gt;assignconfig(&quot;token&quot;, $this-&gt;auth-&gt;token);
-
-2.前端js部分console.log(Config.token)
-
-通过变量Config可以取到...
-      
-    
+    </div>
   </div>
+
+
   
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-08-07</time>
-        
-      </div>
+  
+
+  
+    <div class="prev-next">
       
-        <div>
-          <a class='readmore' href='/posts/25256.html'>
-            閱讀全文
-          </a>
-        </div>
+      
+        <a class='next' href='/posts/45372c3c.html'>
+          <p class='title'>fast-小程序：todolist项目文档汇总<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>网址整理视频教程地址：https://www.ixigua.com/7017702820048536071
+后端接口仓库地址：https://gitee.com/maoshushare/fast...</p>
+        </a>
       
     </div>
   
+</article>
 
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
 </div>
 
-          </div>
-        
-      
-    
-  </section>
-  
-    
-  
+  </article>
 
 
-    
-  
+
+
+
+
 </div>
 <aside class='l_side'>
   
@@ -618,103 +682,14 @@ if(isset($_SERVER[&quot;HTTP_ORIGIN&quot;]) &amp;&amp; strpos($_SERVER[&quot;HTT
     
     
 
-<section class="widget blogger shadow desktop mobile">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box rectangle' href='/about/'>
-          <img no-lazy src='https://i.loli.net/2021/08/07/qBsLaJ1pANkYfMu.png'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-        
-        
-          <p><span id="jinrishici-sentence">猫叔饭-写代码的猫叔个人博客</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="/atom.xml"
-              class="social fas fa-rss flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="mailto:me@xxx.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/volantis-x/"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="/"
-              class="social fas fa-headphones-alt flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
-
-  
-
-  
-    
-    
-
-  
-
-  
-    
-    
-  
-
-  <section class="widget tagcloud shadow desktop mobile">
-    
-  <header>
-    
-      <a href='/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
-    
-  </header>
 
 
-    <div class='content'>
-      <a href="/tags/electron/" style="font-size: 14px; color: #999">electron</a> <a href="/tags/fastadmin/" style="font-size: 24px; color: #555">fastadmin</a> <a href="/tags/hexo/" style="font-size: 14px; color: #999">hexo</a> <a href="/tags/%E6%B2%B9%E7%8C%B4%E8%84%9A%E6%9C%AC/" style="font-size: 14px; color: #999">油猴脚本</a>
-    </div>
-  </section>
-
-
-  
 
   
 
 
 </aside>
+
 
 
 		  
@@ -723,8 +698,8 @@ if(isset($_SERVER[&quot;HTTP_ORIGIN&quot;]) &amp;&amp; strpos($_SERVER[&quot;HTT
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
-  pdata.postTitle="";
+  pdata.ispage=true;
+  pdata.postTitle="thinkphp/fastadmin解决前端vue跨域问题";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   // header 这里无论是否开启pjax都需要
