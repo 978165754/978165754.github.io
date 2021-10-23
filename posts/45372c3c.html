@@ -909,10 +909,199 @@ else&#123;
 <h3 id="全局变量-token"><a href="#全局变量-token" class="headerlink" title="全局变量 token"></a>全局变量 token</h3><pre><code class="js">globalData: &#123;
     userInfo: null,
     token:null,
-    api:&#39;http://todo.tt/api&#39;
+    apidomain:&#39;http://todo.tt/api&#39;
 &#125;
 </code></pre>
-<h3 id="查询和显示"><a href="#查询和显示" class="headerlink" title="查询和显示"></a>查询和显示</h3><h3 id="新增和修改"><a href="#新增和修改" class="headerlink" title="新增和修改"></a>新增和修改</h3><h3 id="删除-1"><a href="#删除-1" class="headerlink" title="删除"></a>删除</h3>
+<h3 id="封装request方法"><a href="#封装request方法" class="headerlink" title="封装request方法"></a>封装request方法</h3><pre><code class="js">request(url,data,callback)&#123;
+  wx.request(&#123;
+    url: gb.apidomain + url,
+    data: data,
+    dataType: &#39;json&#39;,
+    enableCache: true,
+    enableHttp2: true,
+    enableQuic: true,
+    header: &#123;
+      token:gb.token
+    &#125;,
+    method: &quot;POST&quot;,
+    // responseType: &#39;json&#39;,
+    success: (result) =&gt; &#123;
+      callback(result)
+    &#125;,
+    fail: (res) =&gt; &#123;
+      console.error(res)
+    &#125;,
+    complete: (res) =&gt; &#123;&#125;,
+  &#125;)
+&#125;
+</code></pre>
+<h3 id="新增"><a href="#新增" class="headerlink" title="新增"></a>新增</h3><p>bind:confirm=”confirm_add”</p>
+<pre><code class="js">  confirm_add(event)&#123;
+    // console.log(event.detail);
+    let task = event.detail
+    this.add(task)
+  &#125;,
+  add(task)&#123;
+    if(task != &#39;&#39;)&#123;
+
+      this.request(&#39;/xcxtodo/addEdit&#39;,&#123;
+        task:task
+      &#125;,(res)=&gt;&#123;
+        console.log(res); 
+        wx.showToast(&#123;
+          title: res.data.msg,
+        &#125;)       
+      &#125;)
+    &#125;
+  &#125;,
+</code></pre>
+<h3 id="查询和显示"><a href="#查询和显示" class="headerlink" title="查询和显示"></a>查询和显示</h3><h4 id="引入util-js来格式化时间"><a href="#引入util-js来格式化时间" class="headerlink" title="引入util.js来格式化时间"></a>引入util.js来格式化时间</h4><pre><code class="js">var util = require(&#39;../../utils/util&#39;)
+</code></pre>
+<pre><code class="js">const formatTime = (time, option) =&gt; &#123;
+  const date = new Date(time)
+  const year = date.getFullYear()
+  const month = date.getMonth() + 1
+  const day = date.getDate()
+  const week = date.getDay()
+  const hour = date.getHours()
+  const minute = date.getMinutes()
+  const second = date.getSeconds()
+  
+  //获取 年月日
+  if (option == &#39;YY-MM-DD&#39;) return [year, month, day].map(formatNumber).join(&#39;-&#39;)
+
+  //获取 月日
+  if (option == &#39;MM-DD&#39;) return [month, day].map(formatNumber).join(&#39;-&#39;)
+
+  //获取 年月
+  if (option == &#39;YY-MM&#39;) return [year, month].map(formatNumber).join(&#39;-&#39;)
+
+  //获取 年
+  if (option == &#39;YY&#39;) return [year].map(formatNumber).toString()
+
+  //获取 月
+  if (option == &#39;MM&#39;) return  [mont].map(formatNumber).toString()
+
+  //获取 日
+  if (option == &#39;DD&#39;) return [day].map(formatNumber).toString()
+
+  //获取 年月日 周一 至 周日
+  if (option == &#39;YY-MM-DD Week&#39;)  return [year, month, day].map(formatNumber).join(&#39;-&#39;) + &#39; &#39; + getWeek(week)
+
+  //获取 月日 周一 至 周日
+  if (option == &#39;MM-DD Week&#39;)  return [month, day].map(formatNumber).join(&#39;-&#39;) + &#39; &#39; + getWeek(week)
+
+  //获取 周一 至 周日
+  if (option == &#39;Week&#39;)  return getWeek(week)
+
+  //获取 时分秒
+  if (option == &#39;hh-mm-ss&#39;) return [hour, minute, second].map(formatNumber).join(&#39;:&#39;)
+
+  //获取 时分
+  if (option == &#39;hh-mm&#39;) return [hour, minute].map(formatNumber).join(&#39;:&#39;)
+
+  //获取 分秒
+  if (option == &#39;mm-dd&#39;) return [minute, second].map(formatNumber).join(&#39;:&#39;)
+
+  //获取 时
+  if (option == &#39;hh&#39;)  return [hour].map(formatNumber).toString()
+
+  //获取 分
+  if (option == &#39;mm&#39;)  return [minute].map(formatNumber).toString()
+
+  //获取 秒
+  if (option == &#39;ss&#39;) return [second].map(formatNumber).toString()
+
+  //默认 时分秒 年月日
+  return [year, month, day].map(formatNumber).join(&#39;-&#39;) + &#39; &#39; + [hour, minute, second].map(formatNumber).join(&#39;:&#39;)
+&#125;
+
+const formatNumber = n =&gt; &#123;
+  n = n.toString()
+  return n[1] ? n : &#39;0&#39; + n
+&#125;
+
+const getWeek = n =&gt; &#123;
+  switch(n) &#123;
+    case 1:
+      return &#39;星期一&#39;
+    case 2:
+      return &#39;星期二&#39;
+    case 3:
+      return &#39;星期三&#39;
+    case 4:
+      return &#39;星期四&#39;
+    case 5:
+      return &#39;星期五&#39;
+    case 6:
+      return &#39;星期六&#39;
+    case 7:
+      return &#39;星期日&#39;
+  &#125;
+&#125;
+
+module.exports = &#123;
+  formatTime: formatTime
+&#125;
+</code></pre>
+<h4 id="获取数据，并格式化处理"><a href="#获取数据，并格式化处理" class="headerlink" title="获取数据，并格式化处理"></a>获取数据，并格式化处理</h4><pre><code class="js">getbyday(opt = &#123;&#125;)&#123;
+
+    this.request(&#39;/xcxtodo/getbyday&#39;,opt,(res)=&gt;&#123;
+  
+      let datalist = res.data.data
+      for (const key in datalist) &#123;
+        if (Object.hasOwnProperty.call(datalist, key)) &#123;
+          const element = datalist[key];
+          element.forEach((ele,ind) =&gt; &#123;              
+            if(ele.tags)&#123;  
+              datalist[key][ind].tagsnum = ele.tags.split(&#39;,&#39;).length
+            &#125;
+            if(ele.todotime)&#123;  
+              datalist[key][ind].todotime = util.formatTime(ele.todotime*1000,&#39;MM-DD&#39;)
+            &#125;
+          &#125;);
+        &#125;
+      &#125;
+  
+      this.setData(&#123;
+        datalist
+      &#125;)
+    &#125;)
+  
+&#125;,
+</code></pre>
+<h4 id="渲染数据"><a href="#渲染数据" class="headerlink" title="渲染数据"></a>渲染数据</h4><pre><code class="js">  groups:&#123;
+      timeout:&quot;已过期&quot;,
+      today:&quot;今天&quot;,
+      tomorrow:&quot;明天&quot;,
+      seven:&quot;7天&quot;,
+      langtime:&quot;更久以后&quot;,
+      notime:&quot;无日期&quot;,
+      timeend:&quot;已完成&quot;,
+    &#125;,
+    activeNames: [&#39;timeout&#39;,&#39;today&#39;],
+</code></pre>
+<pre><code class="xml"> &lt;van-collapse-item wx:if=&quot;&#123;&#123;datalist[ind].length>0&#125;&#125;&quot; wx:for=&quot;&#123;&#123;groups&#125;&#125;&quot;  wx:key=&quot;*.this&quot; wx:for-item=&quot;itm&quot;  wx:for-index=&quot;ind&quot;  name=&quot;&#123;&#123;ind&#125;&#125;&quot; &gt;
+    &lt;view slot=&quot;title&quot;&gt;&#123;&#123;itm&#125;&#125;&lt;text class=&quot;smalltext&quot;&gt;&#123;&#123;datalist[ind].length&#125;&#125;&lt;/text&gt;&lt;/view&gt;
+    &lt;!-- 任务1 --&gt;
+    &lt;block wx:for=&quot;&#123;&#123;datalist[ind]&#125;&#125;&quot; wx:key=&quot;id&quot;&gt;
+    
+    &lt;van-cell&gt;
+      &lt;view slot=&quot;title&quot;&gt;
+        &lt;van-checkbox value=&quot;&#123;&#123; checked &#125;&#125;&quot; bind:change=&quot;onChange&quot;&gt;&#123;&#123;item.task&#125;&#125;&lt;/van-checkbox&gt;
+        
+      &lt;/view&gt;
+      &lt;view slot=&quot;right-icon&quot;&gt;
+        &lt;van-tag round type=&quot;success&quot; wx:if=&quot;&#123;&#123;item.tags&#125;&#125;&quot;&gt;&#123;&#123;item.tagsnum&#125;&#125;&lt;/van-tag&gt;
+        &lt;text class=&quot;mr-10 ml-10&quot; wx:if=&quot;&#123;&#123;item.todotime&#125;&#125;&quot;&gt;&#123;&#123;item.todotime&#125;&#125;&lt;/text&gt;
+        &lt;van-icon name=&quot;ellipsis&quot; /&gt;
+      &lt;/view&gt;
+    &lt;/van-cell&gt;
+  &lt;/block&gt;
+
+  &lt;/van-collapse-item&gt;
+</code></pre>
+<h3 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h3><h3 id="删除-1"><a href="#删除-1" class="headerlink" title="删除"></a>删除</h3>
   
   
     
@@ -946,10 +1135,10 @@ else&#123;
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-10-19T22:44:12+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-10-23T09:20:17+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Oct 19, 2021</p>
+    <p>更新于：Oct 23, 2021</p>
   </a>
 </div>
 
@@ -1086,7 +1275,7 @@ else&#123;
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E5%9D%80%E6%95%B4%E7%90%86"><span class="toc-text">网址整理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B%E5%9C%B0%E5%9D%80%EF%BC%9A"><span class="toc-text">视频教程地址：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8E%E7%AB%AF%E6%8E%A5%E5%8F%A3%E4%BB%93%E5%BA%93%E5%9C%B0%E5%9D%80%EF%BC%9A"><span class="toc-text">后端接口仓库地址：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E8%8A%82-%E9%A1%B9%E7%9B%AE%E8%AE%A1%E5%88%92%E5%92%8C%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">第一节 项目计划和准备工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%AE%80%E4%BB%8B"><span class="toc-text">项目简介</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%88%E6%9E%9C%E6%88%AA%E5%9B%BE"><span class="toc-text">效果截图</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E8%AE%A1%E5%88%92"><span class="toc-text">项目计划</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">准备工作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E8%8A%82-%E7%99%BB%E5%BD%95%E5%92%8C%E8%87%AA%E5%8A%A8%E6%B3%A8%E5%86%8Capi"><span class="toc-text">第二节 登录和自动注册api</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81%E5%AD%97%E6%AE%B5%E5%BF%85%E5%A1%AB"><span class="toc-text">验证字段必填</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%99%BB%E5%BD%95%E5%92%8C%E6%B3%A8%E5%86%8C"><span class="toc-text">登录和注册</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E8%8A%82-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E8%A1%A8-%E7%94%9F%E6%88%90crud"><span class="toc-text">第三节 创建数据表 生成crud</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E8%A1%A8%EF%BC%9Atodo"><span class="toc-text">创建数据表：todo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E9%94%AE%E7%94%9F%E6%88%90CRUD"><span class="toc-text">一键生成CRUD</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E8%8A%82-%E7%BC%96%E5%86%99%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5api"><span class="toc-text">第四节 编写增删改查api</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A2%9E%E5%8A%A0-%E5%92%8C-%E4%BF%AE%E6%94%B9"><span class="toc-text">增加 和 修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4"><span class="toc-text">删除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2"><span class="toc-text">查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E4%BC%98%E5%8C%96"><span class="toc-text">安全优化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E6%95%B0%E6%8D%AE"><span class="toc-text">修改数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE"><span class="toc-text">删除数据</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E8%8A%82-%E5%B0%8F%E7%A8%8B%E5%BA%8F"><span class="toc-text">第五节 小程序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">小程序准备工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%95%8C%E9%9D%A2"><span class="toc-text">小程序界面</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E8%8A%82-%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%AF%B9%E6%8E%A5api"><span class="toc-text">第六节 小程序对接api</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%99%BB%E5%BD%95"><span class="toc-text">登录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F-token"><span class="toc-text">全局变量 token</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E5%92%8C%E6%98%BE%E7%A4%BA"><span class="toc-text">查询和显示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E5%A2%9E%E5%92%8C%E4%BF%AE%E6%94%B9"><span class="toc-text">新增和修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4-1"><span class="toc-text">删除</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E5%9D%80%E6%95%B4%E7%90%86"><span class="toc-text">网址整理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B%E5%9C%B0%E5%9D%80%EF%BC%9A"><span class="toc-text">视频教程地址：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8E%E7%AB%AF%E6%8E%A5%E5%8F%A3%E4%BB%93%E5%BA%93%E5%9C%B0%E5%9D%80%EF%BC%9A"><span class="toc-text">后端接口仓库地址：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E8%8A%82-%E9%A1%B9%E7%9B%AE%E8%AE%A1%E5%88%92%E5%92%8C%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">第一节 项目计划和准备工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%AE%80%E4%BB%8B"><span class="toc-text">项目简介</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%88%E6%9E%9C%E6%88%AA%E5%9B%BE"><span class="toc-text">效果截图</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E8%AE%A1%E5%88%92"><span class="toc-text">项目计划</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">准备工作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E8%8A%82-%E7%99%BB%E5%BD%95%E5%92%8C%E8%87%AA%E5%8A%A8%E6%B3%A8%E5%86%8Capi"><span class="toc-text">第二节 登录和自动注册api</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81%E5%AD%97%E6%AE%B5%E5%BF%85%E5%A1%AB"><span class="toc-text">验证字段必填</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%99%BB%E5%BD%95%E5%92%8C%E6%B3%A8%E5%86%8C"><span class="toc-text">登录和注册</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E8%8A%82-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E8%A1%A8-%E7%94%9F%E6%88%90crud"><span class="toc-text">第三节 创建数据表 生成crud</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E8%A1%A8%EF%BC%9Atodo"><span class="toc-text">创建数据表：todo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E9%94%AE%E7%94%9F%E6%88%90CRUD"><span class="toc-text">一键生成CRUD</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E8%8A%82-%E7%BC%96%E5%86%99%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5api"><span class="toc-text">第四节 编写增删改查api</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A2%9E%E5%8A%A0-%E5%92%8C-%E4%BF%AE%E6%94%B9"><span class="toc-text">增加 和 修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4"><span class="toc-text">删除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2"><span class="toc-text">查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E4%BC%98%E5%8C%96"><span class="toc-text">安全优化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E6%95%B0%E6%8D%AE"><span class="toc-text">修改数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE"><span class="toc-text">删除数据</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E8%8A%82-%E5%B0%8F%E7%A8%8B%E5%BA%8F"><span class="toc-text">第五节 小程序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">小程序准备工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%95%8C%E9%9D%A2"><span class="toc-text">小程序界面</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E8%8A%82-%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%AF%B9%E6%8E%A5api"><span class="toc-text">第六节 小程序对接api</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%99%BB%E5%BD%95"><span class="toc-text">登录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F-token"><span class="toc-text">全局变量 token</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%81%E8%A3%85request%E6%96%B9%E6%B3%95"><span class="toc-text">封装request方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E5%A2%9E"><span class="toc-text">新增</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E5%92%8C%E6%98%BE%E7%A4%BA"><span class="toc-text">查询和显示</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%95%E5%85%A5util-js%E6%9D%A5%E6%A0%BC%E5%BC%8F%E5%8C%96%E6%97%B6%E9%97%B4"><span class="toc-text">引入util.js来格式化时间</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%EF%BC%8C%E5%B9%B6%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%A4%84%E7%90%86"><span class="toc-text">获取数据，并格式化处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93%E6%95%B0%E6%8D%AE"><span class="toc-text">渲染数据</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9"><span class="toc-text">修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4-1"><span class="toc-text">删除</span></a></li></ol></li></ol>
     </div>
   </section>
 
@@ -1347,12 +1536,12 @@ var loadCSS = function( href, before, media, attributes ){
   <div id="rightmenu-wrapper">
     <ul class="list-v rightmenu" id="rightmenu-content">
       <li class='option'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>Copy Text</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>複製文本</a>
         <hr id='hr-text'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>Copy Link</a>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>Open Link in New Tab</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>複製鏈接</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>在新標籤頁打開</a>
         <hr id='hr-href'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>Copy Image Link</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>複製圖片地址</a>
         <hr id='hr-src'>
       </li>
       
