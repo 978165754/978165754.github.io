@@ -1081,25 +1081,27 @@ module.exports = &#123;
     &#125;,
     activeNames: [&#39;timeout&#39;,&#39;today&#39;],
 </code></pre>
-<pre><code class="xml"> &lt;van-collapse-item wx:if=&quot;&#123;&#123;datalist[ind].length>0&#125;&#125;&quot; wx:for=&quot;&#123;&#123;groups&#125;&#125;&quot;  wx:key=&quot;*.this&quot; wx:for-item=&quot;itm&quot;  wx:for-index=&quot;ind&quot;  name=&quot;&#123;&#123;ind&#125;&#125;&quot; &gt;
-    &lt;view slot=&quot;title&quot;&gt;&#123;&#123;itm&#125;&#125;&lt;text class=&quot;smalltext&quot;&gt;&#123;&#123;datalist[ind].length&#125;&#125;&lt;/text&gt;&lt;/view&gt;
-    &lt;!-- 任务1 --&gt;
-    &lt;block wx:for=&quot;&#123;&#123;datalist[ind]&#125;&#125;&quot; wx:key=&quot;id&quot;&gt;
-    
-    &lt;van-cell&gt;
-      &lt;view slot=&quot;title&quot;&gt;
-        &lt;van-checkbox value=&quot;&#123;&#123; checked &#125;&#125;&quot; bind:change=&quot;onChange&quot;&gt;&#123;&#123;item.task&#125;&#125;&lt;/van-checkbox&gt;
-        
-      &lt;/view&gt;
-      &lt;view slot=&quot;right-icon&quot;&gt;
-        &lt;van-tag round type=&quot;success&quot; wx:if=&quot;&#123;&#123;item.tags&#125;&#125;&quot;&gt;&#123;&#123;item.tagsnum&#125;&#125;&lt;/van-tag&gt;
-        &lt;text class=&quot;mr-10 ml-10&quot; wx:if=&quot;&#123;&#123;item.todotime&#125;&#125;&quot;&gt;&#123;&#123;item.todotime&#125;&#125;&lt;/text&gt;
-        &lt;van-icon name=&quot;ellipsis&quot; /&gt;
-      &lt;/view&gt;
-    &lt;/van-cell&gt;
+<pre><code class="xml">  &lt;block wx:for=&quot;&#123;&#123;groups&#125;&#125;&quot; wx:if=&quot;&#123;&#123;datalist[ind].length>0&#125;&#125;&quot; wx:key=&quot;ind&quot; wx:for-item=&quot;itm&quot; wx:for-index=&quot;ind&quot;&gt;
+    &lt;van-collapse-item name=&quot;&#123;&#123;ind&#125;&#125;&quot;&gt;
+      &lt;view slot=&quot;title&quot;&gt;&#123;&#123;itm&#125;&#125;&lt;text class=&quot;smalltext&quot;&gt;&#123;&#123;datalist[ind].length&#125;&#125;&lt;/text&gt;&lt;/view&gt;
+      &lt;!-- 任务1 --&gt;
+      &lt;block wx:for=&quot;&#123;&#123;datalist[ind]&#125;&#125;&quot; wx:key=&quot;id&quot;&gt;
+        &lt;van-cell&gt;
+          &lt;view slot=&quot;title&quot;&gt;
+            &lt;van-checkbox value=&quot;&#123;&#123; checked &#125;&#125;&quot; bind:change=&quot;onChange&quot;&gt;&#123;&#123;item.task&#125;&#125;&lt;/van-checkbox&gt;
+            
+          &lt;/view&gt;
+          &lt;view slot=&quot;right-icon&quot;&gt;
+            &lt;van-tag round type=&quot;success&quot; wx:if=&quot;&#123;&#123;item.tags_number&#125;&#125;&quot;&gt;&#123;&#123;item.tags_number&#125;&#125;&lt;/van-tag&gt;
+            &lt;text class=&quot;mr-10 ml-10&quot; wx:if=&quot;&#123;&#123;item.todotime&#125;&#125;&quot;&gt;&#123;&#123;item.todotime&#125;&#125;&lt;/text&gt;
+            &lt;van-icon name=&quot;ellipsis&quot; /&gt;
+          &lt;/view&gt;
+        &lt;/van-cell&gt;
+      &lt;/block&gt;
+      
+    &lt;/van-collapse-item&gt;
+ 
   &lt;/block&gt;
-
-  &lt;/van-collapse-item&gt;
 </code></pre>
 <h3 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h3><h3 id="删除-1"><a href="#删除-1" class="headerlink" title="删除"></a>删除</h3>
   
@@ -1135,10 +1137,10 @@ module.exports = &#123;
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-10-23T09:20:17+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-10-31T11:10:20+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Oct 23, 2021</p>
+    <p>更新于：Oct 31, 2021</p>
   </a>
 </div>
 

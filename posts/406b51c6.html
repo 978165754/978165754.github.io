@@ -524,41 +524,39 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     function tuisong()&#123;
         let domain = &#39;https://www.maoshu.fun&#39;
-    let urlArr=[]
-    $(&#39;.post-wrapper&#39;).each((index,ele)=&gt;&#123;
-        let url = $(ele).find(&#39;.article-title a&#39;).attr(&#39;href&#39;)
-        if(url)&#123;
-            url = domain+url
-            urlArr.push(url)
-        &#125;
-        console.log(url);
-    &#125;)
-    console.log(urlArr);
-
-    if(urlArr.length)&#123;
-        // 推送到百度代码
-        GM_xmlhttpRequest(&#123;
-            method:&#39;POST&#39;,
-            headers :&#123;
-                &quot;Content-Type&quot;: &quot;text/plain&quot;
-            &#125;,
-            data:urlArr.join(&#39;\n&#39;),
-            url:&quot;http://data.zz.baidu.com/urls?site=&quot;+domain+&quot;&amp;token=ishyHABpmcEZMiA6&quot;,
-            onload:(r)=&gt;&#123;
-                console.log(JSON.parse(r.response));
-
-                // 这里是自动执行
-                // setTimeout(() =&gt; &#123;
-                //     if($(&#39;.prev-next a.next&#39;).length)&#123;
-                            
-                        
-                //         $(&#39;.prev-next a.next&#39;)[0].click()
-                //     &#125;
-                // &#125;, 500);
-
+        let urlArr=[]
+        $(&#39;.post-wrapper&#39;).each((index,ele)=&gt;&#123;
+            let url = $(ele).find(&#39;.article-title a&#39;).attr(&#39;href&#39;)
+            if(url)&#123;
+                url = domain+url
+                urlArr.push(url)
             &#125;
+            // console.log(url);
         &#125;)
-    &#125;
+        console.log(urlArr);
+
+        if(urlArr.length)&#123;
+            // 推送到百度代码
+            GM_xmlhttpRequest(&#123;
+                method:&#39;POST&#39;,
+                headers :&#123;
+                    &quot;Content-Type&quot;: &quot;text/plain&quot;
+                &#125;,
+                data:urlArr.join(&#39;\n&#39;),
+                url:&quot;http://data.zz.baidu.com/urls?site=&quot;+domain+&quot;&amp;token=ishyHABpmcEZMiA6&quot;,
+                onload:(r)=&gt;&#123;
+                    console.log(JSON.parse(r.response));
+
+                    // 这里是自动执行
+                    // setTimeout(() =&gt; &#123;
+                    //     if($(&#39;.prev-next a.next&#39;).length)&#123;
+                    //         $(&#39;.prev-next a.next&#39;)[0].click()
+                    //     &#125;
+                    // &#125;, 500);
+
+                &#125;
+            &#125;)
+        &#125;
     &#125;
 
 
@@ -567,10 +565,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     $(&#39;.prev-next&#39;).on(&#39;click&#39;,&#39;a.next&#39;,()=&gt;&#123;
         console.log(&#39;点击了下一页&#39;);
 
-        setTimeout(() =&gt; &#123;
-            
+        setTimeout(() =&gt; &#123;            
             tuisong()
-        &#125;, 2000);
+        &#125;, 1200);
     &#125;)
     // Your code here...
 &#125;)();
@@ -609,7 +606,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-10-31T10:38:27+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-10-31T10:48:07+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：Oct 31, 2021</p>
