@@ -5,8 +5,6 @@
   <!-- SEO相关 -->
   
     
-      <meta name="robots" content="noindex,follow">
-    
   
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -24,7 +22,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>歸檔：2021/8 - 猫叔饭-写代码的猫叔个人博客</title>
+  <title>油猴脚本案例：百度收录主动推送文章链接到api接口 - 猫叔饭-写代码的猫叔个人博客</title>
+  
+    <meta name="keywords" content="油猴脚本">
   
 
   
@@ -104,7 +104,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <body>
     
 
-<header id="l_header" class="l_header auto shadow blur " style='opacity: 0' >
+<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -357,7 +357,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="half" class='cover-wrapper  search' style="display: ;">
+        <div id="full" class='cover-wrapper post search' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://bing.ioliu.cn/v1/rand?w=1920&h=800"></div>
           
@@ -443,319 +443,290 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
 
 <div class='l_main'>
-	
-		
-  <section class="post-list">
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
+  
+
+
+  
+  <div class="article-meta" id="top">
     
-      
+    
+    
+      <h1 class="title">
+        油猴脚本案例：百度收录主动推送文章链接到api接口
+      </h1>
+      <div class='new-meta-box'>
         
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/" rel="nofollow">
+    <img no-lazy src="https://i.loli.net/2021/08/07/mNRDQ8oiArnyUPG.png">
+    <p>写代码的猫叔</p>
+  </a>
+</div>
+
           
         
           
-        
+            
+
           
         
           
-        
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Oct 31, 2021</p>
+  </a>
+</div>
+
           
         
           
-        
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
       
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/posts/3e5d6f64.html">
-        electron-forge的安装方法和遇到的坑
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        遇到的坑首先根据官网文档：https://www.electronforge.io/，`yarn create electron-app my-app`，执行到一半卡住了。然后找了其他方法，如下:
-全局安装forge clinpm i -g @electron-forge/cli
-
-这里我安装报错了，所以改为了 cnpm的方式安装，安装成功了 npm i -g @electron-forge...
-      
-    
+      <div id="lc-pv" data-title="油猴脚本案例：百度收录主动推送文章链接到api接口" data-path="/posts/406b51c6.html">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-08-20</time>
+
+
+          
         
       </div>
+    
+  </div>
+
+
+  
+  
+  <p>直接上脚本，注意修改下里面的post网址</p>
+<pre><code class="js">// ==UserScript==
+// @name         百度主动推送
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match        https://maoshu.fun/*
+// @icon         https://www.google.com/s2/favicons?domain=maoshu.fun
+// @require      https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js
+// @grant        GM_xmlhttpRequest
+// ==/UserScript==
+
+(function() &#123;
+    &#39;use strict&#39;;
+    
+    function tuisong()&#123;
+        let domain = &#39;https://www.maoshu.fun&#39;
+    let urlArr=[]
+    $(&#39;.post-wrapper&#39;).each((index,ele)=&gt;&#123;
+        let url = $(ele).find(&#39;.article-title a&#39;).attr(&#39;href&#39;)
+        if(url)&#123;
+            url = domain+url
+            urlArr.push(url)
+        &#125;
+        console.log(url);
+    &#125;)
+    console.log(urlArr);
+
+    if(urlArr.length)&#123;
+        // 推送到百度代码
+        GM_xmlhttpRequest(&#123;
+            method:&#39;POST&#39;,
+            headers :&#123;
+                &quot;Content-Type&quot;: &quot;text/plain&quot;
+            &#125;,
+            data:urlArr.join(&#39;\n&#39;),
+            url:&quot;http://data.zz.baidu.com/urls?site=&quot;+domain+&quot;&amp;token=ishyHABpmcEZMiA6&quot;,
+            onload:(r)=&gt;&#123;
+                console.log(JSON.parse(r.response));
+
+                // 这里是自动执行
+                // setTimeout(() =&gt; &#123;
+                //     if($(&#39;.prev-next a.next&#39;).length)&#123;
+                            
+                        
+                //         $(&#39;.prev-next a.next&#39;)[0].click()
+                //     &#125;
+                // &#125;, 500);
+
+            &#125;
+        &#125;)
+    &#125;
+    &#125;
+
+
+    tuisong()
+
+    $(&#39;.prev-next&#39;).on(&#39;click&#39;,&#39;a.next&#39;,()=&gt;&#123;
+        console.log(&#39;点击了下一页&#39;);
+
+        setTimeout(() =&gt; &#123;
+            
+            tuisong()
+        &#125;, 2000);
+    &#125;)
+    // Your code here...
+&#125;)();
+</code></pre>
+
+  
+  
+    
+    <div class='footer'>
       
-        <div>
-          <a class='readmore' href='/posts/3e5d6f64.html'>
-            閱讀全文
-          </a>
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>文章可以转载，但必须注明作者和网址链接；内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接：<a href=https://maoshu.fun/posts/406b51c6.html>https://maoshu.fun/posts/406b51c6.html</a></p>
+              
+            
+          </blockquote>
         </div>
+      
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-10-31T10:38:27+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Oct 31, 2021</p>
+  </a>
 </div>
 
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E6%B2%B9%E7%8C%B4%E8%84%9A%E6%9C%AC/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>油猴脚本</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://maoshu.fun/posts/406b51c6.html&title=油猴脚本案例：百度收录主动推送文章链接到api接口 - 猫叔饭-写代码的猫叔个人博客&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://maoshu.fun/posts/406b51c6.html&title=油猴脚本案例：百度收录主动推送文章链接到api接口 - 猫叔饭-写代码的猫叔个人博客&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://maoshu.fun/posts/406b51c6.html&title=油猴脚本案例：百度收录主动推送文章链接到api接口 - 猫叔饭-写代码的猫叔个人博客&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        
+        <div class='hoverbox'>
+          <a class='share'><img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/wechat.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/wechat.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a>
+          <div class='target'>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPgAAAD4CAAAAADkunTXAAACPUlEQVR42u3aS27DMAwFwNz/0u0+RSH+DCTUaBk7MkfePJB+/Vy6XuDg4ODg4Ivgr+I6PqC5z3/Xu/WCg4ODg4NvhIcDwPtGzQKj94/VCw4ODg4OvhhefXA16GT36dYLDg4ODg4OfoZ3YeDg4ODg4ODPw6uFdQcK4ODg4ODg4P0GfbWwbND5uEkKODg4ODj4B8GzqxtongpEx3rBwcHBwcEXwadX94C6geVYHzg4ODg4+CJ4N1BkGw7dAFIdPICDg4ODg2+EjzXqi8EjO1hIQ0+NCHBwcHBw8AXwbjAoB4ohUPSgwMHBwcHBb4Z3g0+3gdF+AeDg4ODg4Avh2QdWC86Cw8Ek+qEBODg4ODj4Inh1g+kBQze4pAcK4ODg4ODgC+DVRsFUoMk2PMaTGzg4ODg4+CJ4tZBooMkGpKngAw4ODg4OfiN8OqB0BwztgwYHBwcHB18IjwaXqQF/NRBlr4ODg4ODg2+GVwf41YOJ3j/VwAAHBwcHB98MzzYgsgVmD2iqQREeKICDg4ODg38xvArODh6qjYzsQON4wODg4ODg4Ivg3TU10O8eXPjFgYODg4ODL4JPBYZs0Jn6fzpogYODg4ODL4RPNf6rwSS6b/gDAHBwcHBw8AvhUx8ETAG7gQocHBwcHBy830jINjKyg4zyQAEcHBwcHPxi+PTBVQNK+IWAg4ODg4MvhlcHCk83FKofHv75HRwcHBwcfCE8u6qNiWhjoXsg4UYEODg4ODj4F8NvW+Dg4ODg4AvWL9bQw25IHJDqAAAAAElFTkSuQmCC">
           </div>
-        
+        </div>
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
     
-    <h2 class="article-title" >
-      <a href="/posts/c453aadd.html">
-        vue-elementui-admin安装步骤和安装依赖报错解决方案整理
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        文档&amp;链接文档说明：https://panjiachen.github.io/vue-element-admin-site/zh/guide/admin集成方案：https://github.com/PanJiaChen/vue-element-admin基础模板方案：https://github.com/PanJiaChen/vue-admin-template/tree/perm...
       
     
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-08-10</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/posts/c453aadd.html'>
-            閱讀全文
-          </a>
-        </div>
-      
-    </div>
-  
-
 </div>
 
-          </div>
+
+
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/posts/effba3b3.html">
-        一些好用的npm包和github项目整理
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-一键复制 https://www.npmjs.com/package/clipboard
-vue复制 https://www.npmjs.com/package/vue-clipboard
-时间日期 https://www.npmjs.com/package/dayjs
-快速删除node_modules npm install rimraf -g rimraf node_modules
-浏...
-      
-    
+    </div>
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-08-10</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/posts/effba3b3.html'>
-            閱讀全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/posts/31bfa1d6.html">
-        fastadmin按钮buttons全部事件整理
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        相关链接
 
 
-一张图解析FastAdmin中的表格列表的功能(第15条) https://ask.fastadmin.net/article/323.html 
-一张图解析FastAdmin中的弹出窗口的功能 https://ask.fastadmin.net/article/2527.html
-
-
-classname来控制按钮执行方式弹出窗口 btn-dialog，ajax请求 btn-a...
-      
-    
-  </div>
   
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-08-08</time>
-        
-      </div>
+  
+
+  
+    <div class="prev-next">
       
-        <div>
-          <a class='readmore' href='/posts/31bfa1d6.html'>
-            閱讀全文
-          </a>
-        </div>
+      
+        <a class='next' href='/posts/1870b179.html'>
+          <p class='title'>油猴脚本案例：西瓜视频首页按播放量排序<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>直接上代码：
+// ==UserScript==
+// @name         西瓜首页按播放量排序
+// @namespace    http://tampermonkey.net/
+//...</p>
+        </a>
       
     </div>
   
+</article>
 
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
 </div>
 
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/posts/22663.html">
-        hexo-volantis主题修改代码高亮风格
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        前言
-猫叔的博客是基于hexo制作的，选用主题为volantis，纵然这套主题我是特别喜欢，但它的代码高亮做的不是特别适合我，不如next主题里面的代码高亮风格那么好看（主要是暗色风格），但next主题我又不是特别喜欢，于是研究了下他的修改方法，终于找到 一篇改造博客，但里面多少有点错误并且步骤不完整，于是做一些补充。
-
-步骤1.highlightjs不支持显示行号，改造使其支持1).修改e...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-08-07</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/posts/22663.html'>
-            閱讀全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/posts/25256.html">
-        fastadmin 常用知识点整理
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        js里怎么取到config里的数据
-以token为例，这里先在后端把数据写入config，然后在前端js里就会有我们设置的token了
-
-1.后端php部分$this-&gt;assignconfig(&quot;token&quot;, $this-&gt;auth-&gt;token);
-
-2.前端js部分console.log(Config.token)
-
-通过变量Config可以取到...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-08-07</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/posts/25256.html'>
-            閱讀全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-    
-  </section>
-  
-    
-  
+  </article>
 
 
-	
+
+
+
+
 </div>
 <aside class='l_side'>
   
@@ -763,103 +734,14 @@ classname来控制按钮执行方式弹出窗口 btn-dialog，ajax请求 btn-a..
     
     
 
-<section class="widget blogger shadow desktop mobile">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box rectangle' href='/about/'>
-          <img no-lazy src='https://i.loli.net/2021/08/07/qBsLaJ1pANkYfMu.png'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-        
-        
-          <p><span id="jinrishici-sentence">猫叔饭-写代码的猫叔个人博客</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="/atom.xml"
-              class="social fas fa-rss flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="mailto:me@xxx.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/volantis-x/"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="/"
-              class="social fas fa-headphones-alt flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
-
-  
-
-  
-    
-    
-
-  
-
-  
-    
-    
-  
-
-  <section class="widget tagcloud shadow desktop mobile">
-    
-  <header>
-    
-      <a href='/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
-    
-  </header>
 
 
-    <div class='content'>
-      <a href="/tags/electron/" style="font-size: 14px; color: #999">electron</a> <a href="/tags/fastadmin/" style="font-size: 19px; color: #777">fastadmin</a> <a href="/tags/hexo/" style="font-size: 14px; color: #999">hexo</a> <a href="/tags/thinkphp/" style="font-size: 14px; color: #999">thinkphp</a> <a href="/tags/%E6%B2%B9%E7%8C%B4%E8%84%9A%E6%9C%AC/" style="font-size: 24px; color: #555">油猴脚本</a>
-    </div>
-  </section>
-
-
-  
 
   
 
 
 </aside>
+
 
 
 		  
@@ -868,21 +750,21 @@ classname来控制按钮执行方式弹出窗口 btn-dialog，ajax请求 btn-a..
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
-  pdata.postTitle="";
+  pdata.ispage=true;
+  pdata.postTitle="油猴脚本案例：百度收录主动推送文章链接到api接口";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   // header 这里无论是否开启pjax都需要
   var l_header=document.getElementById("l_header");
   
-  l_header.classList.remove("show");
+  l_header.classList.add("show");
   
   
     // cover
     var cover_wrapper=document.querySelector('.cover-wrapper');
     
-    cover_wrapper.id="half";
-    cover_wrapper.style.display="";
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
     
   
 </script>
