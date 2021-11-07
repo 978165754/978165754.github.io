@@ -506,8 +506,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   
   
-  <p>直接上脚本，注意修改下里面的post网址</p>
-<pre><code class="js">// ==UserScript==
+  <h3 id="直接上脚本，注意修改下里面的post网址"><a href="#直接上脚本，注意修改下里面的post网址" class="headerlink" title="直接上脚本，注意修改下里面的post网址"></a>直接上脚本，注意修改下里面的post网址</h3><pre><code class="js">// ==UserScript==
 // @name         百度主动推送
 // @namespace    http://tampermonkey.net/
 // @version      0.1
@@ -572,6 +571,75 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     // Your code here...
 &#125;)();
 </code></pre>
+<h3 id="改写为await写法，一条一条推送"><a href="#改写为await写法，一条一条推送" class="headerlink" title="改写为await写法，一条一条推送"></a>改写为await写法，一条一条推送</h3><pre><code class="js">
+// ==UserScript==
+// @name         maoshu.fun百度主动推送 一条条同步做法
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match        https://maoshu.fun/*
+// @icon         https://www.google.com/s2/favicons?domain=maoshu.fun
+// @require      https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js
+// @grant        GM_xmlhttpRequest
+// ==/UserScript==
+
+(function() &#123;
+    &#39;use strict&#39;;
+
+    let domain = &#39;https://www.maoshu.fun&#39;
+    async function tuisong()&#123;
+
+
+        for (const key in $(&#39;.post-wrapper&#39;)) &#123;
+            if (Object.hasOwnProperty.call($(&#39;.post-wrapper&#39;), key)) &#123;
+                const element = $(&#39;.post-wrapper&#39;).eq(key);
+
+                let url = element.find(&#39;.article-title a&#39;).attr(&#39;href&#39;)
+                console.log(url,&#39;---&#39;);
+                if(url)&#123;
+                    url = domain+url
+                    await wait(url)
+                &#125;
+            &#125;
+        &#125;
+        console.log(&#39;全部执行完了&#39;);
+
+    &#125;
+
+    function wait(url)&#123;
+        return new Promise(res=&gt;&#123;
+            // 推送到百度代码
+            GM_xmlhttpRequest(&#123;
+                method:&#39;POST&#39;,
+                headers :&#123;
+                    &quot;Content-Type&quot;: &quot;text/plain&quot;
+                &#125;,
+                data:url,
+                url:&quot;http://data.zz.baidu.com/urls?site=&quot;+domain+&quot;&amp;token=ishyHABpmcEZMiA6&quot;,
+                onload:(r)=&gt;&#123;
+                    console.log(JSON.parse(r.response));
+
+                    res()
+
+                &#125;
+            &#125;)
+        &#125;)
+    &#125;
+
+
+    tuisong()
+
+    $(&#39;.prev-next&#39;).on(&#39;click&#39;,&#39;a.next&#39;,()=&gt;&#123;
+        console.log(&#39;点击了下一页&#39;);
+
+        setTimeout(() =&gt; &#123;
+            tuisong()
+        &#125;, 1200);
+    &#125;)
+    // Your code here...
+&#125;)();
+</code></pre>
 
   
   
@@ -606,10 +674,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-10-31T10:48:07+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-11-07T13:20:38+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Oct 31, 2021</p>
+    <p>更新于：Nov 7, 2021</p>
   </a>
 </div>
 
@@ -693,6 +761,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     <div class="prev-next">
       
+        <a class='prev' href='/posts/1f36b1f5.html'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>vscode快捷键整理</p>
+          <p class='content'>ctrl+k ctrl+0 1 2 3 等 折叠函数ctrl+k ctrl+j 展开所有函数
+</p>
+        </a>
+      
       
         <a class='next' href='/posts/1870b179.html'>
           <p class='title'>油猴脚本案例：西瓜视频首页按播放量排序<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
@@ -732,6 +806,20 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
 
 
+
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E4%B8%8A%E8%84%9A%E6%9C%AC%EF%BC%8C%E6%B3%A8%E6%84%8F%E4%BF%AE%E6%94%B9%E4%B8%8B%E9%87%8C%E9%9D%A2%E7%9A%84post%E7%BD%91%E5%9D%80"><span class="toc-text">直接上脚本，注意修改下里面的post网址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%B9%E5%86%99%E4%B8%BAawait%E5%86%99%E6%B3%95%EF%BC%8C%E4%B8%80%E6%9D%A1%E4%B8%80%E6%9D%A1%E6%8E%A8%E9%80%81"><span class="toc-text">改写为await写法，一条一条推送</span></a></li></ol>
+    </div>
+  </section>
 
 
   

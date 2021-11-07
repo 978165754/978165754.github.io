@@ -24,7 +24,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>Tag: electron - 猫叔饭-写代码的猫叔个人博客</title>
+  <title>Archive: 2021/11 - 猫叔饭-写代码的猫叔个人博客</title>
   
 
   
@@ -104,7 +104,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <body>
     
 
-<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
+<header id="l_header" class="l_header auto shadow blur " style='opacity: 0' >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -357,7 +357,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper  search' style="display: none;">
+        <div id="half" class='cover-wrapper  search' style="display: ;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://bing.ioliu.cn/v1/rand?w=1920&h=800"></div>
           
@@ -442,14 +442,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         <div class="body-wrapper" id="pjax-container">
           
 
-
 <div class='l_main'>
-  
-    
-      
+	
+		
   <section class="post-list">
     
       
+        
+          
         
           
         
@@ -466,18 +466,22 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title" >
-      <a href="/posts/3e5d6f64.html">
-        electron-forge的安装方法和遇到的坑
+      <a href="/posts/336e38a0.html">
+        油猴脚本案例：知乎视频页面css优化
       </a>
     </h2>
   
   <div class='md'>
     
       
-        遇到的坑首先根据官网文档：https://www.electronforge.io/，`yarn create electron-app my-app`，执行到一半卡住了。然后找了其他方法，如下:
-全局安装forge clinpm i -g @electron-forge/cli
-
-这里我安装报错了，所以改为了 cnpm的方式安装，安装成功了 npm i -g @electron-forge...
+        直接上代码：
+// ==UserScript==
+// @name         知乎视频页面 优化
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match       ...
       
     
   </div>
@@ -485,12 +489,56 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-08-20</time>
+        <time>2021-11-07</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/posts/3e5d6f64.html'>
+          <a class='readmore' href='/posts/336e38a0.html'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/posts/1f36b1f5.html">
+        vscode快捷键整理
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        ctrl+k ctrl+0 1 2 3 等 折叠函数ctrl+k ctrl+j 展开所有函数
+
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-11-05</time>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/posts/1f36b1f5.html'>
             Read More
           </a>
         </div>
@@ -510,8 +558,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
 
 
-    
-  
+	
 </div>
 <aside class='l_side'>
   
@@ -631,14 +678,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   // header 这里无论是否开启pjax都需要
   var l_header=document.getElementById("l_header");
   
-  l_header.classList.add("show");
+  l_header.classList.remove("show");
   
   
     // cover
     var cover_wrapper=document.querySelector('.cover-wrapper');
     
-    cover_wrapper.id="none";
-    cover_wrapper.style.display="none";
+    cover_wrapper.id="half";
+    cover_wrapper.style.display="";
     
   
 </script>
