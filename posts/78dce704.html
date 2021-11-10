@@ -512,11 +512,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <h3 id="tp的通用方法："><a href="#tp的通用方法：" class="headerlink" title="tp的通用方法："></a>tp的通用方法：</h3><p>修改文件：public/index.php，这是tp的入口文件</p>
 <pre><code class="php">if(isset($_SERVER[&quot;HTTP_ORIGIN&quot;]) &amp;&amp; strpos($_SERVER[&quot;HTTP_ORIGIN&quot;],&#39;127.0.0.1:8000&#39;) !== false)&#123;
     // 跨域
-    header(&#39;Access-Control-Allow-Origin: *&#39;); //星号表示允许所有来源跨域请求，生产环境建议配置成你的来源站点的域名
+    header(&#39;Access-Control-Allow-Origin: &#39;.$_SERVER[&quot;HTTP_ORIGIN&quot;]); //星号表示允许所有来源跨域请求，生产环境建议配置成你的来源站点的域名
     header(&quot;Access-Control-Allow-Headers: *&quot;);
     header(&#39;Access-Control-Allow-Methods:*&#39;);
     header(&#39;Access-Control-Expose-Headers:*&#39;);
-    header(&#39;Access-Control-Allow-Credentials:&quot;true&quot;&#39;);
+    header(&#39;Access-Control-Allow-Credentials:true&#39;);
     
     if (strtoupper($_SERVER[&#39;REQUEST_METHOD&#39;]) == &#39;OPTIONS&#39;) &#123; //浏览器的option试探请求，要exit掉，不然你的业务会被执行两次
         
@@ -524,6 +524,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         exit();
     &#125;
 &#125;
+</code></pre>
+<p>下面这句是允许跨域cookie的</p>
+<pre><code class="php">header(&#39;Access-Control-Allow-Credentials:true&#39;);
 </code></pre>
 <p>下面这句的判断，是为了本地调试的，只有在本地调试的时候，才允许跨域，这样线上如果不需要跨域的话就更安全些</p>
 <pre><code class="php">strpos($_SERVER[&quot;HTTP_ORIGIN&quot;],&#39;127.0.0.1:8000&#39;) !== false
@@ -563,10 +566,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-10-22T11:52:55+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-11-10T16:25:50+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Oct 22, 2021</p>
+    <p>更新于：Nov 10, 2021</p>
   </a>
 </div>
 
@@ -964,12 +967,12 @@ var loadCSS = function( href, before, media, attributes ){
   <div id="rightmenu-wrapper">
     <ul class="list-v rightmenu" id="rightmenu-content">
       <li class='option'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>Copy Text</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>複製文本</a>
         <hr id='hr-text'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>Copy Link</a>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>Open Link in New Tab</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>複製鏈接</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>在新標籤頁打開</a>
         <hr id='hr-href'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>Copy Image Link</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>複製圖片地址</a>
         <hr id='hr-src'>
       </li>
       
