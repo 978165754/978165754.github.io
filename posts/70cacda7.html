@@ -506,7 +506,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   
   
-  <h4 id="定时刷新网页"><a href="#定时刷新网页" class="headerlink" title="定时刷新网页"></a>定时刷新网页</h4><pre><code class="js">// ==UserScript==
+  <h4 id="定时几秒后刷新网页"><a href="#定时几秒后刷新网页" class="headerlink" title="定时几秒后刷新网页"></a>定时几秒后刷新网页</h4><pre><code class="js">// ==UserScript==
 // @name         定时刷新网页
 // @namespace    http://tampermonkey.net/
 // @version      0.1
@@ -527,8 +527,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     &#125;, timeout*1000);
 &#125;)();
 </code></pre>
-<h4 id="定时关闭网页"><a href="#定时关闭网页" class="headerlink" title="定时关闭网页"></a>定时关闭网页</h4><pre><code class="js">// ==UserScript==
-// @name         定时关闭网页
+<h4 id="定时几秒后关闭网页"><a href="#定时几秒后关闭网页" class="headerlink" title="定时几秒后关闭网页"></a>定时几秒后关闭网页</h4><pre><code class="js">// ==UserScript==
+// @name         指定时间关闭网页
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  很简单的一个自动关闭网页功能
@@ -546,6 +546,33 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     setTimeout(() =&gt; &#123;
       window.close()
     &#125;, timeout*1000);
+&#125;)();
+</code></pre>
+<h4 id="定时几点几分关闭网页"><a href="#定时几点几分关闭网页" class="headerlink" title="定时几点几分关闭网页"></a>定时几点几分关闭网页</h4><pre><code class="js">// ==UserScript==
+// @name         定时关闭网页
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match        https://maoshu.fun/
+// @icon         https://www.google.com/s2/favicons?domain=maoshu.fun
+// @grant        none
+// ==/UserScript==
+
+(function() &#123;
+  &#39;use strict&#39;;
+  let time = &#39;22:54:00&#39;
+  function p(num) &#123;
+    return num&lt;10?&#39;0&#39;+num:num
+  &#125;
+  let tm = setInterval(() =&gt; &#123;
+    console.log(&#39;当前：%d:%d:%d&#39;,new Date().getHours(),new Date().getMinutes(),new Date().getSeconds());
+    let nowtime = p(new Date().getHours())+&#39;:&#39;+p(new Date().getMinutes())+&#39;:&#39;+p(new Date().getSeconds())
+    if(nowtime == time)&#123;
+      console.log(&#39;关闭网页&#39;);
+      window.close()
+    &#125;
+  &#125;, 1000);
 &#125;)();
 </code></pre>
 
@@ -582,7 +609,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-11-14T19:56:53+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-11-14T22:57:27+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：Nov 14, 2021</p>
@@ -719,7 +746,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E6%97%B6%E5%88%B7%E6%96%B0%E7%BD%91%E9%A1%B5"><span class="toc-text">定时刷新网页</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E6%97%B6%E5%85%B3%E9%97%AD%E7%BD%91%E9%A1%B5"><span class="toc-text">定时关闭网页</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E6%97%B6%E5%87%A0%E7%A7%92%E5%90%8E%E5%88%B7%E6%96%B0%E7%BD%91%E9%A1%B5"><span class="toc-text">定时几秒后刷新网页</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E6%97%B6%E5%87%A0%E7%A7%92%E5%90%8E%E5%85%B3%E9%97%AD%E7%BD%91%E9%A1%B5"><span class="toc-text">定时几秒后关闭网页</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E6%97%B6%E5%87%A0%E7%82%B9%E5%87%A0%E5%88%86%E5%85%B3%E9%97%AD%E7%BD%91%E9%A1%B5"><span class="toc-text">定时几点几分关闭网页</span></a></li></ol>
     </div>
   </section>
 
@@ -980,12 +1007,12 @@ var loadCSS = function( href, before, media, attributes ){
   <div id="rightmenu-wrapper">
     <ul class="list-v rightmenu" id="rightmenu-content">
       <li class='option'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>复制文本</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>複製文本</a>
         <hr id='hr-text'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>复制链接</a>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>在新标签页打开</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>複製鏈接</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>在新標籤頁打開</a>
         <hr id='hr-href'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>复制图片地址</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>複製圖片地址</a>
         <hr id='hr-src'>
       </li>
       
