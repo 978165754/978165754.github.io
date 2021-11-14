@@ -5,8 +5,6 @@
   <!-- SEO相关 -->
   
     
-      <meta name="robots" content="noindex,follow">
-    
   
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -24,7 +22,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>归档：2021 - 猫叔饭-写代码的猫叔个人博客</title>
+  <title>油猴脚本案例：定时刷新网页和定时关闭网页 - 猫叔饭-写代码的猫叔个人博客</title>
+  
+    <meta name="keywords" content="油猴脚本">
   
 
   
@@ -104,7 +104,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <body>
     
 
-<header id="l_header" class="l_header auto shadow blur " style='opacity: 0' >
+<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -357,7 +357,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="half" class='cover-wrapper  search' style="display: ;">
+        <div id="full" class='cover-wrapper post search' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://bing.ioliu.cn/v1/rand?w=1920&h=800"></div>
           
@@ -443,550 +443,263 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
 
 <div class='l_main'>
-	
-		
-  <section class="post-list">
-    
-      
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-      
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
+  
+
+
+  
+  <div class="article-meta" id="top">
     
     
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
     
-    <h2 class="article-title" >
-      <a href="/posts/70cacda7.html">
+      <h1 class="title">
         油猴脚本案例：定时刷新网页和定时关闭网页
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/" rel="nofollow">
+    <img no-lazy src="https://i.loli.net/2021/08/07/mNRDQ8oiArnyUPG.png">
+    <p>写代码的猫叔</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Nov 14, 2021</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
       
-        定时刷新网页// ==UserScript==
+      <div id="lc-pv" data-title="油猴脚本案例：定时刷新网页和定时关闭网页" data-path="/posts/70cacda7.html">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
+      </div>
+    
+  </div>
+
+
+  
+  
+  <h4 id="定时刷新网页"><a href="#定时刷新网页" class="headerlink" title="定时刷新网页"></a>定时刷新网页</h4><pre><code class="js">// ==UserScript==
 // @name         定时刷新网页
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  很简单的一个自动刷新网页功能
 // @author       写代码的猫叔
-// @match        https://maosh...
-      
-    
-  </div>
+// @match        https://maoshu.fun/*
+// @grant        none
+// ==/UserScript==
+
+(function() &#123;
+    &#39;use strict&#39;;
+    // 注意改掉上面的@match，里面是放指定你要刷新的网页网址
+    // 几秒，例如10就是10秒刷新一次
+    let timeout = 10
+    console.log(&#39;%s秒后刷新: &#39;, timeout);
+    setTimeout(() =&gt; &#123;
+      location.reload()
+    &#125;, timeout*1000);
+&#125;)();
+</code></pre>
+<h4 id="定时关闭网页"><a href="#定时关闭网页" class="headerlink" title="定时关闭网页"></a>定时关闭网页</h4><pre><code class="js">// ==UserScript==
+// @name         定时关闭网页
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  很简单的一个自动关闭网页功能
+// @author       写代码的猫叔
+// @match        https://maoshu.fun/*
+// @grant        none
+// ==/UserScript==
+
+(function() &#123;
+    &#39;use strict&#39;;
+    // 注意改掉上面的@match，里面是放指定你要关闭的网页网址
+    // 几秒，例如10就是10秒关闭
+    let timeout = 10
+    console.log(&#39;%s秒后关闭: &#39;, timeout);
+    setTimeout(() =&gt; &#123;
+      window.close()
+    &#125;, timeout*1000);
+&#125;)();
+</code></pre>
+
   
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-11-14</time>
-        
-      </div>
+  
+    
+    <div class='footer'>
       
-        <div>
-          <a class='readmore' href='/posts/70cacda7.html'>
-            阅读全文
-          </a>
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>文章可以转载，但必须注明作者和网址链接；内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接：<a href=https://maoshu.fun/posts/70cacda7.html>https://maoshu.fun/posts/70cacda7.html</a></p>
+              
+            
+          </blockquote>
         </div>
+      
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-11-14T19:56:53+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Nov 14, 2021</p>
+  </a>
 </div>
 
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E6%B2%B9%E7%8C%B4%E8%84%9A%E6%9C%AC/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>油猴脚本</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://maoshu.fun/posts/70cacda7.html&title=油猴脚本案例：定时刷新网页和定时关闭网页 - 猫叔饭-写代码的猫叔个人博客&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://maoshu.fun/posts/70cacda7.html&title=油猴脚本案例：定时刷新网页和定时关闭网页 - 猫叔饭-写代码的猫叔个人博客&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://maoshu.fun/posts/70cacda7.html&title=油猴脚本案例：定时刷新网页和定时关闭网页 - 猫叔饭-写代码的猫叔个人博客&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        
+        <div class='hoverbox'>
+          <a class='share'><img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/wechat.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/wechat.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a>
+          <div class='target'>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPgAAAD4CAAAAADkunTXAAACPUlEQVR42u3aS1LDMBAFwNz/0rCnKqX5OcTj1i7gGLW8eczz6+eh6wUODg4ODr4I/iqutzdOfu/087+/7+4XHBwcHBx8IzwcAJLXR0HRv9fdLzg4ODg4+Gb4MQAEP2cDSPRg2vsFBwcHBwcHP260OkDIBhhwcHBwcHDw6+BXFQrg4ODg4ODgAwP6iw7q65sUcHBwcHDwL4JnV3ZQMP25vF9wcHBwcPBF8O6qBozTdacBRnm/4ODg4ODgi+BTBf7UQUQLiPL+wMHBwcHBF8GrAaMaSKqQsQcBDg4ODg6+CF4NGFMFQHUwUR1QgIODg4ODb4ZXC4FoQKkGpez9314PDg4ODg7+AHg3eHzq+ugBg4ODg4ODb4ZPAccGBod9jBUK4ODg4ODgi+BToKmC4GMBBhwcHBwcfAF8aiDw30VEuFAABwcHBwdfAM9utHow08XFWJMCDg4ODg5+Y3j5H/viihYK3aDVLhTAwcHBwcFvAO/CugXFVBExntzAwcHBwcFvBK8W9tn7XD2gSBcK4ODg4ODgD4BXBwDV73cDVHgQAQ4ODg4OfkN4d00VEt0XBsMHAw4ODg4Ovgg+Vexn4dPFf/igwcHBwcHBF8KzgaULzl4X3c8xWIGDg4ODgy+GTwWI7gBi+kUBcHBwcHBw8LkNVwNQtVgABwcHBwcHrxf52YPIBqXwgAMcHBwcHHwxPFsoVINF9cXB6gMCBwcHBwffDK8Gg6mgUy0usg8GHBwcHBx8E/xpCxwcHBwcfMH6BSc/h3LNmfAUAAAAAElFTkSuQmCC">
           </div>
-        
+        </div>
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/posts/c0909080.html">
-        工作技巧：企业微信自动回复设置
-      </a>
-    </h2>
-  
-  <div class='md'>
     
       
-        视频地址：https://www.ixigua.com/7029865467946729991
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+      
+        <a class='next' href='/posts/c0909080.html'>
+          <p class='title'>工作技巧：企业微信自动回复设置<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>视频地址：https://www.ixigua.com/7029865467946729991
 1.加好友时自动回复一句话
 2.客户入群时自动发送欢迎语，可以自动@对应的人
 
-3.群内@小助手自动回复可根据关键词自动回复指定的话术 链接 图片 视频 小程序
-
-还可以根据模板快速配置群
-
-
-
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-11-13</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/posts/c0909080.html'>
-            阅读全文
-          </a>
-        </div>
+3.群内@小助手自...</p>
+        </a>
       
     </div>
   
+</article>
 
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
 </div>
 
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/posts/8d42e395.html">
-        python语法和js语法的对比
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        打印输出print(&quot;Hello, World!&quot;)
-
-console.log(&quot;Hello,World!&quot;)
-
-字符串abc = &#39;字符串&#39;
-abc = &quot;字符串&quot;
-abc = &quot;&quot;&quot;字
-符
-串&quot;&quot;&quot;
-abc = &#39;&#39;&#39;
-字
-符
-串...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-11-11</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/posts/8d42e395.html'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/posts/f89586b0.html">
-        thinkphp5.0模型关联查询知识点整理
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        一对一关联hasOnehasOne(‘关联模型名’,’外键名’,’主键名’,’join类型’);默认的join类型为INNER。注意：关联模型名 是驼峰法
-为关联模型定义需要查询的字段V5.0.3+版本开始支持return $this-&gt;hasOne(‘Profile’)-&gt;field(‘id,name,email’);
-hasWhere方法$user = User::hasWh...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-11-09</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/posts/f89586b0.html'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/posts/336e38a0.html">
-        油猴脚本案例：知乎视频页面css优化
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        直接上代码：
-// ==UserScript==
-// @name         知乎视频页面 优化
-// @namespace    http://tampermonkey.net/
-// @version      0.1
-// @description  try to take over the world!
-// @author       You
-// @match       ...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-11-07</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/posts/336e38a0.html'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/posts/1f36b1f5.html">
-        vscode快捷键整理
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        ctrl+k ctrl+0 1 2 3 等 折叠函数ctrl+k ctrl+j 展开所有函数
-
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-11-05</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/posts/1f36b1f5.html'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/posts/406b51c6.html">
-        油猴脚本案例：百度收录主动推送文章链接到api接口
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        直接上脚本，注意修改下里面的post网址// ==UserScript==
-// @name         百度主动推送
-// @namespace    http://tampermonkey.net/
-// @version      0.1
-// @description  try to take over the world!
-// @author       You
-// @ma...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-10-31</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/posts/406b51c6.html'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/posts/1870b179.html">
-        油猴脚本案例：西瓜视频首页按播放量排序
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        直接上代码：
-// ==UserScript==
-// @name         西瓜首页按播放量排序
-// @namespace    http://tampermonkey.net/
-// @version      0.1
-// @description  try to take over the world!
-// @author       You
-// @match      ...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-10-30</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/posts/1870b179.html'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/posts/e2e5039a.html">
-        油猴脚本案例：百度里面引入计算器或淘宝页面
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        废话少说，直接上代码：
-// ==UserScript==
-// @name         百度里面引入计算器
-// @namespace    http://tampermonkey.net/
-// @version      0.1
-// @description  try to take over the world!
-// @author       You
-// @match  ...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-10-30</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/posts/e2e5039a.html'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/posts/a89b1c4d.html">
-        Thinkphp5和Vue前后端分离的情况下共享验证码session
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        1、首先在Thinkphp5的应用配置文件application/config.php下修改cookie配置项，让二级域名共享cookie这个域名必须是主域名下的二级域名
-//在cookie选项加入domain，配置域名
-&#39;cookie&#39; =&gt; [
-    // cookie 有效域名
-    &#39;domain&#39;    =&gt; &#39;api.exa...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-10-26</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/posts/a89b1c4d.html'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-    
-  </section>
-  
-    
-      <br>
-      <div class="prev-next">
-        
-        <p class="current">
-          1 / 2
-        </p>
-        
-          <a class="next" rel="next" href="/archives/2021/page/2/">
-            <section class="post next white-box shadow">
-              &nbsp;下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
-            </section>
-          </a>
-        
-      </div>
-    
-  
+  </article>
 
 
-	
+
+
+
+
 </div>
 <aside class='l_side'>
   
@@ -994,103 +707,28 @@ hasWhere方法$user = User::hasWh...
     
     
 
-<section class="widget blogger shadow desktop mobile">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box rectangle' href='/about/'>
-          <img no-lazy src='https://i.loli.net/2021/08/07/qBsLaJ1pANkYfMu.png'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-        
-        
-          <p><span id="jinrishici-sentence">猫叔饭-写代码的猫叔个人博客</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="/atom.xml"
-              class="social fas fa-rss flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="mailto:me@xxx.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/volantis-x/"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="/"
-              class="social fas fa-headphones-alt flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
 
-  
 
-  
-    
-    
-
-  
-
-  
-    
-    
-  
-
-  <section class="widget tagcloud shadow desktop mobile">
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
     
   <header>
     
-      <a href='/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
     
   </header>
 
 
     <div class='content'>
-      <a href="/tags/electron/" style="font-size: 14px; color: #999">electron</a> <a href="/tags/fastadmin/" style="font-size: 20.67px; color: #6c6c6c">fastadmin</a> <a href="/tags/hexo/" style="font-size: 14px; color: #999">hexo</a> <a href="/tags/python/" style="font-size: 14px; color: #999">python</a> <a href="/tags/thinkphp/" style="font-size: 17.33px; color: #828282">thinkphp</a> <a href="/tags/vscode/" style="font-size: 14px; color: #999">vscode</a> <a href="/tags/%E5%B7%A5%E4%BD%9C%E6%8A%80%E5%B7%A7/" style="font-size: 14px; color: #999">工作技巧</a> <a href="/tags/%E6%B2%B9%E7%8C%B4%E8%84%9A%E6%9C%AC/" style="font-size: 24px; color: #555">油猴脚本</a>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E6%97%B6%E5%88%B7%E6%96%B0%E7%BD%91%E9%A1%B5"><span class="toc-text">定时刷新网页</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E6%97%B6%E5%85%B3%E9%97%AD%E7%BD%91%E9%A1%B5"><span class="toc-text">定时关闭网页</span></a></li></ol>
     </div>
   </section>
 
 
   
 
-  
-
 
 </aside>
+
 
 
 		  
@@ -1099,21 +737,21 @@ hasWhere方法$user = User::hasWh...
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
-  pdata.postTitle="";
+  pdata.ispage=true;
+  pdata.postTitle="油猴脚本案例：定时刷新网页和定时关闭网页";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   // header 这里无论是否开启pjax都需要
   var l_header=document.getElementById("l_header");
   
-  l_header.classList.remove("show");
+  l_header.classList.add("show");
   
   
     // cover
     var cover_wrapper=document.querySelector('.cover-wrapper');
     
-    cover_wrapper.id="half";
-    cover_wrapper.style.display="";
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
     
   
 </script>

@@ -510,6 +510,29 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </code></pre>
 <pre><code class="js">console.log(&quot;Hello,World!&quot;)
 </code></pre>
+<h4 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h4><pre><code class="py">abc = &#39;字符串&#39;
+abc = &quot;字符串&quot;
+abc = &quot;&quot;&quot;字
+符
+串&quot;&quot;&quot;
+abc = &#39;&#39;&#39;
+字
+符
+串&#39;&#39;&#39;
+</code></pre>
+<pre><code class="js">var abc=&#39;字符串&#39;
+let abc=&quot;字符串&quot;
+const abc=`
+字
+符
+串`
+</code></pre>
+<h4 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a>解构赋值</h4><pre><code class="py">a,b,c = 1,2,3
+print(a,b,c)
+</code></pre>
+<pre><code class="js">const &#123;a,b,c&#125; = &#123;a:1,b:2,c:3&#125;
+console.log(a,b,c)
+</code></pre>
 <h4 id="if判断"><a href="#if判断" class="headerlink" title="if判断"></a>if判断</h4><pre><code class="py">if True:
     print (&quot;True&quot;)
 else:
@@ -538,6 +561,12 @@ else if (expression) &#123;
 else &#123;
   suite 
 &#125;
+</code></pre>
+<h3 id="是否包含"><a href="#是否包含" class="headerlink" title="是否包含"></a>是否包含</h3><pre><code class="py">&#39;你&#39; in &#39;你好啊&#39;
+&#39;对&#39; not in &#39;你好啊&#39;
+</code></pre>
+<pre><code class="js">&#39;你好啊&#39;.includes(&#39;你&#39;)
+!&#39;你好啊&#39;.includes(&#39;对&#39;)
 </code></pre>
 
   
@@ -573,10 +602,10 @@ else &#123;
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-11-13T08:02:09+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-11-14T18:26:45+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Nov 13, 2021</p>
+    <p>更新于：Nov 14, 2021</p>
   </a>
 </div>
 
@@ -716,7 +745,7 @@ else &#123;
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%93%E5%8D%B0%E8%BE%93%E5%87%BA"><span class="toc-text">打印输出</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#if%E5%88%A4%E6%96%AD"><span class="toc-text">if判断</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%93%E5%8D%B0%E8%BE%93%E5%87%BA"><span class="toc-text">打印输出</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text">字符串</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E6%9E%84%E8%B5%8B%E5%80%BC"><span class="toc-text">解构赋值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#if%E5%88%A4%E6%96%AD"><span class="toc-text">if判断</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%98%AF%E5%90%A6%E5%8C%85%E5%90%AB"><span class="toc-text">是否包含</span></a>
     </div>
   </section>
 
@@ -977,12 +1006,12 @@ var loadCSS = function( href, before, media, attributes ){
   <div id="rightmenu-wrapper">
     <ul class="list-v rightmenu" id="rightmenu-content">
       <li class='option'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>Copy Text</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>复制文本</a>
         <hr id='hr-text'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>Copy Link</a>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>Open Link in New Tab</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>复制链接</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>在新标签页打开</a>
         <hr id='hr-href'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>Copy Image Link</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>复制图片地址</a>
         <hr id='hr-src'>
       </li>
       
