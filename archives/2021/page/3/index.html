@@ -5,9 +5,7 @@
   <!-- SEO相关 -->
   
     
-      
-        <meta name="robots" content="noindex,follow">
-      
+      <meta name="robots" content="noindex,follow">
     
   
   <!-- 渲染优化 -->
@@ -26,7 +24,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>猫叔饭-写代码的猫叔个人博客</title>
+  <title>歸檔：2021 - 猫叔饭-写代码的猫叔个人博客</title>
   
 
   
@@ -106,7 +104,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <body>
     
 
-<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
+<header id="l_header" class="l_header auto shadow blur " style='opacity: 0' >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -359,7 +357,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper  search' style="display: none;">
+        <div id="half" class='cover-wrapper  search' style="display: ;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://bing.ioliu.cn/v1/rand?w=1920&h=800"></div>
           
@@ -445,7 +443,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
 
 <div class='l_main'>
-  
+	
+		
   <section class="post-list">
     
     
@@ -459,440 +458,22 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title" >
-      <a href="/posts/a89b1c4d.html">
-        Thinkphp5和Vue前后端分离的情况下共享验证码session
+      <a href="/posts/25256.html">
+        fastadmin 常用知识点整理
       </a>
     </h2>
   
   <div class='md'>
     
       
-        1、首先在Thinkphp5的应用配置文件application/config.php下修改cookie配置项，让二级域名共享cookie这个域名必须是主域名下的二级域名
-//在cookie选项加入domain，配置域名
-&#39;cookie&#39; =&gt; [
-    // cookie 有效域名
-    &#39;domain&#39;    =&gt; &#39;api.exa...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-10-26</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/posts/a89b1c4d.html'>
-            閱讀全文
-          </a>
-        </div>
-      
-    </div>
-  
+        js里怎么取到config里的数据
+以token为例，这里先在后端把数据写入config，然后在前端js里就会有我们设置的token了
 
-</div>
+1.后端php部分$this-&gt;assignconfig(&quot;token&quot;, $this-&gt;auth-&gt;token);
 
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/posts/78dce704.html">
-        thinkphp/fastadmin解决前端vue跨域问题
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        fastadmin的专用方法：修改文件：application/config.php，这是fa的配置文件。修改属性 cors_request_domain，搜一下就找到了，在里面加上你的域名就行了
-&#39;cors_request_domain&#39;   =&gt; &#39;localhost,127.0.0.1&#39;,
+2.前端js部分console.log(Config.token)
 
-tp的通用方法：修改文件：public/index.ph...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-10-22</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/posts/78dce704.html'>
-            閱讀全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/posts/45372c3c.html">
-        fast-小程序：todolist项目文档汇总
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        网址整理视频教程地址：https://www.ixigua.com/7017702820048536071
-后端接口仓库地址：https://gitee.com/maoshushare/fast-todolist
-第一节 项目计划和准备工作项目简介本项目是一个fastadmin+微信小程序的实战案例，一个简单的todolist任务管理功能，包括后台数据增删改查、数据统计、api接口开发（小程...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-10-11</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/posts/45372c3c.html'>
-            閱讀全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/posts/cc7c94cd.html">
-        油猴脚本案例：拦截点击事件， GM_setClipboard复制文本
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        拦截a标签点击，并复制文本：// ==UserScript==
-// @name         案例：拦截点击，并复制文本
-// @match        *://www.baidu.com/*
-// @grant        GM_setClipboard
-// ==/UserScript==
-
-(function() &#123;
-    &#39;use strict&#39;;...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-10-10</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/posts/cc7c94cd.html'>
-            閱讀全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/posts/82c6172.html">
-        php文件操作的常用函数
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        删除几分钟前的文件使用案例（删除几天前的日志文件）：
-      $path =SYSTEM_PATH . DIRECTORY_SEPARATOR .&#39;log&#39;;            
-      $this-&gt;delete_file($path,$days*24*60);
-
-函数：
-protected function delete_file($dir,$time_...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-10-09</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/posts/82c6172.html'>
-            閱讀全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/posts/3e5d6f64.html">
-        electron-forge的安装方法和遇到的坑
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        遇到的坑首先根据官网文档：https://www.electronforge.io/，`yarn create electron-app my-app`，执行到一半卡住了。然后找了其他方法，如下:
-全局安装forge clinpm i -g @electron-forge/cli
-
-这里我安装报错了，所以改为了 cnpm的方式安装，安装成功了 npm i -g @electron-forge...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-08-20</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/posts/3e5d6f64.html'>
-            閱讀全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/posts/c453aadd.html">
-        vue-elementui-admin安装步骤和安装依赖报错解决方案整理
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        文档&amp;链接文档说明：https://panjiachen.github.io/vue-element-admin-site/zh/guide/admin集成方案：https://github.com/PanJiaChen/vue-element-admin基础模板方案：https://github.com/PanJiaChen/vue-admin-template/tree/perm...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-08-10</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/posts/c453aadd.html'>
-            閱讀全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/posts/effba3b3.html">
-        一些好用的npm包和github项目整理
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-一键复制 https://www.npmjs.com/package/clipboard
-vue复制 https://www.npmjs.com/package/vue-clipboard
-时间日期 https://www.npmjs.com/package/dayjs
-快速删除node_modules npm install rimraf -g rimraf node_modules
-浏...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-08-10</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/posts/effba3b3.html'>
-            閱讀全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/posts/31bfa1d6.html">
-        fastadmin按钮buttons全部事件整理
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        对应的视频地址：https://www.ixigua.com/7029550092092703262
-https://www.ixigua.com/7029551561626157605
-相关链接
-
-
-一张图解析FastAdmin中的表格列表的功能(第15条) https://ask.fastadmin.net/article/323.html 
-一张图解析FastAdmin中的弹出窗口的功...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-08-08</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/posts/31bfa1d6.html'>
-            閱讀全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/posts/22663.html">
-        hexo-volantis主题修改代码高亮风格
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        前言
-猫叔的博客是基于hexo制作的，选用主题为volantis，纵然这套主题我是特别喜欢，但它的代码高亮做的不是特别适合我，不如next主题里面的代码高亮风格那么好看（主要是暗色风格），但next主题我又不是特别喜欢，于是研究了下他的修改方法，终于找到 一篇改造博客，但里面多少有点错误并且步骤不完整，于是做一些补充。
-
-步骤1.highlightjs不支持显示行号，改造使其支持1).修改e...
+通过变量Config可以取到...
       
     
   </div>
@@ -905,7 +486,7 @@ https://www.ixigua.com/7029551561626157605
       </div>
       
         <div>
-          <a class='readmore' href='/posts/22663.html'>
+          <a class='readmore' href='/posts/25256.html'>
             閱讀全文
           </a>
         </div>
@@ -925,27 +506,22 @@ https://www.ixigua.com/7029551561626157605
       <br>
       <div class="prev-next">
         
-          <a class="prev" rel="prev" href="/">
+          <a class="prev" rel="prev" href="/archives/2021/page/2/">
             <section class="post prev white-box shadow" >
               <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一頁&nbsp;
             </section>
           </a>
         
         <p class="current">
-          2 / 3
+          3 / 3
         </p>
-        
-          <a class="next" rel="next" href="/page/3/">
-            <section class="post next white-box shadow">
-              &nbsp;下一頁&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
-            </section>
-          </a>
         
       </div>
     
   
 
 
+	
 </div>
 <aside class='l_side'>
   
@@ -1052,7 +628,6 @@ https://www.ixigua.com/7029551561626157605
 </aside>
 
 
-
 		  
 		  <!--此文件用来存放一些不方便取值的变量-->
 <!--思路大概是将值藏到重加载的区域内-->
@@ -1066,14 +641,14 @@ https://www.ixigua.com/7029551561626157605
   // header 这里无论是否开启pjax都需要
   var l_header=document.getElementById("l_header");
   
-  l_header.classList.add("show");
+  l_header.classList.remove("show");
   
   
     // cover
     var cover_wrapper=document.querySelector('.cover-wrapper');
     
-    cover_wrapper.id="none";
-    cover_wrapper.style.display="none";
+    cover_wrapper.id="half";
+    cover_wrapper.style.display="";
     
   
 </script>

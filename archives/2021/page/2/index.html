@@ -458,6 +458,53 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title" >
+      <a href="/posts/a89b1c4d.html">
+        Thinkphp5和Vue前后端分离的情况下共享验证码session
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        1、首先在Thinkphp5的应用配置文件application/config.php下修改cookie配置项，让二级域名共享cookie这个域名必须是主域名下的二级域名
+//在cookie选项加入domain，配置域名
+&#39;cookie&#39; =&gt; [
+    // cookie 有效域名
+    &#39;domain&#39;    =&gt; &#39;api.exa...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-10-26</time>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/posts/a89b1c4d.html'>
+            閱讀全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/posts/78dce704.html">
         thinkphp/fastadmin解决前端vue跨域问题
       </a>
@@ -870,56 +917,6 @@ https://www.ixigua.com/7029551561626157605
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/posts/25256.html">
-        fastadmin 常用知识点整理
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        js里怎么取到config里的数据
-以token为例，这里先在后端把数据写入config，然后在前端js里就会有我们设置的token了
-
-1.后端php部分$this-&gt;assignconfig(&quot;token&quot;, $this-&gt;auth-&gt;token);
-
-2.前端js部分console.log(Config.token)
-
-通过变量Config可以取到...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-08-07</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/posts/25256.html'>
-            閱讀全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -934,8 +931,14 @@ https://www.ixigua.com/7029551561626157605
           </a>
         
         <p class="current">
-          2 / 2
+          2 / 3
         </p>
+        
+          <a class="next" rel="next" href="/archives/2021/page/3/">
+            <section class="post next white-box shadow">
+              &nbsp;下一頁&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
+            </section>
+          </a>
         
       </div>
     
