@@ -618,7 +618,29 @@ $v-&gt;studentmoney()-&gt;delete();
 <h4 id="关联统计"><a href="#关联统计" class="headerlink" title="关联统计"></a>关联统计</h4><p>withCount()<br>也可在前端做统计</p>
 <pre><code class="php">$this-&gt;model-&gt;withCount(&#39;score&#39;)-&gt;where($where)-&gt;select();
 </code></pre>
-<h4 id="关联查询-1"><a href="#关联查询-1" class="headerlink" title="关联查询"></a>关联查询</h4><p>貌似是tp5.0的问题，没找到更好的办法<br>无法查询子表，只能自己写alisa join ，注意with和join不可以同时用</p>
+<h4 id="关联查询-1"><a href="#关联查询-1" class="headerlink" title="关联查询"></a>关联查询</h4><p>貌似是tp5.0的问题，没找到更好的办法</p>
+<pre><code class="php"> $total = $this-&gt;model
+  -&gt;alias(&#39;student&#39;)
+          -&gt;with([&#39;stuclass&#39;,&#39;stuscore&#39;])
+          -&gt;join(&#39;stuscore&#39;,&#39;stuscore.student_id = student.id&#39;,&#39;LEFT&#39;)
+        
+          -&gt;where($where)
+          -&gt;group(&#39;student.id&#39;)
+          -&gt;count();
+  
+
+  $list = $this-&gt;model
+  -&gt;alias(&#39;student&#39;)
+          -&gt;with([&#39;stuclass&#39;,&#39;stuscore&#39;])
+          -&gt;join(&#39;stuscore&#39;,&#39;stuscore.student_id = student.id&#39;,&#39;LEFT&#39;)
+          -&gt;distinct(true)
+          -&gt;where($where)
+          -&gt;order($sort, $order)
+          -&gt;limit($offset, $limit)
+          // -&gt;fetchSql(true)                    
+          -&gt;select();
+</code></pre>
+<p>注意with和join同时用可能会有问题，可以改写为alisa join写法</p>
 <pre><code class="php">$total = $this-&gt;model
         -&gt;alias(&#39;student&#39;)
         -&gt;join(&#39;stuscore&#39;,&#39;stuscore.student_id = student.id&#39;,&#39;left&#39;)
@@ -626,7 +648,7 @@ $v-&gt;studentmoney()-&gt;delete();
     
         -&gt;field(&#39;student.*&#39;)
         -&gt;where($where)
-        -&gt;order($sort, $order)
+        -&gt;group(&#39;student.id&#39;)
         -&gt;count();
 
 $list = $this-&gt;model
@@ -692,10 +714,10 @@ foreach ($list as $row) &#123;
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-11-19T17:56:39+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-11-20T00:43:50+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Nov 19, 2021</p>
+    <p>更新于：Nov 20, 2021</p>
   </a>
 </div>
 
@@ -1087,12 +1109,12 @@ var loadCSS = function( href, before, media, attributes ){
   <div id="rightmenu-wrapper">
     <ul class="list-v rightmenu" id="rightmenu-content">
       <li class='option'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>Copy Text</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>複製文本</a>
         <hr id='hr-text'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>Copy Link</a>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>Open Link in New Tab</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>複製鏈接</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>在新標籤頁打開</a>
         <hr id='hr-href'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>Copy Image Link</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>複製圖片地址</a>
         <hr id='hr-src'>
       </li>
       
