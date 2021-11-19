@@ -24,7 +24,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>歸檔：2021 - 猫叔饭-写代码的猫叔个人博客</title>
+  <title>Archive: 2021 - 猫叔饭-写代码的猫叔个人博客</title>
   
 
   
@@ -484,7 +484,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <div>
           <a class='readmore' href='/posts/a89b1c4d.html'>
-            閱讀全文
+            Read More
           </a>
         </div>
       
@@ -530,7 +530,7 @@ tp的通用方法：修改文件：public/index.ph...
       
         <div>
           <a class='readmore' href='/posts/78dce704.html'>
-            閱讀全文
+            Read More
           </a>
         </div>
       
@@ -575,7 +575,7 @@ tp的通用方法：修改文件：public/index.ph...
       
         <div>
           <a class='readmore' href='/posts/45372c3c.html'>
-            閱讀全文
+            Read More
           </a>
         </div>
       
@@ -625,7 +625,7 @@ tp的通用方法：修改文件：public/index.ph...
       
         <div>
           <a class='readmore' href='/posts/cc7c94cd.html'>
-            閱讀全文
+            Read More
           </a>
         </div>
       
@@ -673,7 +673,7 @@ protected function delete_file($dir,$time_...
       
         <div>
           <a class='readmore' href='/posts/82c6172.html'>
-            閱讀全文
+            Read More
           </a>
         </div>
       
@@ -719,7 +719,7 @@ protected function delete_file($dir,$time_...
       
         <div>
           <a class='readmore' href='/posts/3e5d6f64.html'>
-            閱讀全文
+            Read More
           </a>
         </div>
       
@@ -762,7 +762,7 @@ protected function delete_file($dir,$time_...
       
         <div>
           <a class='readmore' href='/posts/c453aadd.html'>
-            閱讀全文
+            Read More
           </a>
         </div>
       
@@ -810,7 +810,7 @@ vue复制 https://www.npmjs.com/package/vue-clipboard
       
         <div>
           <a class='readmore' href='/posts/effba3b3.html'>
-            閱讀全文
+            Read More
           </a>
         </div>
       
@@ -859,7 +859,7 @@ https://www.ixigua.com/7029551561626157605
       
         <div>
           <a class='readmore' href='/posts/31bfa1d6.html'>
-            閱讀全文
+            Read More
           </a>
         </div>
       
@@ -905,7 +905,7 @@ https://www.ixigua.com/7029551561626157605
       
         <div>
           <a class='readmore' href='/posts/22663.html'>
-            閱讀全文
+            Read More
           </a>
         </div>
       
@@ -926,7 +926,7 @@ https://www.ixigua.com/7029551561626157605
         
           <a class="prev" rel="prev" href="/archives/2021/">
             <section class="post prev white-box shadow" >
-              <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一頁&nbsp;
+              <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;Previous&nbsp;
             </section>
           </a>
         
@@ -936,7 +936,7 @@ https://www.ixigua.com/7029551561626157605
         
           <a class="next" rel="next" href="/archives/2021/page/3/">
             <section class="post next white-box shadow">
-              &nbsp;下一頁&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
+              &nbsp;Next&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
             </section>
           </a>
         
@@ -1301,12 +1301,12 @@ var loadCSS = function( href, before, media, attributes ){
   <div id="rightmenu-wrapper">
     <ul class="list-v rightmenu" id="rightmenu-content">
       <li class='option'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>複製文本</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>Copy Text</a>
         <hr id='hr-text'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>複製鏈接</a>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>在新標籤頁打開</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>Copy Link</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>Open Link in New Tab</a>
         <hr id='hr-href'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>複製圖片地址</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>Copy Image Link</a>
         <hr id='hr-src'>
       </li>
       
@@ -2028,6 +2028,14 @@ function listennSidebarTOC() {
   });
 
   function activateNavByIndex(target) {
+    // console.log('navItems: ', navItems);
+    // if(navItems.length<30){
+    //   document.querySelectorAll(".toc .toc-item").forEach((element) => {
+    //     element.classList.add("active");
+    //   });
+    //   return
+    // }
+
     if (target.classList.contains("active-current")) return;
 
     document.querySelectorAll(".toc .active").forEach((element) => {

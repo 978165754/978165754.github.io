@@ -525,6 +525,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <li>媒体类型 <a target="_blank" rel="noopener" href="https://www.npmjs.com/package/mime">mime</a></li>
 <li>地址格式化 <a target="_blank" rel="noopener" href="https://github.com/wenbintian/address-parse">address-parse</a></li>
 <li>element 地址类组件库 <a target="_blank" rel="noopener" href="https://github.com/akebe/element-address">element-address</a></li>
+<li>js处理pdf <a target="_blank" rel="noopener" href="https://github.com/parallax/jsPDF">jsPDF</a> <a target="_blank" rel="noopener" href="http://mpdf.github.io/">mpdf</a></li>
 </ul>
 
   
@@ -560,10 +561,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-09-30T09:31:31+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-11-16T17:27:47+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Sep 30, 2021</p>
+    <p>更新于：Nov 16, 2021</p>
   </a>
 </div>
 
@@ -944,12 +945,12 @@ var loadCSS = function( href, before, media, attributes ){
   <div id="rightmenu-wrapper">
     <ul class="list-v rightmenu" id="rightmenu-content">
       <li class='option'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>複製文本</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>Copy Text</a>
         <hr id='hr-text'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>複製鏈接</a>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>在新標籤頁打開</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>Copy Link</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>Open Link in New Tab</a>
         <hr id='hr-href'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>複製圖片地址</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>Copy Image Link</a>
         <hr id='hr-src'>
       </li>
       
@@ -1671,6 +1672,14 @@ function listennSidebarTOC() {
   });
 
   function activateNavByIndex(target) {
+    // console.log('navItems: ', navItems);
+    // if(navItems.length<30){
+    //   document.querySelectorAll(".toc .toc-item").forEach((element) => {
+    //     element.classList.add("active");
+    //   });
+    //   return
+    // }
+
     if (target.classList.contains("active-current")) return;
 
     document.querySelectorAll(".toc .active").forEach((element) => {

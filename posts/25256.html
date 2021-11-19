@@ -506,7 +506,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   
   
-  <h2 id="js里怎么取到config里的数据"><a href="#js里怎么取到config里的数据" class="headerlink" title="js里怎么取到config里的数据"></a>js里怎么取到config里的数据</h2><blockquote>
+  <h2 id="碎片知识"><a href="#碎片知识" class="headerlink" title="碎片知识"></a>碎片知识</h2><h3 id="js里怎么取到config里的数据"><a href="#js里怎么取到config里的数据" class="headerlink" title="js里怎么取到config里的数据"></a>js里怎么取到config里的数据</h3><blockquote>
 <p>以token为例，这里先在后端把数据写入config，然后在前端js里就会有我们设置的token了</p>
 </blockquote>
 <h6 id="1-后端php部分"><a href="#1-后端php部分" class="headerlink" title="1.后端php部分"></a>1.后端php部分</h6><pre><code class="php">$this-&gt;assignconfig(&quot;token&quot;, $this-&gt;auth-&gt;token);
@@ -514,6 +514,123 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <h6 id="2-前端js部分"><a href="#2-前端js部分" class="headerlink" title="2.前端js部分"></a>2.前端js部分</h6><pre><code class="js">console.log(Config.token)
 </code></pre>
 <p>通过变量Config可以取到你想要的东西</p>
+<h3 id="行内编辑-editable"><a href="#行内编辑-editable" class="headerlink" title="行内编辑 editable"></a>行内编辑 editable</h3><blockquote>
+<p>注意在使用editable配置时，formatter渲染请删除<br>文档地址：<a target="_blank" rel="noopener" href="https://vitalets.github.io/x-editable/docs.html">https://vitalets.github.io/x-editable/docs.html</a></p>
+</blockquote>
+<h4 id="1-首先需要安装一下插件"><a href="#1-首先需要安装一下插件" class="headerlink" title="1.首先需要安装一下插件"></a>1.首先需要安装一下插件</h4><p><a target="_blank" rel="noopener" href="https://www.fastadmin.net/store/editable.html">https://www.fastadmin.net/store/editable.html</a></p>
+<h4 id="2-js头部追加一个editable"><a href="#2-js头部追加一个editable" class="headerlink" title="2.js头部追加一个editable"></a>2.js头部追加一个editable</h4><pre><code class="js">define([&#39;jquery&#39;, &#39;bootstrap&#39;, &#39;backend&#39;, &#39;table&#39;, &#39;form&#39;, &#39;editable&#39;], function ($, undefined, Backend, Table, Form, undefined) &#123;
+</code></pre>
+<h4 id="3-在columns的字段里加上-editable-true-即可生效"><a href="#3-在columns的字段里加上-editable-true-即可生效" class="headerlink" title="3.在columns的字段里加上  editable:true 即可生效"></a>3.在columns的字段里加上  editable:true 即可生效</h4><h4 id="4-editable的更多配置"><a href="#4-editable的更多配置" class="headerlink" title="4.editable的更多配置"></a>4.editable的更多配置</h4><ul>
+<li>普通文本，并能限制必填，成功回调<br><img src="https://cdn.jsdelivr.net/gh/978165754/picgo@master/blog/20211117100621.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/978165754/picgo@master/blog/20211117100621.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="20211117100621"></li>
+</ul>
+<pre><code class="js">editable: &#123;
+    type: &#39;text&#39;,
+    title: &#39;这里是标题&#39;,
+    // showbuttons:false,
+    // clear:false,
+    // placeholder:&#39;提示输入点什么&#39;,
+    validate: function (value) &#123;
+        if (!$.trim(value)) &#123;
+                return &#39;不能为空&#39;;
+        &#125;
+    &#125;,
+    success: function(response, newValue) &#123;
+        console.log(&#39;newValue: &#39;, newValue);
+        console.log(&#39;response: &#39;, response);                                
+    &#125;
+  &#125;,
+</code></pre>
+<ul>
+<li>textarea 文本域</li>
+</ul>
+<pre><code class="js">editable: &#123;
+    type: &#39;textarea&#39;,
+    rows:3
+&#125;
+</code></pre>
+<ul>
+<li>select下拉菜单，并且支持子菜单<br><img src="https://cdn.jsdelivr.net/gh/978165754/picgo@master/blog/20211117100655.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/978165754/picgo@master/blog/20211117100655.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="20211117100655"><pre><code class="js">editable: &#123;
+type: &#39;select&#39;,
+pk: 1,
+source: [
+    &#123;value: &#39;1&#39;, text: &#39;显示&#39;&#125;,
+    &#123;value: &#39;2&#39;, text: &#39;隐藏&#39;&#125;,
+],
+// source:[
+//     &#123;text: &quot;group1&quot;, children: [&#123;value: 1, text: &quot;text1&quot;&#125;, &#123;value: 2, text: &quot;text2&quot;&#125;]&#125;,
+//     &#123;text: &quot;group2&quot;, children: [&#123;value: 2, text: &quot;text2&quot;&#125;, &#123;value: 3, text: &quot;text3&quot;&#125;]&#125;,
+// ]
+&#125;
+</code></pre>
+</li>
+<li>日期时间<blockquote>
+<p>weekStart: 1 星期几为第一天</p>
+</blockquote>
+<pre><code class="js">editable:&#123;
+type: &#39;date&#39;,
+format: &#39;yyyy-mm-dd&#39;,    
+viewformat: &#39;dd/mm/yyyy&#39;,    
+datepicker: &#123;
+  weekStart: 1
+&#125;
+&#125;
+</code></pre>
+</li>
+<li>可指定任意元素为可编辑项<pre><code class="js">$(&#39;[data-field=&quot;admin_idss&quot;]&#39;).editable(&#123;
+  type: &#39;text&#39;,
+  title: &#39;测试金额&#39;,
+  success: function(response, newValue) &#123;
+      $(&quot;#chuancan&quot;).text(newValue);
+  &#125;
+&#125;);
+</code></pre>
+</li>
+</ul>
+<h2 id="关联模型（视频整理）"><a href="#关联模型（视频整理）" class="headerlink" title="关联模型（视频整理）"></a>关联模型（视频整理）</h2><h3 id="一对一"><a href="#一对一" class="headerlink" title="一对一"></a>一对一</h3><p>文档地址：<a target="_blank" rel="noopener" href="https://doc.fastadmin.net/doc/controller.html#toc-4">https://doc.fastadmin.net/doc/controller.html#toc-4</a></p>
+<pre><code class="php">hasOne(&#39;关联模型名&#39;,&#39;本表外键名&#39;,&#39;本表主键名&#39;,[&#39;模型别名定义&#39;],&#39;join类型&#39;);
+belongsTo(&#39;关联模型名&#39;,&#39;本表外键名&#39;,&#39;关联表主键名&#39;,[&#39;模型别名定义&#39;],&#39;join类型&#39;);
+hasMany(&#39;关联模型名&#39;,&#39;本表外键名&#39;,&#39;本表主键名&#39;,[&#39;模型别名定义&#39;]);
+</code></pre>
+<blockquote>
+<p>样例：4个表 fa_stuclass fa_student fa_studentmoney fa_stuscore<br>主表为：fa_student<br>实现：操作学生主表，增删改查 学费表和成绩表，查询班级表</p>
+</blockquote>
+<h4 id="关联查询"><a href="#关联查询" class="headerlink" title="关联查询"></a>关联查询</h4><p>控制器里</p>
+<pre><code class="php">protected $relationSearch = true;
+
+/**
+ * 快速搜索时执行查找的字段
+ */
+protected $searchFields = &#39;id,admin.username&#39;;
+</code></pre>
+<h4 id="关联写入-新增"><a href="#关联写入-新增" class="headerlink" title="关联写入(新增)"></a>关联写入(新增)</h4><pre><code class="php"> $this-&gt;model-&gt;stuscore()-&gt;save([&quot;score&quot;=&gt;111,&quot;student_id&quot;=&gt;$this-&gt;model-&gt;id]);
+ $this-&gt;model-&gt;studentmoney()-&gt;save([&quot;money&quot;=&gt;12,&quot;student_id&quot;=&gt;$this-&gt;model-&gt;id]);
+</code></pre>
+<h4 id="关联修改"><a href="#关联修改" class="headerlink" title="关联修改"></a>关联修改</h4><pre><code class="php">$row-&gt;stuscore-&gt;score=&quot;xx&quot;;
+$row-&gt;studentmoney-&gt;money=&quot;xxx&quot;;
+$row-&gt;together([&#39;stuscore&#39;,&#39;studentmoney&#39;])-&gt;save();
+</code></pre>
+<h4 id="关联删除"><a href="#关联删除" class="headerlink" title="关联删除"></a>关联删除</h4><pre><code class="php">$v-&gt;together([&#39;stuscore&#39;,&#39;studentmoney&#39;])-&gt;delete();
+// 或者
+$v-&gt;stuscore()-&gt;delete();
+$v-&gt;studentmoney()-&gt;delete();
+</code></pre>
+<h3 id="一对多"><a href="#一对多" class="headerlink" title="一对多"></a>一对多</h3><h4 id="关于hasMany"><a href="#关于hasMany" class="headerlink" title="关于hasMany"></a>关于hasMany</h4><p>可在前端做统计</p>
+<h5 id="关联统计"><a href="#关联统计" class="headerlink" title="关联统计"></a>关联统计</h5><p>withCount()</p>
+<pre><code class="php">$this-&gt;model-&gt;withCount(&#39;score&#39;)-&gt;where($where)-&gt;select();
+</code></pre>
+<h5 id="关联新增"><a href="#关联新增" class="headerlink" title="关联新增"></a>关联新增</h5><pre><code class="php">$this-&gt;model-&gt;stuscore()-&gt;saveAll([
+  [&quot;score&quot;=&gt;111,&quot;student_id&quot;=&gt;$this-&gt;model-&gt;id],
+  [&quot;score&quot;=&gt;333,&quot;student_id&quot;=&gt;$this-&gt;model-&gt;id]
+]);
+</code></pre>
+<h4 id="关联修改-1"><a href="#关联修改-1" class="headerlink" title="关联修改"></a>关联修改</h4><p>感觉没有这个场景吧，together()貌似不支持，我也不会~<br>如果真要批量改的话，就这样吧：</p>
+<pre><code class="php">$this-&gt;model-&gt;stuscore()-&gt;where(&#39;student_id&#39;,$ids)-&gt;update([&quot;score&quot;=&gt;&quot;888&quot;]);
+</code></pre>
+<h4 id="关联删除-1"><a href="#关联删除-1" class="headerlink" title="关联删除"></a>关联删除</h4><pre><code class="php">foreach ($list as $k =&gt; $v) &#123;
+  $count += $v-&gt;delete();
+  $v-&gt;stuscore()-&gt;delete();
+&#125;
+</code></pre>
 
   
   
@@ -548,10 +665,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-08T07:54:52+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-11-19T16:09:10+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Aug 8, 2021</p>
+    <p>更新于：Nov 19, 2021</p>
   </a>
 </div>
 
@@ -682,7 +799,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#js%E9%87%8C%E6%80%8E%E4%B9%88%E5%8F%96%E5%88%B0config%E9%87%8C%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="toc-text">js里怎么取到config里的数据</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A2%8E%E7%89%87%E7%9F%A5%E8%AF%86"><span class="toc-text">碎片知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#js%E9%87%8C%E6%80%8E%E4%B9%88%E5%8F%96%E5%88%B0config%E9%87%8C%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="toc-text">js里怎么取到config里的数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%8C%E5%86%85%E7%BC%96%E8%BE%91-editable"><span class="toc-text">行内编辑 editable</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E9%A6%96%E5%85%88%E9%9C%80%E8%A6%81%E5%AE%89%E8%A3%85%E4%B8%80%E4%B8%8B%E6%8F%92%E4%BB%B6"><span class="toc-text">1.首先需要安装一下插件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-js%E5%A4%B4%E9%83%A8%E8%BF%BD%E5%8A%A0%E4%B8%80%E4%B8%AAeditable"><span class="toc-text">2.js头部追加一个editable</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%9C%A8columns%E7%9A%84%E5%AD%97%E6%AE%B5%E9%87%8C%E5%8A%A0%E4%B8%8A-editable-true-%E5%8D%B3%E5%8F%AF%E7%94%9F%E6%95%88"><span class="toc-text">3.在columns的字段里加上  editable:true 即可生效</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-editable%E7%9A%84%E6%9B%B4%E5%A4%9A%E9%85%8D%E7%BD%AE"><span class="toc-text">4.editable的更多配置</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E8%81%94%E6%A8%A1%E5%9E%8B%EF%BC%88%E8%A7%86%E9%A2%91%E6%95%B4%E7%90%86%EF%BC%89"><span class="toc-text">关联模型（视频整理）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E5%AF%B9%E4%B8%80"><span class="toc-text">一对一</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E8%81%94%E6%9F%A5%E8%AF%A2"><span class="toc-text">关联查询</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E8%81%94%E5%86%99%E5%85%A5-%E6%96%B0%E5%A2%9E"><span class="toc-text">关联写入(新增)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E8%81%94%E4%BF%AE%E6%94%B9"><span class="toc-text">关联修改</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E8%81%94%E5%88%A0%E9%99%A4"><span class="toc-text">关联删除</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E5%AF%B9%E5%A4%9A"><span class="toc-text">一对多</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E4%BA%8EhasMany"><span class="toc-text">关于hasMany</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%B3%E8%81%94%E7%BB%9F%E8%AE%A1"><span class="toc-text">关联统计</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%B3%E8%81%94%E6%96%B0%E5%A2%9E"><span class="toc-text">关联新增</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E8%81%94%E4%BF%AE%E6%94%B9-1"><span class="toc-text">关联修改</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E8%81%94%E5%88%A0%E9%99%A4-1"><span class="toc-text">关联删除</span></a></li></ol></li></ol></li></ol>
     </div>
   </section>
 
@@ -943,12 +1060,12 @@ var loadCSS = function( href, before, media, attributes ){
   <div id="rightmenu-wrapper">
     <ul class="list-v rightmenu" id="rightmenu-content">
       <li class='option'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>複製文本</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>Copy Text</a>
         <hr id='hr-text'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>複製鏈接</a>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>在新標籤頁打開</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>Copy Link</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>Open Link in New Tab</a>
         <hr id='hr-href'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>複製圖片地址</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>Copy Image Link</a>
         <hr id='hr-src'>
       </li>
       
@@ -1670,6 +1787,14 @@ function listennSidebarTOC() {
   });
 
   function activateNavByIndex(target) {
+    // console.log('navItems: ', navItems);
+    // if(navItems.length<30){
+    //   document.querySelectorAll(".toc .toc-item").forEach((element) => {
+    //     element.classList.add("active");
+    //   });
+    //   return
+    // }
+
     if (target.classList.contains("active-current")) return;
 
     document.querySelectorAll(".toc .active").forEach((element) => {

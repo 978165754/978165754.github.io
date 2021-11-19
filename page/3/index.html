@@ -467,14 +467,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class='md'>
     
       
-        js里怎么取到config里的数据
+        碎片知识js里怎么取到config里的数据
 以token为例，这里先在后端把数据写入config，然后在前端js里就会有我们设置的token了
 
 1.后端php部分$this-&gt;assignconfig(&quot;token&quot;, $this-&gt;auth-&gt;token);
 
 2.前端js部分console.log(Config.token)
 
-通过变量Config可以取到...
+通过变量Config...
       
     
   </div>
@@ -488,7 +488,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <div>
           <a class='readmore' href='/posts/25256.html'>
-            閱讀全文
+            Read More
           </a>
         </div>
       
@@ -509,7 +509,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           <a class="prev" rel="prev" href="/page/2/">
             <section class="post prev white-box shadow" >
-              <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一頁&nbsp;
+              <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;Previous&nbsp;
             </section>
           </a>
         
@@ -878,12 +878,12 @@ var loadCSS = function( href, before, media, attributes ){
   <div id="rightmenu-wrapper">
     <ul class="list-v rightmenu" id="rightmenu-content">
       <li class='option'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>複製文本</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>Copy Text</a>
         <hr id='hr-text'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>複製鏈接</a>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>在新標籤頁打開</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>Copy Link</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>Open Link in New Tab</a>
         <hr id='hr-href'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>複製圖片地址</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>Copy Image Link</a>
         <hr id='hr-src'>
       </li>
       
@@ -1605,6 +1605,14 @@ function listennSidebarTOC() {
   });
 
   function activateNavByIndex(target) {
+    // console.log('navItems: ', navItems);
+    // if(navItems.length<30){
+    //   document.querySelectorAll(".toc .toc-item").forEach((element) => {
+    //     element.classList.add("active");
+    //   });
+    //   return
+    // }
+
     if (target.classList.contains("active-current")) return;
 
     document.querySelectorAll(".toc .active").forEach((element) => {
