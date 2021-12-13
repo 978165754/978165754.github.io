@@ -5,6 +5,8 @@
   <!-- SEO相关 -->
   
     
+      <meta name="robots" content="noindex,follow">
+    
   
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -22,9 +24,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>油猴脚本案例：cryptojs加密和解密 - 猫叔饭-写代码的猫叔个人博客</title>
-  
-    <meta name="keywords" content="油猴脚本">
+  <title>Archive: 2021/12 - 猫叔饭-写代码的猫叔个人博客</title>
   
 
   
@@ -104,7 +104,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <body>
     
 
-<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
+<header id="l_header" class="l_header auto shadow blur " style='opacity: 0' >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -357,7 +357,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper post search' style="display: none;">
+        <div id="half" class='cover-wrapper  search' style="display: ;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://bing.ioliu.cn/v1/rand?w=1920&h=800"></div>
           
@@ -443,268 +443,75 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
 
 <div class='l_main'>
-  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
-  
-
-
-  
-  <div class="article-meta" id="top">
+	
+		
+  <section class="post-list">
     
-    
-    
-      <h1 class="title">
-        油猴脚本案例：cryptojs加密和解密
-      </h1>
-      <div class='new-meta-box'>
-        
-          
-            
-<div class='new-meta-item author'>
-  <a class='author' href="/" rel="nofollow">
-    <img no-lazy src="https://i.loli.net/2021/08/07/mNRDQ8oiArnyUPG.png">
-    <p>写代码的猫叔</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Nov 15, 2021</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  <div class="new-meta-item browse leancloud">
-    <a class='notlink'>
       
-      <div id="lc-pv" data-title="油猴脚本案例：cryptojs加密和解密" data-path="/posts/b154afbd.html">
-        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
-        次浏览
-      </div>
-    </a>
-  </div>
-
-
+        
           
         
-      </div>
+      
+    
+    
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/posts/8022e753.html">
+        electron-快速打开开发者工具
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        1.快捷键方式打开ctrl+shift+i alt+⌘+i
+2.代码方式打开// 这种方式会根据你上次打开的方式打开
+mainWindow.webContents.openDevTools()
+
+// 分别是左侧 右侧 下方
+mainWindow.webContents.openDevTools(&#123;mode:&#39;left&#39;&#125;)
+mainWindow.webC...
+      
     
   </div>
-
-
   
-  
-  <p>直接上代码</p>
-<pre><code class="js">// ==UserScript==
-// @name         前端加密和解密
-// @namespace    http://tampermonkey.net/
-// @version      0.1
-// @description  try to take over the world!
-// @author       You
-// @match        https://maoshu.fun/
-// @icon         https://www.google.com/s2/favicons?domain=csdn.net
-// @require      https://cdn.bootcss.com/crypto-js/3.1.9-1/crypto-js.min.js
-// @grant        none
-// ==/UserScript==
-
-(function() &#123;
-    &#39;use strict&#39;;
-    console.log(&#39;CryptoJS的方法：&#39;,CryptoJS);
-    console.log(&quot;加密 MD5：&quot;+CryptoJS.MD5(&quot;猫叔&quot;));
-
-    var pwd=&quot;maoshu&quot;;
-    console.log(&quot;加密 Hmac-MD5：&quot;+CryptoJS.HmacMD5(&quot;猫叔&quot;,pwd)); 
-
-
-    var salt=CryptoJS.enc.Utf8.parse(&quot;salt&quot;);  //盐
-    var iter=1000;  //迭代次数
-    var res=CryptoJS.PBKDF2(&quot;猫叔&quot;, salt,
-          &#123; 
-            keySize: parseInt(4),
-            iterations: parseInt(iter) 
-          &#125;
-        );
-  
-    console.log(&quot;加密 PBKDF2：&quot;+res);
-    
-    //加密
-    var passswd=&quot;maoshufun&quot;;
-    var jiami=CryptoJS.AES.encrypt(&quot;写代码的猫叔&quot;,passswd);
-    console.log(&quot;加密 encrypt：&quot;+jiami);
-    //解密
-    var result=CryptoJS.AES.decrypt(jiami,passswd).toString(CryptoJS.enc.Utf8);
-    console.log(&quot;解密 decrypt：&quot;+result);
-&#125;)();
-</code></pre>
-
-  
-  
-    
-    <div class='footer'>
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-12-07</time>
+        
+      </div>
       
-      
-      
-        <div class='copyright'>
-          <blockquote>
-            
-              
-                <p>文章可以转载，但必须注明作者和网址链接；内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
-
-              
-            
-              
-                <p>本文永久链接：<a href=https://maoshu.fun/posts/b154afbd.html>https://maoshu.fun/posts/b154afbd.html</a></p>
-              
-            
-          </blockquote>
+        <div>
+          <a class='readmore' href='/posts/8022e753.html'>
+            Read More
+          </a>
         </div>
-      
       
     </div>
   
-  
-    
 
-
-  <div class='article-meta' id="bottom">
-    <div class='new-meta-box'>
-      
-        
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-11-15T09:41:17+08:00">
-  <a class='notlink'>
-    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Nov 15, 2021</p>
-  </a>
 </div>
 
-        
-      
-        
-          
-  
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E6%B2%B9%E7%8C%B4%E8%84%9A%E6%9C%AC/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>油猴脚本</p></a></div>
-
-
-        
-      
-        
-          
-  <div class="new-meta-item share -mob-share-list">
-  <div class="-mob-share-list share-body">
-    
-      
-        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
-          
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://maoshu.fun/posts/b154afbd.html&title=油猴脚本案例：cryptojs加密和解密 - 猫叔饭-写代码的猫叔个人博客&summary="
-          
-          >
-          
-            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
-          
-        </a>
-      
-    
-      
-        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
-          
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://maoshu.fun/posts/b154afbd.html&title=油猴脚本案例：cryptojs加密和解密 - 猫叔饭-写代码的猫叔个人博客&summary="
-          
-          >
-          
-            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
-          
-        </a>
-      
-    
-      
-        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
-          
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://maoshu.fun/posts/b154afbd.html&title=油猴脚本案例：cryptojs加密和解密 - 猫叔饭-写代码的猫叔个人博客&summary="
-          
-          >
-          
-            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
-          
-        </a>
-      
-    
-      
-        
-        <div class='hoverbox'>
-          <a class='share'><img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/wechat.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/wechat.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a>
-          <div class='target'>
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPgAAAD4CAAAAADkunTXAAACS0lEQVR42u3cS47CMAwA0N7/0nCA0aj+Faj7siuaJn6ZjbEtjtdD1wEODg4ODr4IfhTXf++fHnyyX/X9cLzg4ODg4OAL4dmDzwKKvlc9p7oPODg4ODj4Zng0YQkfFEx4oud04wUHBwcHBwc/woWMbAEieyHg4ODg4ODgc/BswaJdWAAHBwcHBwcfOzjbIOgmOF/rpICDg4ODg/8QvDvg9+nnn5lsBAcHBwcH/yK8u7oDBNnA2/GCg4ODg4MvgmcLCMfwil5g9YLKFRhwcHBwcPAbwKMFgGphvwqZSnzAwcHBwcE3w7sNhPHAkgMB6QQMHBwcHBx8ETxbCPjUhWUHAMNxg4ODg4ODL4JPJSjZRGP6OZzwgIODg4ODL4RHE5TswF+3kT81kAAODg4ODr4RXj2gm2hkBwGygwbhhgI4ODg4OPiN4dUC/lQjIt0QaF4sODg4ODj4JvhVg3lRSBYaXacNBXBwcHBw8AXwamM/C5ouRET/EeHMDRwcHBwc/IbwaqN/KtDs4EE2cQEHBwcHB38ivBpYFjZV+Cg3FMDBwcHBwW8MrwaaLfiXA20mQODg4ODg4JvhU1/8u2uq4QAODg4ODv4keDfQ7PN0ASL99+Dg4ODg4Avh1cZ7t1FfLYhE9/vzOTg4ODg4+GL4dMJy1YBAdXAAHBwcHBwcPD4wEG34ZwcGygkUODg4ODg4ePkHZK8+93QfcHBwcHDwxfCrGgpTCU71IsHBwcHBwTfDu4X7bMOg2uCvNjrAwcHBwcE3wp+2wMHBwcHBF6w3dZcI45CgHdgAAAAASUVORK5CYII=">
           </div>
-        </div>
-      
-    
-      
-    
-  </div>
-</div>
-
-
-
         
       
-    </div>
-  </div>
-
-
-  
-  
-
-  
-    <div class="prev-next">
-      
-        <a class='prev' href='/posts/8848396d.html'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>vue-elementui常见问题整理</p>
-          <p class='content'>下拉框el-dropdown绑定点击事件el-dropdown-item 里用 @click 无效，必须用 @click.native
-如何在 Table 组件的每一行添加操作该行数据的按钮&l...</p>
-        </a>
-      
-      
-        <a class='next' href='/posts/70cacda7.html'>
-          <p class='title'>油猴脚本案例：定时刷新网页和定时关闭网页<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>定时几秒后刷新网页// ==UserScript==
-// @name         定时刷新网页
-// @namespace    http://tampermonkey.net/
-// @...</p>
-        </a>
-      
-    </div>
-  
-</article>
-
-
-  
-
-  <article class="post white-box reveal shadow" id="comments">
-    <p ct><i class='fas fa-comments'></i> 评论</p>
     
-    <div id="valine_container" class="valine_thread">
-  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
-</div>
-
-  </article>
-
+  </section>
+  
+    
+  
 
 
-
-
-
+	
 </div>
 <aside class='l_side'>
   
@@ -712,14 +519,103 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
 
+<section class="widget blogger shadow desktop mobile">
+  <div class='content'>
+    
+      
+        <a class='avatar flat-box rectangle' href='/about/'>
+          <img no-lazy src='https://i.loli.net/2021/08/07/qBsLaJ1pANkYfMu.png'/>
+        </a>
+      
+    
+    
+      <div class='text'>
+        
+        
+        
+          <p><span id="jinrishici-sentence">猫叔饭-写代码的猫叔个人博客</span></p>
+          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+        
+      </div>
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="/atom.xml"
+              class="social fas fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="mailto:me@xxx.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="https://github.com/volantis-x/"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="/"
+              class="social fas fa-headphones-alt flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+    
+  
+
+  <section class="widget tagcloud shadow desktop mobile">
+    
+  <header>
+    
+      <a href='/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
+    
+  </header>
 
 
+    <div class='content'>
+      <a href="/tags/electron/" style="font-size: 17.33px; color: #828282">electron</a> <a href="/tags/fastadmin/" style="font-size: 20.67px; color: #6c6c6c">fastadmin</a> <a href="/tags/hexo/" style="font-size: 14px; color: #999">hexo</a> <a href="/tags/python/" style="font-size: 14px; color: #999">python</a> <a href="/tags/thinkphp/" style="font-size: 17.33px; color: #828282">thinkphp</a> <a href="/tags/vscode/" style="font-size: 14px; color: #999">vscode</a> <a href="/tags/%E5%B7%A5%E4%BD%9C%E6%8A%80%E5%B7%A7/" style="font-size: 14px; color: #999">工作技巧</a> <a href="/tags/%E6%B2%B9%E7%8C%B4%E8%84%9A%E6%9C%AC/" style="font-size: 24px; color: #555">油猴脚本</a>
+    </div>
+  </section>
+
+
+  
 
   
 
 
 </aside>
-
 
 
 		  
@@ -728,21 +624,21 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 <script>
   window.pdata={}
-  pdata.ispage=true;
-  pdata.postTitle="油猴脚本案例：cryptojs加密和解密";
+  pdata.ispage=false;
+  pdata.postTitle="";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   // header 这里无论是否开启pjax都需要
   var l_header=document.getElementById("l_header");
   
-  l_header.classList.add("show");
+  l_header.classList.remove("show");
   
   
     // cover
     var cover_wrapper=document.querySelector('.cover-wrapper');
     
-    cover_wrapper.id="none";
-    cover_wrapper.style.display="none";
+    cover_wrapper.id="half";
+    cover_wrapper.style.display="";
     
   
 </script>

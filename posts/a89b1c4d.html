@@ -527,6 +527,24 @@ header(&#39;Access-Control-Allow-Credentials: true&#39;);//支持cookie跨域
   timeout: 5000 // request timeout
 &#125;)
 </code></pre>
+<p>juqery中这样写：</p>
+<pre><code class="js">$.ajax(&#123;
+  type: &quot;post&quot;,
+  url: &quot;http://xxx/login.html&quot;,
+  xhrFields: &#123;
+    withCredentials: true
+  &#125;,
+  crossDomain: true,
+  data: &#123;
+
+  &#125;,
+  dataType: &quot;json&quot;,
+  success: function (response) &#123;
+    console.log(&#39;response: &#39;, response);
+    
+  &#125;
+&#125;);
+</code></pre>
 <h3 id="4-修改vue文件的host，让域名可以正常访问"><a href="#4-修改vue文件的host，让域名可以正常访问" class="headerlink" title="4.修改vue文件的host，让域名可以正常访问"></a>4.修改vue文件的host，让域名可以正常访问</h3><p>修改devServer或dev的配置(vue.config.js文件)：</p>
 <pre><code class="js">port:9528,
 host:&#39;api.example.com&#39;,
@@ -565,10 +583,10 @@ host:&#39;api.example.com&#39;,
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-10-26T17:26:11+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-12-13T16:53:56+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Oct 26, 2021</p>
+    <p>更新于：Dec 13, 2021</p>
   </a>
 </div>
 
@@ -967,12 +985,12 @@ var loadCSS = function( href, before, media, attributes ){
   <div id="rightmenu-wrapper">
     <ul class="list-v rightmenu" id="rightmenu-content">
       <li class='option'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>複製文本</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>Copy Text</a>
         <hr id='hr-text'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>複製鏈接</a>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>在新標籤頁打開</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>Copy Link</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>Open Link in New Tab</a>
         <hr id='hr-href'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>複製圖片地址</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>Copy Image Link</a>
         <hr id='hr-src'>
       </li>
       

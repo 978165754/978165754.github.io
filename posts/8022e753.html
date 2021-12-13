@@ -22,9 +22,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>油猴脚本案例：cryptojs加密和解密 - 猫叔饭-写代码的猫叔个人博客</title>
+  <title>electron-快速打开开发者工具 - 猫叔饭-写代码的猫叔个人博客</title>
   
-    <meta name="keywords" content="油猴脚本">
+    <meta name="keywords" content="electron">
   
 
   
@@ -453,7 +453,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
       <h1 class="title">
-        油猴脚本案例：cryptojs加密和解密
+        electron-快速打开开发者工具
       </h1>
       <div class='new-meta-box'>
         
@@ -477,7 +477,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Nov 15, 2021</p>
+    <p>发布于：Dec 7, 2021</p>
   </a>
 </div>
 
@@ -488,7 +488,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="油猴脚本案例：cryptojs加密和解密" data-path="/posts/b154afbd.html">
+      <div id="lc-pv" data-title="electron-快速打开开发者工具" data-path="/posts/8022e753.html">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -506,47 +506,22 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   
   
-  <p>直接上代码</p>
-<pre><code class="js">// ==UserScript==
-// @name         前端加密和解密
-// @namespace    http://tampermonkey.net/
-// @version      0.1
-// @description  try to take over the world!
-// @author       You
-// @match        https://maoshu.fun/
-// @icon         https://www.google.com/s2/favicons?domain=csdn.net
-// @require      https://cdn.bootcss.com/crypto-js/3.1.9-1/crypto-js.min.js
-// @grant        none
-// ==/UserScript==
+  <h3 id="1-快捷键方式打开"><a href="#1-快捷键方式打开" class="headerlink" title="1.快捷键方式打开"></a>1.快捷键方式打开</h3><p><code>ctrl+shift+i</code> <code>alt+⌘+i</code></p>
+<h3 id="2-代码方式"><a href="#2-代码方式" class="headerlink" title="2.代码方式"></a>2.代码方式</h3><h4 id="打开"><a href="#打开" class="headerlink" title="打开"></a>打开</h4><pre><code class="js">// 这种方式会根据你上次打开的方式打开
+mainWindow.webContents.openDevTools()
 
-(function() &#123;
-    &#39;use strict&#39;;
-    console.log(&#39;CryptoJS的方法：&#39;,CryptoJS);
-    console.log(&quot;加密 MD5：&quot;+CryptoJS.MD5(&quot;猫叔&quot;));
-
-    var pwd=&quot;maoshu&quot;;
-    console.log(&quot;加密 Hmac-MD5：&quot;+CryptoJS.HmacMD5(&quot;猫叔&quot;,pwd)); 
+// 分别是左侧 右侧 下方
+mainWindow.webContents.openDevTools(&#123;mode:&#39;left&#39;&#125;)
+mainWindow.webContents.openDevTools(&#123;mode:&#39;right&#39;&#125;)
+mainWindow.webContents.openDevTools(&#123;mode:&#39;bottom&#39;&#125;)
 
 
-    var salt=CryptoJS.enc.Utf8.parse(&quot;salt&quot;);  //盐
-    var iter=1000;  //迭代次数
-    var res=CryptoJS.PBKDF2(&quot;猫叔&quot;, salt,
-          &#123; 
-            keySize: parseInt(4),
-            iterations: parseInt(iter) 
-          &#125;
-        );
-  
-    console.log(&quot;加密 PBKDF2：&quot;+res);
-    
-    //加密
-    var passswd=&quot;maoshufun&quot;;
-    var jiami=CryptoJS.AES.encrypt(&quot;写代码的猫叔&quot;,passswd);
-    console.log(&quot;加密 encrypt：&quot;+jiami);
-    //解密
-    var result=CryptoJS.AES.decrypt(jiami,passswd).toString(CryptoJS.enc.Utf8);
-    console.log(&quot;解密 decrypt：&quot;+result);
-&#125;)();
+// mainWindow.webContents.openDevTools(&#123;mode:&#39;unlocked&#39;&#125;)
+</code></pre>
+<p>// 这种方式是分离式的,并且无法调整,永久分离</p>
+<pre><code class="js">mainWindow.webContents.openDevTools(&#123;mode:&#39;detach&#39;&#125;)
+</code></pre>
+<h4 id="关闭"><a href="#关闭" class="headerlink" title="关闭"></a>关闭</h4><pre><code class="js">mainWindow.webContents.closeDevTools()
 </code></pre>
 
   
@@ -565,7 +540,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
               
             
               
-                <p>本文永久链接：<a href=https://maoshu.fun/posts/b154afbd.html>https://maoshu.fun/posts/b154afbd.html</a></p>
+                <p>本文永久链接：<a href=https://maoshu.fun/posts/8022e753.html>https://maoshu.fun/posts/8022e753.html</a></p>
               
             
           </blockquote>
@@ -582,10 +557,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-11-15T09:41:17+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-12-07T23:08:49+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Nov 15, 2021</p>
+    <p>更新于：Dec 7, 2021</p>
   </a>
 </div>
 
@@ -594,7 +569,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E6%B2%B9%E7%8C%B4%E8%84%9A%E6%9C%AC/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>油猴脚本</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/electron/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>electron</p></a></div>
 
 
         
@@ -607,7 +582,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://maoshu.fun/posts/b154afbd.html&title=油猴脚本案例：cryptojs加密和解密 - 猫叔饭-写代码的猫叔个人博客&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://maoshu.fun/posts/8022e753.html&title=electron-快速打开开发者工具 - 猫叔饭-写代码的猫叔个人博客&summary="
           
           >
           
@@ -619,7 +594,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://maoshu.fun/posts/b154afbd.html&title=油猴脚本案例：cryptojs加密和解密 - 猫叔饭-写代码的猫叔个人博客&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://maoshu.fun/posts/8022e753.html&title=electron-快速打开开发者工具 - 猫叔饭-写代码的猫叔个人博客&summary="
           
           >
           
@@ -631,7 +606,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://maoshu.fun/posts/b154afbd.html&title=油猴脚本案例：cryptojs加密和解密 - 猫叔饭-写代码的猫叔个人博客&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://maoshu.fun/posts/8022e753.html&title=electron-快速打开开发者工具 - 猫叔饭-写代码的猫叔个人博客&summary="
           
           >
           
@@ -645,7 +620,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         <div class='hoverbox'>
           <a class='share'><img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/wechat.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/wechat.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a>
           <div class='target'>
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPgAAAD4CAAAAADkunTXAAACS0lEQVR42u3cS47CMAwA0N7/0nCA0aj+Faj7siuaJn6ZjbEtjtdD1wEODg4ODr4IfhTXf++fHnyyX/X9cLzg4ODg4OAL4dmDzwKKvlc9p7oPODg4ODj4Zng0YQkfFEx4oud04wUHBwcHBwc/woWMbAEieyHg4ODg4ODgc/BswaJdWAAHBwcHBwcfOzjbIOgmOF/rpICDg4ODg/8QvDvg9+nnn5lsBAcHBwcH/yK8u7oDBNnA2/GCg4ODg4MvgmcLCMfwil5g9YLKFRhwcHBwcPAbwKMFgGphvwqZSnzAwcHBwcE3w7sNhPHAkgMB6QQMHBwcHBx8ETxbCPjUhWUHAMNxg4ODg4ODL4JPJSjZRGP6OZzwgIODg4ODL4RHE5TswF+3kT81kAAODg4ODr4RXj2gm2hkBwGygwbhhgI4ODg4OPiN4dUC/lQjIt0QaF4sODg4ODj4JvhVg3lRSBYaXacNBXBwcHBw8AXwamM/C5ouRET/EeHMDRwcHBwc/IbwaqN/KtDs4EE2cQEHBwcHB38ivBpYFjZV+Cg3FMDBwcHBwW8MrwaaLfiXA20mQODg4ODg4JvhU1/8u2uq4QAODg4ODv4keDfQ7PN0ASL99+Dg4ODg4Avh1cZ7t1FfLYhE9/vzOTg4ODg4+GL4dMJy1YBAdXAAHBwcHBwcPD4wEG34ZwcGygkUODg4ODg4ePkHZK8+93QfcHBwcHDwxfCrGgpTCU71IsHBwcHBwTfDu4X7bMOg2uCvNjrAwcHBwcE3wp+2wMHBwcHBF6w3dZcI45CgHdgAAAAASUVORK5CYII=">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPgAAAD4CAAAAADkunTXAAACP0lEQVR42u3awXJCMQgFUP//p9u9nU65kGeVd7JTY8LJigEeXzddD3BwcHBw8EXwR3P9ODD8/bd9z/ur51TjBQcHBwcH3wgvJwDPBw1X9Zxj8YKDg4ODgy+GTy8+FWj1/ng/ODg4ODg4eBveTWTAwcHBwcHBz8OnhYZuQwEcHBwcHBx8XqC/ejDgbTsp4ODg4ODgbwSfNvRf/bkdLzg4ODg4+CL4qVVNYKqgbsLyZ5zg4ODg4OCL4NOEIg1wmoB0Gw/g4ODg4OB3gF/dqE8frHpeOT5wcHBwcPBF8GohIE0w0sRnCqo+FDg4ODg4+GZ4N7BqgyAtTKQPWS5EgIODg4ODL4B3QacSkDQhmsYFDg4ODg6+Ed5tBEwfJi1gHO+kgIODg4ODL4CfKhB0vx83Cq7K3MDBwcHBwd8YfnVDvztIkD5UOW5wcHBwcPDF8LRQEBcCXpQwxQkMODg4ODj4B8Onjf3ThYZTv4ODg4ODg2+GXwVOHyRORLoPAQ4ODg4OvgieXpgW9qv7Txcoyg0FcHBwcHDwD4ang3LTwn/6EOm9f94DDg4ODg6+CD5d1QdIB/XS/5XjAQcHBwcHXwQ/lTB0B/FOFRzK34ODg4ODgy+EpwnLqUQmfdB0UAEcHBwcHPxO8GkDPi0cpIDuQAE4ODg4ODh4DpsGOk1cwMHBwcHBwR/j/acHA9qNDnBwcHBw8MXwaUOhOxA4PbccJzg4ODg4+EJ4urqDAv8+MAAODg4ODr4IfrcFDg4ODg6+YH0DUqDEX2SKG18AAAAASUVORK5CYII=">
           </div>
         </div>
       
@@ -669,19 +644,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     <div class="prev-next">
       
-        <a class='prev' href='/posts/8848396d.html'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>vue-elementui常见问题整理</p>
+      
+        <a class='next' href='/posts/8848396d.html'>
+          <p class='title'>vue-elementui常见问题整理<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
           <p class='content'>下拉框el-dropdown绑定点击事件el-dropdown-item 里用 @click 无效，必须用 @click.native
 如何在 Table 组件的每一行添加操作该行数据的按钮&l...</p>
-        </a>
-      
-      
-        <a class='next' href='/posts/70cacda7.html'>
-          <p class='title'>油猴脚本案例：定时刷新网页和定时关闭网页<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>定时几秒后刷新网页// ==UserScript==
-// @name         定时刷新网页
-// @namespace    http://tampermonkey.net/
-// @...</p>
         </a>
       
     </div>
@@ -714,6 +681,20 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
 
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%96%B9%E5%BC%8F%E6%89%93%E5%BC%80"><span class="toc-text">1.快捷键方式打开</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%BB%A3%E7%A0%81%E6%96%B9%E5%BC%8F"><span class="toc-text">2.代码方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%93%E5%BC%80"><span class="toc-text">打开</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E9%97%AD"><span class="toc-text">关闭</span></a></li></ol></li></ol>
+    </div>
+  </section>
+
 
   
 
@@ -729,7 +710,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="油猴脚本案例：cryptojs加密和解密";
+  pdata.postTitle="electron-快速打开开发者工具";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   // header 这里无论是否开启pjax都需要
