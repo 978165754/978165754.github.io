@@ -22,9 +22,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>electron-forge的安装方法和遇到的坑 - 猫叔饭-写代码的猫叔个人博客</title>
-  
-    <meta name="keywords" content="electron">
+  <title>个人支付宝做扫码支付转账备注写死方案 - 猫叔饭-写代码的猫叔个人博客</title>
   
 
   
@@ -453,7 +451,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
       <h1 class="title">
-        electron-forge的安装方法和遇到的坑
+        个人支付宝做扫码支付转账备注写死方案
       </h1>
       <div class='new-meta-box'>
         
@@ -477,7 +475,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Aug 20, 2021</p>
+    <p>发布于：Dec 17, 2021</p>
   </a>
 </div>
 
@@ -488,7 +486,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="electron-forge的安装方法和遇到的坑" data-path="/posts/3e5d6f64.html">
+      <div id="lc-pv" data-title="个人支付宝做扫码支付转账备注写死方案" data-path="/posts/b09f05f8.html">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -506,31 +504,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   
   
-  <h2 id="遇到的坑"><a href="#遇到的坑" class="headerlink" title="遇到的坑"></a>遇到的坑</h2><p>首先根据官网文档：<a target="_blank" rel="noopener" href="https://www.electronforge.io/%EF%BC%8C%60yarn">https://www.electronforge.io/，`yarn</a> create electron-app my-app`，执行到一半卡住了。然后找了其他方法，如下:</p>
-<h4 id="全局安装forge-cli"><a href="#全局安装forge-cli" class="headerlink" title="全局安装forge cli"></a>全局安装forge cli</h4><pre><code>npm i -g @electron-forge/cli
-</code></pre>
-<p>这里我安装报错了，所以改为了 cnpm的方式安装，安装成功了 <code>npm i -g @electron-forge/cli</code></p>
-<p>但是运行 <code>electron-forge init my-app</code> 来创建项目，依旧是卡住，卡住的地方一模一样：</p>
-<p>卡在这里走不动</p>
-<p><img src="https://cdn.jsdelivr.net/gh/978165754/picgo@master/blog/20210820161614.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/978165754/picgo@master/blog/20210820161614.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="20210820161614"></p>
-<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><blockquote>
-<p>在之前安装electron时也遇到过卡死，当时时因为网络原因，那这个可能也是网络原因</p>
-</blockquote>
-<p>配置下npm的镜像源</p>
-<pre><code>npm config set ELECTRON_MIRROR http://npm.taobao.org/mirrors/electron/
-</code></pre>
-<p>再次执行 <code>electron-forge init my-app</code> ，成功了，虽然安装npm dependencies也用了一段时间，但是终究快很多，不至于卡死</p>
-<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><pre><code class="npm">npm start
-</code></pre>
-<p><img src="https://cdn.jsdelivr.net/gh/978165754/picgo@master/blog/20210820163131.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/978165754/picgo@master/blog/20210820163131.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="20210820163131"></p>
-<h2 id="打包和发布"><a href="#打包和发布" class="headerlink" title="打包和发布"></a>打包和发布</h2><h3 id="打包为绿色免安装文件"><a href="#打包为绿色免安装文件" class="headerlink" title="打包为绿色免安装文件"></a>打包为绿色免安装文件</h3><pre><code>npm run package
-</code></pre>
-<h3 id="打包为exe文件"><a href="#打包为exe文件" class="headerlink" title="打包为exe文件"></a>打包为exe文件</h3><p>但我这边一直报错，无法解决</p>
-<pre><code>npm run make
-</code></pre>
-<p><img src="https://cdn.jsdelivr.net/gh/978165754/picgo@master/blog/20210824113944.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/978165754/picgo@master/blog/20210824113944.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="20210824113944"></p>
-<p>找了各种方法都无法解决，没办法，只能用第三方工具去打包了</p>
-<h3 id="使用-Inno-Setup-打包为exe安装程序"><a href="#使用-Inno-Setup-打包为exe安装程序" class="headerlink" title="使用 Inno Setup 打包为exe安装程序"></a>使用 Inno Setup 打包为exe安装程序</h3><p>下载地址：<a target="_blank" rel="noopener" href="https://pc.qq.com/detail/13/detail_1313.html">https://pc.qq.com/detail/13/detail_1313.html</a></p>
+  <p>方案已经测通,备忘</p>
+<h3 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h3><p>1.服务端生成alipay转账码,里面写死订单号的备注,并存入数据库<br>2.需要买个windows服务器,运行谷歌浏览器,做个浏览器插件,一直监听账单<br>3.监听到新的账单后,读取备注,根据备注里的订单编号来匹配服务器里存储的订单号</p>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项:"></a>注意事项:</h3><p>1.订单号要唯一<br>2.要做时间限制,只查询半小时内的订单,<br>3.服务端数据库里的二维码数据及时清理(半小时前的数据自动删除)<br>4.匹配成功,插件端做记录,数据库记录订单数据,对应的备注数据删除</p>
+<p>优点:<br>不需要手续费<br>缺点:<br>稳定性肯定不如支付宝api,要多花钱买服务器</p>
 
   
   
@@ -548,7 +525,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
               
             
               
-                <p>本文永久链接：<a href=https://maoshu.fun/posts/3e5d6f64.html>https://maoshu.fun/posts/3e5d6f64.html</a></p>
+                <p>本文永久链接：<a href=https://maoshu.fun/posts/b09f05f8.html>https://maoshu.fun/posts/b09f05f8.html</a></p>
               
             
           </blockquote>
@@ -565,10 +542,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-24T11:41:03+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-12-17T17:26:22+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Aug 24, 2021</p>
+    <p>更新于：Dec 17, 2021</p>
   </a>
 </div>
 
@@ -576,9 +553,6 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         
           
-  
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/electron/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>electron</p></a></div>
-
 
         
       
@@ -590,7 +564,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://maoshu.fun/posts/3e5d6f64.html&title=electron-forge的安装方法和遇到的坑 - 猫叔饭-写代码的猫叔个人博客&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://maoshu.fun/posts/b09f05f8.html&title=个人支付宝做扫码支付转账备注写死方案 - 猫叔饭-写代码的猫叔个人博客&summary="
           
           >
           
@@ -602,7 +576,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://maoshu.fun/posts/3e5d6f64.html&title=electron-forge的安装方法和遇到的坑 - 猫叔饭-写代码的猫叔个人博客&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://maoshu.fun/posts/b09f05f8.html&title=个人支付宝做扫码支付转账备注写死方案 - 猫叔饭-写代码的猫叔个人博客&summary="
           
           >
           
@@ -614,7 +588,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://maoshu.fun/posts/3e5d6f64.html&title=electron-forge的安装方法和遇到的坑 - 猫叔饭-写代码的猫叔个人博客&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://maoshu.fun/posts/b09f05f8.html&title=个人支付宝做扫码支付转账备注写死方案 - 猫叔饭-写代码的猫叔个人博客&summary="
           
           >
           
@@ -628,7 +602,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         <div class='hoverbox'>
           <a class='share'><img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/wechat.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/wechat.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a>
           <div class='target'>
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPgAAAD4CAAAAADkunTXAAACRUlEQVR42u3aMXLDMAwEQP3/006fhsSBmcjgspMjWVi6uQB8PpeuBxwcHBwcfBD8CdfyBZvPrT7//fduveDg4ODg4BPh2wGgeX+6gcfeDw4ODg4OPhi+DACb19UAsrsx7XrBwcHBwcHBl4WmDYRqgAEHBwcHBwc/D08DyakNBQcHBwcHvxHeHRB0A0+18fFvkxRwcHBwcPAXwaur2ig4fR3XCw4ODg4OPgjeXdVAsxtEVs/H9YKDg4ODgw+CnxrgV+Hpc+36wMHBwcHBB8HToFK9rwvp/hDg4ODg4OAT4aca+NVgUh34p8GonNzAwcHBwcG/CF4NKLsb1A02aQBa3g8ODg4ODj4IXi04bfwfBxQ3HhwcHBwc/CZ42mjoBqNqXe2BAjg4ODg4+EB4OhBIGwuvTW7g4ODg4OAvhqcNgep9pxoZu8Foe5ICDg4ODg4+GH46uOxuQPcAYDvAgIODg4ODfwE8hZUb+c0BRfWHKA8UwMHBwcHBvxi+/Y98s0GRBp40+CwDDDg4ODg4+EXw6gZ0NziFLgcK4ODg4ODgF8C7oGpDIV3bAQccHBwcHHwQvLvSANT9/vggAzg4ODg4+CB4NzCk4O4BgXRQAQ4ODg4OPhGeBorqQb5uIyMdSICDg4ODg98Arw7iq/DuBvzZAT9wcHBwcHDwY9dpsIpPRICDg4ODg4N/uoGlWld18AEODg4ODj4Zng7048ZAOOhPGxLg4ODg4OAT4WkwSA8ApO+pHjwABwcHBwefDL9tgYODg4ODD1g/Qx+CvR/eBgYAAAAASUVORK5CYII=">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPgAAAD4CAAAAADkunTXAAACP0lEQVR42u3cQXLDQAgEQP3/084DctAyUC4L9d5sKxat0wRIrs9LzwUODg4ODr4IfoXn3xc2f+7u+6bqBQcHBwcH3wg/DgCH158WXr1ft15wcHBwcPDN8NsA8KXrTwNP+f7g4ODg4ODgVzVgTDUqwMHBwcHBwb8XYE4fSLWRAQ4ODg4ODj7QoC82FNL3f26SAg4ODg4O/kPw6kkbE1Ov43rBwcHBwcEXwbtnujGRLgIe1wsODg4ODr4IngaEz/CpPrC0PnBwcHBw8I3wLjAt6Bo64wMFcHBwcHDwB8DTxsDpwD4dTKQBp9yBAQcHBwcHXwyvLgScvn8KnqoPHBwcHBx8M/wOlIKrgPT98kABHBwcHBz8BfDpAUJ3QWB8oAAODg4ODv5geHcQnxY2HYTGF/zAwcHBwcEfAE8H8OkgIF34SxcZwMHBwcHBN8O7ASYt/PT+VejXkhs4ODg4OPgPw9MGQRWUBp9qYwQcHBwcHHwz/PgX+eEHkTYY4jrAwcHBwcFfAD8NFNVBQTeopIsD4ODg4ODg4PVGQrWx0R1w3H4ODg4ODg6+CN49aUOhG3ziwAMODg4ODr4I3g0MXVA5gBSvv21EgIODg4ODL4CngSUdLKQPpr3AAA4ODg4OvhieBogurHpddVEAHBwcHBwcvP+P56sDgmqwijciwMHBwcHBwcf+EP/0e6uDD3BwcHBw8M3wqYW+6uvpRgY4ODg4OPib4GkwSD+fvk88UAAHBwcHB38w/G0HHBwcHBx8wfkD9OGHcl9NUY0AAAAASUVORK5CYII=">
           </div>
         </div>
       
@@ -652,16 +626,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     <div class="prev-next">
       
-        <a class='prev' href='/posts/82c6172.html'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>php文件操作的常用函数</p>
-          <p class='content'>删除几分钟前的文件使用案例（删除几天前的日志文件）：
-      $path =SYSTEM_PATH . DIRECTORY_SEPARATOR .&#39;log&#39;;        ...</p>
-        </a>
       
-      
-        <a class='next' href='/posts/c453aadd.html'>
-          <p class='title'>vue-elementui-admin安装步骤和安装依赖报错解决方案整理<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>文档&amp;链接文档说明：https://panjiachen.github.io/vue-element-admin-site/zh/guide/admin集成方案：https://gith...</p>
+        <a class='next' href='/posts/3e08d632.html'>
+          <p class='title'>高德地图城市编码对应的antvue多级联动地址格式<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>高德地图提供的城市编码是个excel格式，需要转换为antv需要的专用格式，也就是Cascader级联选择器（https://www.antdv.com/components/cascader-...</p>
         </a>
       
     </div>
@@ -704,7 +672,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91"><span class="toc-text">遇到的坑</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85forge-cli"><span class="toc-text">全局安装forge cli</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-text">解决方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8"><span class="toc-text">启动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%93%E5%8C%85%E5%92%8C%E5%8F%91%E5%B8%83"><span class="toc-text">打包和发布</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%93%E5%8C%85%E4%B8%BA%E7%BB%BF%E8%89%B2%E5%85%8D%E5%AE%89%E8%A3%85%E6%96%87%E4%BB%B6"><span class="toc-text">打包为绿色免安装文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%93%E5%8C%85%E4%B8%BAexe%E6%96%87%E4%BB%B6"><span class="toc-text">打包为exe文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-Inno-Setup-%E6%89%93%E5%8C%85%E4%B8%BAexe%E5%AE%89%E8%A3%85%E7%A8%8B%E5%BA%8F"><span class="toc-text">使用 Inno Setup 打包为exe安装程序</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%A1%88"><span class="toc-text">方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">注意事项:</span></a></li></ol>
     </div>
   </section>
 
@@ -723,7 +691,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="electron-forge的安装方法和遇到的坑";
+  pdata.postTitle="个人支付宝做扫码支付转账备注写死方案";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   // header 这里无论是否开启pjax都需要
