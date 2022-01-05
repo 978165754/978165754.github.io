@@ -1146,7 +1146,44 @@ module.exports = &#123;
     &#125;);
 &#125;
 </code></pre>
-<h3 id="删除-1"><a href="#删除-1" class="headerlink" title="删除"></a>删除</h3>
+<h3 id="删除-1"><a href="#删除-1" class="headerlink" title="删除"></a>删除</h3><p>1.首先加一个点击右侧按钮弹出编辑项</p>
+<pre><code class="xml">&lt;van-icon name=&quot;ellipsis&quot; bind:click=&quot;showEditPopup&quot; data-ind=&quot;&#123;&#123;ind&#125;&#125;&quot;  data-index=&quot;&#123;&#123;index&#125;&#125;&quot; /&gt;
+</code></pre>
+<p>2.弹出层放在右侧，里面放几个选项</p>
+<pre><code class="xml">&lt;van-popup show=&quot;&#123;&#123; showPopup &#125;&#125;&quot; position=&quot;right&quot; custom-style=&quot;height: 100%&quot; bind:close=&quot;onClosePopup&quot;&gt;
+  &lt;van-cell title=&quot;删除&quot; icon=&quot;delete-o&quot; bind:click=&quot;delete&quot;/&gt;
+  &lt;van-cell title=&quot;标签&quot; icon=&quot;location-o&quot; /&gt;
+  &lt;van-cell title=&quot;改日期&quot; icon=&quot;clock-o&quot; /&gt;
+&lt;/van-popup&gt;
+</code></pre>
+<p>3.写对应的js方法</p>
+<pre><code class="js">showEditPopup(event)&#123;
+    const &#123;index,ind&#125; = event.currentTarget.dataset
+    const &#123;datalist&#125; = this.data
+    const item = datalist[ind][index]
+    this.editItem = item
+    this.setData(&#123;
+      showPopup:true
+    &#125;)
+&#125;,
+onClosePopup()&#123;
+  this.setData(&#123; showPopup: false &#125;);
+  this.editItem = null
+&#125;,
+delete()&#123;
+  this.request(&#39;/xcxtodo/delete&#39;,&#123;id:this.editItem.id&#125;,(res)=&gt;&#123;
+    const &#123; data &#125; = res
+    if(data.code === 1)&#123;
+      this.getbyday()
+      this.onClosePopup()
+    &#125;
+    wx.showToast(&#123;
+      title: data.msg,
+    &#125;)   
+  &#125;)
+&#125;
+</code></pre>
+
   
   
     
@@ -1180,10 +1217,10 @@ module.exports = &#123;
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2022-01-04T13:14:38+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2022-01-05T15:32:09+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Jan 4, 2022</p>
+    <p>更新于：Jan 5, 2022</p>
   </a>
 </div>
 
@@ -1581,12 +1618,12 @@ var loadCSS = function( href, before, media, attributes ){
   <div id="rightmenu-wrapper">
     <ul class="list-v rightmenu" id="rightmenu-content">
       <li class='option'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>Copy Text</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>複製文本</a>
         <hr id='hr-text'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>Copy Link</a>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>Open Link in New Tab</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>複製鏈接</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>在新標籤頁打開</a>
         <hr id='hr-href'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>Copy Image Link</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>複製圖片地址</a>
         <hr id='hr-src'>
       </li>
       
