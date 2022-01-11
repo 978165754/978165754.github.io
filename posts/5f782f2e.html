@@ -22,9 +22,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>vscode快捷键整理 - 猫叔饭-写代码的猫叔个人博客</title>
+  <title>fastadmin用小程序端上传多张图到服务器 - 猫叔饭-写代码的猫叔个人博客</title>
   
-    <meta name="keywords" content="vscode">
+    <meta name="keywords" content="小程序">
   
 
   
@@ -453,7 +453,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
       <h1 class="title">
-        vscode快捷键整理
+        fastadmin用小程序端上传多张图到服务器
       </h1>
       <div class='new-meta-box'>
         
@@ -477,7 +477,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Nov 5, 2021</p>
+    <p>发布于：Jan 11, 2022</p>
   </a>
 </div>
 
@@ -488,7 +488,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="vscode快捷键整理" data-path="/posts/1f36b1f5.html">
+      <div id="lc-pv" data-title="fastadmin用小程序端上传多张图到服务器" data-path="/posts/5f782f2e.html">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -506,7 +506,56 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   
   
-  <p>ctrl+k ctrl+0 1 2 3 等 折叠函数<br>ctrl+k ctrl+j 展开所有函数</p>
+  <h3 id="小程序端代码"><a href="#小程序端代码" class="headerlink" title="小程序端代码"></a>小程序端代码</h3><p>uploadfile函数：选择图片，然后循环调用uploadfilepath方法，达到上传多张的效果<br>uploadfilepath函数：上传图片专用的，并且处理上传完成后要做的事情（例如显示在页面里）</p>
+<pre><code class="js">,
+  uploadfile()&#123;
+    let that=this
+    //选取图片
+    wx.chooseImage(&#123;
+      count: 3,
+      sizeType: [&#39;original&#39;],//原图
+      sourceType: [ &#39;album&#39;,&#39;camera&#39;],//支持选取图片      
+      success (res) &#123;        
+          // tempFilePath可以作为img标签的src属性显示图片
+          const tempFilePaths = res.tempFilePaths[0];
+          for (const key in res.tempFilePaths) &#123;
+            if (Object.hasOwnProperty.call(res.tempFilePaths, key)) &#123;
+              const element = res.tempFilePaths[key];
+              that.uploadfilepath(element)
+            &#125;
+          &#125;
+      &#125;
+    &#125;)
+  &#125;,
+  uploadfilepath(tempFilePaths)&#123;
+    //上传图片
+    wx.uploadFile(&#123;
+      //请求后台的网址
+      url: gb.apidomain +&#39;/common/upload&#39;,
+      //小程序本地的路径
+      filePath: tempFilePaths,
+      //后台获取我们图片的key
+      name: &#39;file&#39;,
+      //额外的参数formData
+      formData: &#123;
+          &#39;from&#39;: &#39;xcx&#39;
+      &#125;,
+      header: &#123;
+        token:gb.token
+      &#125;,
+      success: function (res) &#123;
+      //上传成功
+        console.log(res,&#39;success&#39;);
+      &#125;,
+      fail: function (res) &#123;
+        console.log(res,&#39;fail&#39;);
+      &#125;,
+    &#125;)
+  &#125;
+</code></pre>
+<p>注意：gb.apidomain是服务器端的域名，formData里可以附带额外参数，count指的是最多一次能上传几张</p>
+<h3 id="php后端代码"><a href="#php后端代码" class="headerlink" title="php后端代码"></a>php后端代码</h3><p>后端代码是fastadmin自带的，不需要我们写了，路径是application/api/controller/Common.php里的upload方法<br><img src="https://cdn.jsdelivr.net/gh/978165754/picgo@master/blog/20220111154702.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/978165754/picgo@master/blog/20220111154702.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="20220111154702"></p>
+<p>上传完成的结果：<img src="https://cdn.jsdelivr.net/gh/978165754/picgo@master/blog/20220111154719.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/978165754/picgo@master/blog/20220111154719.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="20220111154719"></p>
 
   
   
@@ -524,7 +573,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
               
             
               
-                <p>本文永久链接：<a href=https://maoshu.fun/posts/1f36b1f5.html>https://maoshu.fun/posts/1f36b1f5.html</a></p>
+                <p>本文永久链接：<a href=https://maoshu.fun/posts/5f782f2e.html>https://maoshu.fun/posts/5f782f2e.html</a></p>
               
             
           </blockquote>
@@ -541,10 +590,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-11-07T13:22:20+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2022-01-11T15:47:29+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Nov 7, 2021</p>
+    <p>更新于：Jan 11, 2022</p>
   </a>
 </div>
 
@@ -553,7 +602,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/vscode/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>vscode</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>小程序</p></a></div>
 
 
         
@@ -566,7 +615,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://maoshu.fun/posts/1f36b1f5.html&title=vscode快捷键整理 - 猫叔饭-写代码的猫叔个人博客&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://maoshu.fun/posts/5f782f2e.html&title=fastadmin用小程序端上传多张图到服务器 - 猫叔饭-写代码的猫叔个人博客&summary="
           
           >
           
@@ -578,7 +627,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://maoshu.fun/posts/1f36b1f5.html&title=vscode快捷键整理 - 猫叔饭-写代码的猫叔个人博客&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://maoshu.fun/posts/5f782f2e.html&title=fastadmin用小程序端上传多张图到服务器 - 猫叔饭-写代码的猫叔个人博客&summary="
           
           >
           
@@ -590,7 +639,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://maoshu.fun/posts/1f36b1f5.html&title=vscode快捷键整理 - 猫叔饭-写代码的猫叔个人博客&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://maoshu.fun/posts/5f782f2e.html&title=fastadmin用小程序端上传多张图到服务器 - 猫叔饭-写代码的猫叔个人博客&summary="
           
           >
           
@@ -604,7 +653,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         <div class='hoverbox'>
           <a class='share'><img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/wechat.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/wechat.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a>
           <div class='target'>
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPgAAAD4CAAAAADkunTXAAACQklEQVR42u3bMXLDMAwEQP//08kDUgg4UFECLTuPJZqL6oaAP18vXR9wcHBwcPBF8E+4fmx48dzVe1f7nTovODg4ODj4Rng5AAyfvypg9f3498HBwcHBwRfDu0Gke7Dq/tXA0z4vODg4ODg4ePug0wsOcHBwcHBw8N+H39VQAAcHBwcHBz/XIEgDTQp9vJMCDg4ODg7+h+DxwNxDn48N+IGDg4ODg/9j+HR1A0U6QHDsvODg4ODg4IvgaUCowtLnp4MG4ODg4ODgb4Z3GwTVg6WQGNqdiAAHBwcHB18An/7QtDGRBpzHLiLAwcHBwcEfhFcDSjfopPt3z1EtJDg4ODg4+GZ4OmA3HQhoA5oFBgcHBwcHfwO8GzBOBZRuIY41FMDBwcHBwRfAyy8eahR0A9NtAQYcHBwcHHwhfHrB0B3oOx2Myg0FcHBwcHDwBfBqEEkH/boFmA4Axp0UcHBwcHDwRfA0KMQHaxa+WzBwcHBwcPCN8PTCPr1Y6AaUU/uAg4ODg4NvhqcXE9PGwV2DB+Dg4ODg4G+CdwuQDgyk4GnjAxwcHBwcfBN8uk4NEEy/LxcGHBwcHBx8EXwaGKYFm148tAsNDg4ODg6+EH73xUK1EZE+V30fHBwcHBx8MzwNEOlAQNog6A4KgIODg4ODg+d/aO8GpjRYxRMR4ODg4ODgL4afCirdc3UbH+Dg4ODg4JvhabA43SBIC3p5TnBwcHBw8IXwNBicAp1uVJQbCuDg4ODg4P8Y/rYFDg4ODg6+YH0DPCOFkAIIppcAAAAASUVORK5CYII=">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPgAAAD4CAAAAADkunTXAAACSklEQVR42u3cSW7DMAwFUN//0u2+QCBOQW36aZfBNp9WH6SS6+el6wIHBwcHB18Ev4rr442T153e//t5t15wcHBwcPCN8HAACBaaBUWf160XHBwcHBx8M/wYAIKvswEkujHtesHBwcHBwcGPhU41OKY2GhwcHBwcHDwOzzYwsgMFcHBwcHBw8IEGfXFAkA1Ct5ukgIODg4OD3whebRj81+tyveDg4ODg4Ivg3VUNHNHGRTawHOsFBwcHBwdfBK8GhOrGRKHRQUO2PnBwcHBw8DfCp0BVSBk6dSICHBwcHBz8hvDpRn4WVm1MVBsU4ODg4ODgG+HVhn52g7pBKFrnx++Dg4ODg4O/CD4VYMYBh/raAQYcHBwcHPxB8PHGfbFREN2I8YECODg4ODj4A+HR4BAdCHQDS7YBUQ4w4ODg4ODgC+BfH8Q3DxBWBxFjkxRwcHBwcPAbw6PBpRtkso2L7gHAcHIDBwcHBwdfCJ8OGNWGR3TgEd5AcHBwcHDwF8GnGgTZgqsNkrEAAw4ODg4O/mB4d0CfbRBEg0q7XnBwcHBw8MXwahDJFjq9wgEHHBwcHBx8Eby7ogOI7v3HAg84ODg4OPgieDcwZAf33QZG9SADODg4ODj4Zng1UEwBswcQqteDg4ODg4NvhmcH8dVAkQ0s3YMC4ODg4ODg4PM/0KsCqo0QcHBwcHBw8Pwf02QbF9Ugc7w/ODg4ODj4Yvi3DtxNXd99Djg4ODg4+EZ4NRh0C8s+JzuoAAcHBwcH3wx/2wIHBwcHB1+wfgHh2IaB6xQfswAAAABJRU5ErkJggg==">
           </div>
         </div>
       
@@ -628,21 +677,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     <div class="prev-next">
       
-        <a class='prev' href='/posts/336e38a0.html'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>油猴脚本案例：知乎视频页面css优化</p>
-          <p class='content'>直接上代码：
-// ==UserScript==
-// @name         知乎视频页面 优化
-// @namespace    http://tampermonkey.net/
-// ...</p>
-        </a>
       
-      
-        <a class='next' href='/posts/406b51c6.html'>
-          <p class='title'>油猴脚本案例：百度收录主动推送文章链接到api接口<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>直接上脚本，注意修改下里面的post网址// ==UserScript==
-// @name         百度主动推送
-// @namespace    http://tampermonke...</p>
+        <a class='next' href='/posts/b09f05f8.html'>
+          <p class='title'>个人支付宝做扫码支付转账备注写死方案<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>方案已经测通,备忘
+方案1.服务端生成alipay转账码,里面写死订单号的备注,并存入数据库2.需要买个windows服务器,运行谷歌浏览器,做个浏览器插件,一直监听账单3.监听到新的账单后,读...</p>
         </a>
       
     </div>
@@ -675,6 +714,20 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
 
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%AB%AF%E4%BB%A3%E7%A0%81"><span class="toc-text">小程序端代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#php%E5%90%8E%E7%AB%AF%E4%BB%A3%E7%A0%81"><span class="toc-text">php后端代码</span></a></li></ol>
+    </div>
+  </section>
+
 
   
 
@@ -690,7 +743,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="vscode快捷键整理";
+  pdata.postTitle="fastadmin用小程序端上传多张图到服务器";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   // header 这里无论是否开启pjax都需要

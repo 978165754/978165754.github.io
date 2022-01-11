@@ -459,6 +459,52 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title" >
+      <a href="/posts/3e5d6f64.html">
+        electron-forge的安装方法和遇到的坑
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        遇到的坑首先根据官网文档：https://www.electronforge.io/，`yarn create electron-app my-app`，执行到一半卡住了。然后找了其他方法，如下:
+全局安装forge clinpm i -g @electron-forge/cli
+
+这里我安装报错了，所以改为了 cnpm的方式安装，安装成功了 npm i -g @electron-forge...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-08-20</time>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/posts/3e5d6f64.html'>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/posts/c453aadd.html">
         vue-elementui-admin安装步骤和安装依赖报错解决方案整理
       </a>
@@ -481,7 +527,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <div>
           <a class='readmore' href='/posts/c453aadd.html'>
-            閱讀全文
+            阅读全文
           </a>
         </div>
       
@@ -529,7 +575,7 @@ vue复制 https://www.npmjs.com/package/vue-clipboard
       
         <div>
           <a class='readmore' href='/posts/effba3b3.html'>
-            閱讀全文
+            阅读全文
           </a>
         </div>
       
@@ -578,7 +624,7 @@ https://www.ixigua.com/7029551561626157605
       
         <div>
           <a class='readmore' href='/posts/31bfa1d6.html'>
-            閱讀全文
+            阅读全文
           </a>
         </div>
       
@@ -624,7 +670,7 @@ https://www.ixigua.com/7029551561626157605
       
         <div>
           <a class='readmore' href='/posts/22663.html'>
-            閱讀全文
+            阅读全文
           </a>
         </div>
       
@@ -674,7 +720,7 @@ https://www.ixigua.com/7029551561626157605
       
         <div>
           <a class='readmore' href='/posts/25256.html'>
-            閱讀全文
+            阅读全文
           </a>
         </div>
       
@@ -695,7 +741,7 @@ https://www.ixigua.com/7029551561626157605
         
           <a class="prev" rel="prev" href="/page/2/">
             <section class="post prev white-box shadow" >
-              <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一頁&nbsp;
+              <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页&nbsp;
             </section>
           </a>
         
@@ -801,7 +847,7 @@ https://www.ixigua.com/7029551561626157605
 
 
     <div class='content'>
-      <a href="/tags/antv/" style="font-size: 14px; color: #999">antv</a> <a href="/tags/electron/" style="font-size: 17.33px; color: #828282">electron</a> <a href="/tags/fastadmin/" style="font-size: 20.67px; color: #6c6c6c">fastadmin</a> <a href="/tags/hexo/" style="font-size: 14px; color: #999">hexo</a> <a href="/tags/python/" style="font-size: 14px; color: #999">python</a> <a href="/tags/thinkphp/" style="font-size: 17.33px; color: #828282">thinkphp</a> <a href="/tags/vscode/" style="font-size: 14px; color: #999">vscode</a> <a href="/tags/%E5%B7%A5%E4%BD%9C%E6%8A%80%E5%B7%A7/" style="font-size: 14px; color: #999">工作技巧</a> <a href="/tags/%E6%B2%B9%E7%8C%B4%E8%84%9A%E6%9C%AC/" style="font-size: 24px; color: #555">油猴脚本</a>
+      <a href="/tags/antv/" style="font-size: 14px; color: #999">antv</a> <a href="/tags/electron/" style="font-size: 17.33px; color: #828282">electron</a> <a href="/tags/fastadmin/" style="font-size: 20.67px; color: #6c6c6c">fastadmin</a> <a href="/tags/hexo/" style="font-size: 14px; color: #999">hexo</a> <a href="/tags/python/" style="font-size: 14px; color: #999">python</a> <a href="/tags/thinkphp/" style="font-size: 17.33px; color: #828282">thinkphp</a> <a href="/tags/vscode/" style="font-size: 14px; color: #999">vscode</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 14px; color: #999">小程序</a> <a href="/tags/%E5%B7%A5%E4%BD%9C%E6%8A%80%E5%B7%A7/" style="font-size: 14px; color: #999">工作技巧</a> <a href="/tags/%E6%B2%B9%E7%8C%B4%E8%84%9A%E6%9C%AC/" style="font-size: 24px; color: #555">油猴脚本</a>
     </div>
   </section>
 
@@ -1064,12 +1110,12 @@ var loadCSS = function( href, before, media, attributes ){
   <div id="rightmenu-wrapper">
     <ul class="list-v rightmenu" id="rightmenu-content">
       <li class='option'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>複製文本</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>复制文本</a>
         <hr id='hr-text'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>複製鏈接</a>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>在新標籤頁打開</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>复制链接</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>在新标签页打开</a>
         <hr id='hr-href'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>複製圖片地址</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>复制图片地址</a>
         <hr id='hr-src'>
       </li>
       
