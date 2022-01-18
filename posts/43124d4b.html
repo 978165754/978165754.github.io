@@ -5,8 +5,6 @@
   <!-- SEO相关 -->
   
     
-      <meta name="robots" content="noindex,follow">
-    
   
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -24,7 +22,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>标签：工作技巧 - 猫叔饭-写代码的猫叔个人博客</title>
+  <title>centos宝塔面板为php7.4安装sqlsrv扩展使其支持sqlserver数据库 - 猫叔饭-写代码的猫叔个人博客</title>
+  
+    <meta name="keywords" content="thinkphp fastadmin">
   
 
   
@@ -357,7 +357,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper  search' style="display: none;">
+        <div id="full" class='cover-wrapper post search' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://bing.ioliu.cn/v1/rand?w=1920&h=800"></div>
           
@@ -442,82 +442,265 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         <div class="body-wrapper" id="pjax-container">
           
 
-
 <div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
   
+
+
+  
+  <div class="article-meta" id="top">
     
-      
-  <section class="post-list">
     
-      
+    
+      <h1 class="title">
+        centos宝塔面板为php7.4安装sqlsrv扩展使其支持sqlserver数据库
+      </h1>
+      <div class='new-meta-box'>
         
           
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/" rel="nofollow">
+    <img no-lazy src="https://i.loli.net/2021/08/07/mNRDQ8oiArnyUPG.png">
+    <p>写代码的猫叔</p>
+  </a>
+</div>
+
+          
         
-      
-    
-    
-      
+          
+            
+
+          
         
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/posts/c0909080.html">
-        工作技巧：企业微信自动回复设置
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Jan 18, 2022</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
       
-        视频地址：https://www.ixigua.com/7029865467946729991
-1.加好友时自动回复一句话
-2.客户入群时自动发送欢迎语，可以自动@对应的人
-
-3.群内@小助手自动回复可根据关键词自动回复指定的话术 链接 图片 视频 小程序
-
-还可以根据模板快速配置群
-
-
-
-      
-    
+      <div id="lc-pv" data-title="centos宝塔面板为php7.4安装sqlsrv扩展使其支持sqlserver数据库" data-path="/posts/43124d4b.html">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-11-13</time>
+
+
+          
         
       </div>
+    
+  </div>
+
+
+  
+  
+  <blockquote>
+<p>对大佬的教程补充一些东西,修改一些错误,原文地址:<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_37398747/article/details/112673722">https://blog.csdn.net/qq_37398747/article/details/112673722</a><br>我用的php7.4,上面教程用的7.3,估计7以上的都适用</p>
+</blockquote>
+<h3 id="1-加入微软的源"><a href="#1-加入微软的源" class="headerlink" title="1.加入微软的源"></a>1.加入微软的源</h3><p>当前是安装php7以上的版本，其他版本对应自行到官网查询</p>
+<pre><code>curl https://packages.microsoft.com/config/rhel/7/prod.repo &gt; /etc/yum.repos.d/mssqlrelease.repo
+</code></pre>
+<p>微软官网链接:<a target="_blank" rel="noopener" href="https://packages.microsoft.com/config/rhel/7/">https://packages.microsoft.com/config/rhel/7/</a></p>
+<h3 id="2-安装驱动"><a href="#2-安装驱动" class="headerlink" title="2.安装驱动"></a>2.安装驱动</h3><p>如果有冲突,则先卸载之前的版本 <code>yum remove unixODBC</code></p>
+<pre><code>yum install msodbcsql mssql-tools unixODBC-devel
+</code></pre>
+<p>这里是一次安装了3个驱动</p>
+<h3 id="3-下载pdo-sqlsrv扩展包，解压"><a href="#3-下载pdo-sqlsrv扩展包，解压" class="headerlink" title="3.下载pdo_sqlsrv扩展包，解压"></a>3.下载pdo_sqlsrv扩展包，解压</h3><pre><code>#下载扩展包
+wget http://pecl.php.net/get/pdo_sqlsrv-5.9.0.tgz
+
+#解压扩展包
+tar -zxvf pdo_sqlsrv-5.9.0.tgz
+
+#进入解压目录
+cd pdo_sqlsrv-5.9.0
+</code></pre>
+<h3 id="4-安装扩展包"><a href="#4-安装扩展包" class="headerlink" title="4.安装扩展包"></a>4.安装扩展包</h3><pre><code>#执行PHP的一个扩展命令
+/usr/bin/phpize
+
+#编译
+./configure --with-php-config=/usr/bin/php-config
+
+
+#安装
+make &amp;&amp; make install
+</code></pre>
+<p>如果上面的不行,可能是宝塔版本的目录不一样,试试这个.主要就是找对路径</p>
+<pre><code>/www/server/php/74/bin/phpize
+./configure --with-php-config=/www/server/php/74/bin/php-config
+make &amp;&amp; make install
+</code></pre>
+<h3 id="5-添加pdo-sqlsrv扩展"><a href="#5-添加pdo-sqlsrv扩展" class="headerlink" title="5.添加pdo_sqlsrv扩展"></a>5.添加pdo_sqlsrv扩展</h3><p>修改 /etc/php.d/pdo.ini</p>
+<p>添加 extension=pdo_sqlsrv.so</p>
+<p>重启php</p>
+<p>下面是命令行,也可以手动,命令行需要注意的就是路径是否正确</p>
+<pre><code>echo &quot;extension = pdo_sqlsrv.so&quot; &gt;&gt; /www/server/php/74/etc/php.ini
+/etc/init.d/php-fpm-73 reload
+</code></pre>
+<p>最后去看phpinfo里是否安装成功</p>
+<h3 id="清理安装包"><a href="#清理安装包" class="headerlink" title="清理安装包"></a>清理安装包</h3><pre><code>cd ..
+rm -rf pdo_sqlsrv-5.9.0
+rm -rf pdo_sqlsrv-5.9.0.tgz
+</code></pre>
+
+  
+  
+    
+    <div class='footer'>
       
-        <div>
-          <a class='readmore' href='/posts/c0909080.html'>
-            阅读全文
-          </a>
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>文章可以转载，但必须注明作者和网址链接；内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接：<a href=https://maoshu.fun/posts/43124d4b.html>https://maoshu.fun/posts/43124d4b.html</a></p>
+              
+            
+          </blockquote>
         </div>
+      
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2022-01-18T14:30:17+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Jan 18, 2022</p>
+  </a>
 </div>
 
-          </div>
         
       
-    
-  </section>
+        
+          
   
-    
-  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/thinkphp-fastadmin/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>thinkphp fastadmin</p></a></div>
 
 
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
     
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://maoshu.fun/posts/43124d4b.html&title=centos宝塔面板为php7.4安装sqlsrv扩展使其支持sqlserver数据库 - 猫叔饭-写代码的猫叔个人博客&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://maoshu.fun/posts/43124d4b.html&title=centos宝塔面板为php7.4安装sqlsrv扩展使其支持sqlserver数据库 - 猫叔饭-写代码的猫叔个人博客&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://maoshu.fun/posts/43124d4b.html&title=centos宝塔面板为php7.4安装sqlsrv扩展使其支持sqlserver数据库 - 猫叔饭-写代码的猫叔个人博客&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        
+        <div class='hoverbox'>
+          <a class='share'><img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/wechat.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/wechat.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a>
+          <div class='target'>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPgAAAD4CAAAAADkunTXAAACRUlEQVR42u3awXHDMAwEQPffdFJAJiPgQCcWtPx5LFFc+XMG8Pp66HqBg4ODg4Mvgr/C9WPDi+uu7rva79R5wcHBwcHBN8LLAaB5fRVUfd70vODg4ODg4Jvh3SBSDTjd/auBp31ecHBwcHBw8PL93QJCN8CAg4ODg4ODn4N3g03aUAAHBwcHBwc/UKAvFh66AefjOyng4ODg4OAfBI8H5v7p87EBP3BwcHBw8BvDp+tUo2A6CFg+Lzg4ODg4+CL46QZ+euDpc6rPBQcHBwcHfxJ8GmzSAYK00BB3UsDBwcHBwW8IrwaItLCQNiZOByRwcHBwcPCN8HTDNKB0Gwvp/r9eDw4ODg4O/gD49KBvB4QFFHBwcHBw8I3w8YZhgSHd722dFHBwcHBw8BvBu+C0ofCuAkQcYMDBwcHBwR8A7x5oCj5VELlsKICDg4ODgy+Cl//Iv2uA/vAAYDnAgIODg4OD3xiePrAaMKb7T/e77KSAg4ODg4MvgHdfRPX76X3dQsV4wA8cHBwcHPzG8LRBkAaLvwpA4ODg4ODgT4Cnn6cBZLrKAQccHBwcHHwRfLqq4On+0xcJDg4ODg6+ET4NDN3CQVrYOBagwMHBwcHBF8LTQHF6sCAdFKjeDw4ODg4OvhmeBoi0gHB50LCh0A4w4ODg4ODgD4ZXg9CpF5cWQsDBwcHBwcHzQBMP5p1qfICDg4ODgy+GpwN33WBzuuFQ/gHAwcHBwcEXwtNg0D3otFHQfQ44ODg4OPhm+NMWODg4ODj4gvUNaRmEn1SGMn4AAAAASUVORK5CYII=">
+          </div>
+        </div>
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </div>
+
+
   
+  
+
+  
+    <div class="prev-next">
+      
+      
+        <a class='next' href='/posts/5f782f2e.html'>
+          <p class='title'>fastadmin用小程序端上传多张图到服务器<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>小程序端代码uploadfile函数：选择图片，然后循环调用uploadfilepath方法，达到上传多张的效果uploadfilepath函数：上传图片专用的，并且处理上传完成后要做的事情（例...</p>
+        </a>
+      
+    </div>
+  
+</article>
+
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+</div>
+
+  </article>
+
+
+
+
+
+
 </div>
 <aside class='l_side'>
   
@@ -525,103 +708,28 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
 
-<section class="widget blogger shadow desktop mobile">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box rectangle' href='/about/'>
-          <img no-lazy src='https://i.loli.net/2021/08/07/qBsLaJ1pANkYfMu.png'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-        
-        
-          <p><span id="jinrishici-sentence">猫叔饭-写代码的猫叔个人博客</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="/atom.xml"
-              class="social fas fa-rss flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="mailto:me@xxx.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/volantis-x/"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="/"
-              class="social fas fa-headphones-alt flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
 
-  
 
-  
-    
-    
-
-  
-
-  
-    
-    
-  
-
-  <section class="widget tagcloud shadow desktop mobile">
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
     
   <header>
     
-      <a href='/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
     
   </header>
 
 
     <div class='content'>
-      <a href="/tags/antv/" style="font-size: 14px; color: #999">antv</a> <a href="/tags/electron/" style="font-size: 17.33px; color: #828282">electron</a> <a href="/tags/fastadmin/" style="font-size: 20.67px; color: #6c6c6c">fastadmin</a> <a href="/tags/hexo/" style="font-size: 14px; color: #999">hexo</a> <a href="/tags/python/" style="font-size: 14px; color: #999">python</a> <a href="/tags/thinkphp/" style="font-size: 17.33px; color: #828282">thinkphp</a> <a href="/tags/thinkphp-fastadmin/" style="font-size: 14px; color: #999">thinkphp fastadmin</a> <a href="/tags/vscode/" style="font-size: 14px; color: #999">vscode</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 14px; color: #999">小程序</a> <a href="/tags/%E5%B7%A5%E4%BD%9C%E6%8A%80%E5%B7%A7/" style="font-size: 14px; color: #999">工作技巧</a> <a href="/tags/%E6%B2%B9%E7%8C%B4%E8%84%9A%E6%9C%AC/" style="font-size: 24px; color: #555">油猴脚本</a>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%8A%A0%E5%85%A5%E5%BE%AE%E8%BD%AF%E7%9A%84%E6%BA%90"><span class="toc-text">1.加入微软的源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AE%89%E8%A3%85%E9%A9%B1%E5%8A%A8"><span class="toc-text">2.安装驱动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%B8%8B%E8%BD%BDpdo-sqlsrv%E6%89%A9%E5%B1%95%E5%8C%85%EF%BC%8C%E8%A7%A3%E5%8E%8B"><span class="toc-text">3.下载pdo_sqlsrv扩展包，解压</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%AE%89%E8%A3%85%E6%89%A9%E5%B1%95%E5%8C%85"><span class="toc-text">4.安装扩展包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E6%B7%BB%E5%8A%A0pdo-sqlsrv%E6%89%A9%E5%B1%95"><span class="toc-text">5.添加pdo_sqlsrv扩展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%85%E7%90%86%E5%AE%89%E8%A3%85%E5%8C%85"><span class="toc-text">清理安装包</span></a></li></ol>
     </div>
   </section>
 
 
   
 
-  
-
 
 </aside>
+
 
 
 		  
@@ -630,8 +738,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
-  pdata.postTitle="";
+  pdata.ispage=true;
+  pdata.postTitle="centos宝塔面板为php7.4安装sqlsrv扩展使其支持sqlserver数据库";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   // header 这里无论是否开启pjax都需要
